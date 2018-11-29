@@ -1,0 +1,19 @@
+{
+  "name": "ohanadaily",
+  "version": "1.0.0",
+  "description": "Market place to sell videos, pictures, footages, etc. to news media.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcjmedia/ohanadaily.git"
+  },
+  "author": "Romeo Corpuz, Carl Laugerbaum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcjmedia/ohanadaily/issues"
+  },
+  "homepage": "https://github.com/rcjmedia/ohanadaily#readme"
+}
