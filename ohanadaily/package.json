@@ -1,6 +1,7 @@
 {
   "name": "ohanadaily",
   "version": "0.0.0",
+  "author": "Romeo Corpuz, Carl Laugerbaum",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
