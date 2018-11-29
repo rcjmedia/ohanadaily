@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, appRoutes } from './app-routing.module';
+
+/* Components */
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
+
+/* Pages */
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
@@ -32,9 +40,13 @@ import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashbo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [],// Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
