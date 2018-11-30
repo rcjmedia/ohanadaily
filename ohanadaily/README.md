@@ -1,27 +1,57 @@
-# Ohanadaily
+# ohanadaily
+Market place to sell videos, pictures, footages, etc. to news media.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
+### 
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Schemas
 
-## Code scaffolding
+## Users
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|first_name|string(255)|not null|
+|last_name|string(255)|not null|
+|email|email|not null|
+|birthday|date|not null|
+|address|string|not null|
+|user_type|boolean|not null|
+|rank|integer|not null
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Content
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|type|video/image|not null|
+|user_id(Fk)|number|not null|
+|title|string|not null|
+|description|string|not null|
+|location|string|not null|
+|bid|currency|not null|
+|status|boolean|not null|
+|category|string|not null|
+|file_size|intger|not null|
+|resolution|string|not null|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
 
-## Build
+## Transactions 
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|buyer_id(Fk)|integer|not null|
+|seller_id(Fk)|integer|not null|
+|content_id|intger|not null|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Preferred 
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|buyer_id|integer|not null|
+|seller_id|integer|not null|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
