@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BackendService} from './backend.service';
+import { BackendService } from './backend.service';
 import { SessionService } from './session.service';
 
 @Injectable({
@@ -13,21 +13,21 @@ export class AuthService {
     private session: SessionService
   ) { }
 
-  register(data){
-    return this.backend.register(data);
+  signup(data) {
+    return this.backend.signup(data);
   }
 
-  login(data){
+  login(data) {
     return this.backend.login(data)
-    .then((response ) => {
+    .then((response) => {
       return this.session.setSession(data.username);
-    })
+    });
   }
 
-  logout(){
+  logout() {
     return this.backend.logout()
     .then((response) => {
       return this.session.clearSession();
-    })
+    });
   }
 }

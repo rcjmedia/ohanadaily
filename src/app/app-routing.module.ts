@@ -13,9 +13,9 @@ import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashbo
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'api/contacts', component: ContentsComponent },
-  { path: 'api/profile', component: BuyerComponent },
-  { path: 'api/createcontact', component: SellerComponent },
+  { path: 'contents', component: ContentsComponent },
+  { path: 'api/profile', component: BuyerComponent }, // INACTIVE
+  { path: 'api/createcontact', component: SellerComponent }, // INACTIVE
   { path: 'api/contacts/:id', component: CheckoutComponent },
   { path: 'buyer', component: BuyerDashboardComponent }, // TODO: view by ID
   { path: 'seller', component: SellerDashboardComponent }, // TODO: view by ID

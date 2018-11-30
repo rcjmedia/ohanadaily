@@ -24,9 +24,18 @@
         <!-- if user is not logged in then signUp -->
         <li class="routes" *ngIf=!user.loggedIn><a (click)="signUp()" class="routes">Sign up</a></li>
         <!-- if user is logged in then logout -->
-        <li class="routes" *ngIf="isLoggedIn()"><a ng-click="logout()" href="">Logout</a></li>
+        <!-- <li class="routes" *ngIf="isLoggedIn()"><a ng-click="logout()" href="">Logout</a></li> -->
         <!-- if user is not logged in then signUp -->
-        <li class="routes" *ngIf=!user.loggedIn><a (click)="login()" class="routes">Log In</a></li>
+        <!-- <li class="routes" *ngIf=!user.loggedIn><a (click)="login()" class="routes">Log In</a></li> -->
+
+        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async">
+          Welcome, {{user.username}}
+          <a href (click)="logout()">Log Out</a>
+        </li>
+        <li class="logged-out" *ngIf=!isLoggedInAsObservable()>
+          <a href (click)="login()">Log In</a>
+        </li>
+        
       </ul>
     </div>
   </div>

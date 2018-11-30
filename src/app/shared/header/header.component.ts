@@ -11,6 +11,9 @@ import { SessionService } from '../../services/session.service';
 export class HeaderComponent implements OnInit {
 
   user: object;
+
+  private _isLoggedIn = false;
+  private _isLoggedInAsObservable;
   
   constructor(
     private router: Router,
@@ -21,10 +24,17 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._isLoggedInAsObservable = this.session.isLoggedInAsAObservable();
+    this._isLoggedInAsObservable.subscribe(
+      (loggedIn: boolean) => {
+        this._isLoggedIn = loggedIn;
+      },
+      (error) => { console.log(error); }
+    );
   }
 
   isLoggedIn() {
-    return this.session.isLoggedIn();
+    // return this.session.isLoggedIn();
   }
 
   contents() {
@@ -32,23 +42,31 @@ export class HeaderComponent implements OnInit {
   }
 
   buyerDashboard() {
-    return this.router.navigate(['/seller']);
+    return this.router.navigate(['/buyer']);
   }
 
   sellerDashboard() {
-    return this.router.navigate(['/buyer']);
+    return this.router.navigate(['/seller']);
   }
 
   signUp() {
     return this.router.navigate(['/signup']);
   }
 
+  isLoggedInAsObservable() {
+    return this._isLoggedIn;
+  }
+
   login() {
-      return this.router.navigate(['/login']);
+    return this.router.navigate(['/login']);
   }
 
   logout() {
-    return this.router.navigate(['/logout']);
+    return this.auth.logout();
+  }
+
+  ngOnDestroy() {
+    this._isLoggedInAsObservable.unsubscribe();
   }
 
 }
