@@ -14,6 +14,7 @@ Market place to sell videos, pictures, footages, etc. to news media.
 |first_name|string(255)|not null|
 |last_name|string(255)|not null|
 |email|email|not null|
+|password|text|not null|
 |birthday|date|not null|
 |address|string|not null|
 |user_type|boolean|not null|
@@ -56,3 +57,4 @@ Market place to sell videos, pictures, footages, etc. to news media.
 |seller_id|integer|not null|
 |created_at|TS w/ TZ|not null|
 |updated_at|TS w/ TZ|not null|
+igr
