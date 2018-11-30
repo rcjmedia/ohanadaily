@@ -15,13 +15,19 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { ContentsComponent } from './pages/contents/contents.component';
 import { BuyerComponent } from './pages/buyer/buyer.component';
 import { SellerComponent } from './pages/seller/seller.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { BuyerDashboardComponent } from './pages/buyer-dashboard/buyer-dashboard.component';
 import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
+
+/* Services */
+import { BackendService } from './services/backend.service';
+import { SessionService } from './services/session.service';
+import { AuthService } from './services/auth.service';
+import { SignupComponent } from './pages/signup/signup.component';
+
 
 @NgModule({
   declarations: [
@@ -30,13 +36,13 @@ import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashbo
     HomeComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent,
     ContentsComponent,
     BuyerComponent,
     SellerComponent,
     CheckoutComponent,
     BuyerDashboardComponent,
-    SellerDashboardComponent
+    SellerDashboardComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,11 @@ import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashbo
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],// Services
+  providers: [
+    BackendService,
+    SessionService,
+    AuthService
+  ],// Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }

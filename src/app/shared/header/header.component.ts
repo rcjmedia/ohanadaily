@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'header',
@@ -8,16 +10,33 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  user: object;
+  
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private auth: AuthService,
+    private session: SessionService
+  ) { 
+    this.user = this.session.getSession();
+  }
 
   ngOnInit() {
   }
 
+  isLoggedIn() {
+    return this.session.isLoggedIn();
+  }
 
-login() {
-    return this.router.navigate(['/login']);
-}
+  signUp() {
+    return this.router.navigate(['/signup']);
+  }
+
+  login() {
+      return this.router.navigate(['/login']);
+  }
+
+  logout() {
+    return this.router.navigate(['/logout']);
+  }
 
 }

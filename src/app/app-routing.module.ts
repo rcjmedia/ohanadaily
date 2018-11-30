@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { ContentsComponent } from './pages/contents/contents.component';
 import { BuyerComponent } from './pages/buyer/buyer.component';
 import { SellerComponent } from './pages/seller/seller.component';
@@ -19,9 +19,9 @@ export const appRoutes: Routes = [
   { path: 'api/contacts/:id', component: CheckoutComponent },
   { path: 'api/contacts/:id', component: BuyerDashboardComponent },
   { path: 'api/contacts/:id', component: SellerDashboardComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

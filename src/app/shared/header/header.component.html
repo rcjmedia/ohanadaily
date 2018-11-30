@@ -7,7 +7,6 @@
   <title>OhanaDaily - News Content Market Place</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css">
   <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-  <!-- <link rel="stylesheet" href="css/styles.css"> -->
 </head>
 <body>
 
@@ -15,10 +14,13 @@
     <div class="container">
       <ul class="nav navbar-nav">
         <a href="/" class="navbar-brand"><i class="ion-images"></i> OhanaDaily</a>
-        <li><a href="#/">Home</a></li>
-        <li><a href="#/login">Log in</a></li>
-        <li><a href="#/signup">Sign up</a></li>
-        <li><a ng-click="logout()" href="">Logout</a></li>
+        <li><a href="/">Home</a></li>
+        <!-- if user is not logged in then signUp -->
+        <li class="routes" *ngIf=!user.loggedIn><a (click)="signUp()" class="routes">Sign up</a></li>
+        <!-- if user is logged in then logout -->
+        <li class="routes" *ngIf="isLoggedIn()"><a ng-click="logout()" href="">Logout</a></li>
+        <!-- if user is not logged in then signUp -->
+        <li class="routes" *ngIf=!user.loggedIn><a (click)="login()" class="routes">Log In</a></li>
       </ul>
     </div>
   </div>
