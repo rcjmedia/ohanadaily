@@ -17,8 +17,8 @@ export const appRoutes: Routes = [
   { path: 'api/profile', component: BuyerComponent },
   { path: 'api/createcontact', component: SellerComponent },
   { path: 'api/contacts/:id', component: CheckoutComponent },
-  { path: 'api/contacts/:id', component: BuyerDashboardComponent },
-  { path: 'api/contacts/:id', component: SellerDashboardComponent },
+  { path: 'buyer', component: BuyerDashboardComponent }, // TODO: view by ID
+  { path: 'seller', component: SellerDashboardComponent }, // TODO: view by ID
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },

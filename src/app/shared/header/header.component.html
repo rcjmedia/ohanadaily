@@ -15,6 +15,12 @@
       <ul class="nav navbar-nav">
         <a href="/" class="navbar-brand"><i class="ion-images"></i> OhanaDaily</a>
         <li><a href="/">Home</a></li>
+        <!-- if user is not logged in then display Contents -->        
+        <li class="routes" *ngIf=!user.loggedIn><a (click)="contents()" class="routes">Contents</a></li>
+        <!-- if user is not logged in then display Seller Dashboard -->        
+        <li class="routes" *ngIf=!user.loggedIn><a (click)="sellerDashboard()" class="routes">Seller Dashboard</a></li>        
+        <!-- if user is not logged in then display Buyer Dashboard -->        
+        <li class="routes" *ngIf=!user.loggedIn><a (click)="buyerDashboard()" class="routes">Buyer Dashboard</a></li>        
         <!-- if user is not logged in then signUp -->
         <li class="routes" *ngIf=!user.loggedIn><a (click)="signUp()" class="routes">Sign up</a></li>
         <!-- if user is logged in then logout -->

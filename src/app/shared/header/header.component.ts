@@ -27,6 +27,18 @@ export class HeaderComponent implements OnInit {
     return this.session.isLoggedIn();
   }
 
+  contents() {
+    return this.router.navigate(['/contents']);
+  }
+
+  buyerDashboard() {
+    return this.router.navigate(['/seller']);
+  }
+
+  sellerDashboard() {
+    return this.router.navigate(['/buyer']);
+  }
+
   signUp() {
     return this.router.navigate(['/signup']);
   }
