@@ -1,18 +1,30 @@
 // Update with your config settings.
+require('dotenv').config({path: '../.env'})
+// console.log(process.env)
 
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
+      host: process.env.POSTGRES_HOSTNAME,
+      port: process.env.POSTGRES_CONTAINER_PORT,
+      database: process.env.POSTGRES_DB,
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD
+    },
+    migrations: {
+      directory: __dirname + '/knex/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/knex/seeds'
     }
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'news',
       user:     'username',
       password: 'password'
     },
@@ -28,7 +40,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'news',
       user:     'username',
       password: 'password'
     },
