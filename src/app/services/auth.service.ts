@@ -2,16 +2,52 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BackendService } from './backend.service';
 import { SessionService } from './session.service';
+import { Router } from '@angular/router';
+import {Observable, pipe, throwError} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
+import decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   constructor(
+    private _router: Router,
     private http: HttpClient,
     private backend: BackendService,
     private session: SessionService
   ) { }
+
+  /**
+   * this is used to clear anything that needs to be removed
+   */
+  clear(): void {
+    localStorage.clear();
+  }
+
+  /**
+   * check for expiration and if token is still existing or not
+   * @return {boolean}
+   */
+  isAuthenticated(): boolean {
+    return localStorage.getItem('token') != null && !this.isTokenExpired();
+  }
+
+  // simulate jwt token is valid
+  isTokenExpired(): boolean {
+    return false;
+  }
+
+  loginAdmin(): void {
+    localStorage.setItem('token', `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMyNzM5NjksImV4cCI6MTU2NDgxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiVGVzdCBHdWFyZCIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJyb2xlIjoiQWRtaW4ifQ.rEkg53_IeCLzGHlmaHTEO8KF5BNfl6NEJ8w-VEq2PkE`);
+
+    this._router.navigate(['/dashboard']);
+  }
+
+  decode() {
+    return decode(localStorage.getItem('token'));
+  }
 
   signup(data) {
     return this.backend.signup(data);
@@ -20,6 +56,10 @@ export class AuthService {
   login(data) {
     return this.backend.login(data)
     .then((response) => {
+      localStorage.setItem('token', `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMyNzM5NjksImV4cCI6MTU2NDgxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiVGVzdCBHdWFyZCIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20ifQ.GA0Y9gYIjmx1jLwuRHuBgZ8m6o-NgkD84nO0ym68CWo`);
+
+      this._router.navigate(['/dashboard']);
+  
       return this.session.setSession(data.username);
     });
   }
@@ -27,6 +67,8 @@ export class AuthService {
   logout() {
     return this.backend.logout()
     .then((response) => {
+      this.clear();
+
       return this.session.clearSession();
     });
   }
