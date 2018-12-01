@@ -13,31 +13,18 @@
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
       <ul class="nav navbar-nav">
-        <a href="/" class="navbar-brand"><i class="ion-images"></i> OhanaDaily</a>
-        <li><a href="/">Home</a></li>
-        <!-- if user is not logged in then display Contents -->        
-        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async"><a (click)="contents()" class="routes">Contents</a></li>
-        <!-- if user is not logged in then display Seller Dashboard -->        
-        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async"><a (click)="sellerDashboard()" class="routes">Seller Dashboard</a></li>        
-        <!-- if user is not logged in then display Buyer Dashboard -->        
-        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async"><a (click)="buyerDashboard()" class="routes">Buyer Dashboard</a></li>        
-        <!-- if user is not logged in then signUp -->
-        <li class="logged-out" *ngIf=!isLoggedInAsObservable()>
-          <a (click)="signUp()" class="routes">Sign up</a>
-        </li>
-        <!-- if user is logged in then logout -->
-        <!-- <li class="routes" *ngIf="isLoggedIn()"><a ng-click="logout()" href="">Logout</a></li> -->
-        <!-- if user is not logged in then signUp -->
-        <!-- <li class="routes" *ngIf=!user.loggedIn><a (click)="login()" class="routes">Log In</a></li> -->
-
-        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async">
-          Welcome, {{user.username}}
-          <a href (click)="logout()">Log Out</a>
-        </li>
-        <li class="logged-out" *ngIf=!isLoggedInAsObservable()>
-          <a href (click)="login()">Log In</a>
-        </li>
-
+        <button class="navbar-brand" (click)="home()"><i class="ion-images"></i> OhanaDaily</button>
+        <button (click)="home()">Home</button>
+        <!-- if user is not logged in then do not display Contents -->        
+        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="contents()">Contents</button>
+        <!-- if user is not logged in then do not display Seller Dashboard -->        
+        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="sellerDashboard()">Seller Dashboard</button>        
+        <!-- if user is not logged in then do not display Buyer Dashboard -->        
+        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="buyerDashboard()">Buyer Dashboard</button>        
+        <!-- if user is not logged out then display sign up -->
+        <button class="logged-out" *ngIf=!isLoggedInAsObservable() (click)="signUp()" class="routes">Sign up</button>
+        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="logout()">Log Out</button>
+        <button class="logged-out" *ngIf=!isLoggedInAsObservable() (click)="login()">Log In</button>
       </ul>
     </div>
   </div>

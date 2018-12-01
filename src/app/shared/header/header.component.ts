@@ -32,11 +32,15 @@ export class HeaderComponent implements OnInit {
       },
       (error) => { console.log(error); }
     );
-    
+
   }
 
   isLoggedIn() {
     // return this.session.isLoggedIn();
+  }
+
+  home() {
+    return this.router.navigate(['/']);
   }
 
   contents() {
