@@ -1,3 +1,67 @@
-<p>
-  contents works!
-</p>
+<section id="viewallcontacts" class="content">
+  <div class="form-horizontal">
+      <div class="form-heading">
+          <!-- <h2>{{ contact }}</h2> -->
+      </div>
+
+    <div class="people-title">
+        {{ people }}
+      </div>
+      <div class='people-container'>
+        <div *ngFor='let char of characters' class='people'>
+          <div class='people-info'>
+            name: {{ char.name }},  
+          </div>
+          <hr>
+          <div class='people-info'>
+            height: {{ char.height }}m,`
+          </div>
+          <div class='people-info'>
+            mass: {{ char.mass }}kg,
+          </div>
+          <div class='people-info'>
+            hair color: {{ char.hair_color }},
+          </div>
+          <div class='people-info'>
+            eye color: {{ char.eye_color }}
+          </div>
+          <div class='people-info'>
+            <div>
+              homeworld: {{ char.homeworld }} 
+            </div>
+          </div>
+          <div class="people-info">
+            species: {{ char.species }}
+          </div>
+          <div class="people-info">
+            character: {{ char.url }}
+          </div>
+          <div class="people-info">
+            starships: {{ char.starships }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="planet-title">
+        {{ planet }}
+      </div>
+      <div class="planets-container">
+        <div *ngFor='let plan of planets' class="planets">
+          <div class="planets-info">
+            name: {{ plan.name }}
+          </div>
+          <hr>
+          <div class="planets-info">
+            terrain: {{ plan.terrain }}
+          </div>
+          <div class="planets-info">
+            population: {{ plan.population }}
+          </div>
+          <div class="planets-info">
+            planet: {{ plan.url }}
+          </div>
+        </div>
+      </div>
+          
+  </div> <!-- form-horizontal -->
+</section>

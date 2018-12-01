@@ -5,9 +5,47 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendService {
-  url:string = 'http://localhost:4200';
+  baseUrl: string = 'https://swapi.co/api/';
 
-  constructor(private http: HttpClient) { }
+  planets: any[] = [];
+  characters: any[] = [];
+  
+  constructor(private http: HttpClient) {
+
+  }
+
+  getCharacter(id: number) {
+    const url = this.baseUrl + 'people/' + id;
+    return this.http.get(url).toPromise();
+  }
+
+  getPlanet(id: number) {
+    const url = this.baseUrl + 'planets/' + id;
+    return this.http.get(url).toPromise();
+  }
+
+  addCharacters(character) {
+    console.log('character', character)
+    this.characters.push(character);
+  }
+
+  addPlanets(planet) {
+    console.log('planet', planet)
+    this.planets.push(planet);
+  }
+
+  register(data) {
+    return Promise.resolve({});
+  }
+
+  login(data) {
+    return Promise.resolve({ username: data.username });
+
+  }
+
+  logout() {
+    return Promise.resolve({});
+  }
 
   seller(data) {
     // return this.http.post(this.url, data).toPromise();
@@ -21,25 +59,17 @@ export class BackendService {
     return Promise.resolve({});
   }
 
+  getContents() {
+    const url = this.baseUrl + 'people/';
+    return this.http.get(url).toPromise();
+  }
+
   signup(data) {
     // return this.http.post(this.url, data).toPromise();
     // mock api
     return Promise.resolve({});
   }
-
-  login(data) {
-    // return this.http.post(this.url, data).toPromise();
-    // mock api
-    return Promise.resolve({});
-  }
-
-  logout() {
-    // return this.http.post(this.url, {}).toPromise();
-    // mock api
-    return Promise.resolve({});
-  }
 }
-
 
 // import { Injectable } from '@angular/core';
 // import { HttpClient, HttpParams } from '@angular/common/http';
@@ -67,7 +97,7 @@ export class BackendService {
 //     return this.http.get(url).toPromise();
 //   }
 
-//   getContacts() {
+//   getContents() {
 //     const url = this.baseUrl + 'contacts/';
 //     return this.http.get(url).toPromise();
 //   }

@@ -1,0 +1,125 @@
+*{
+    text-decoration:none; 
+    list-style:none; 
+    margin:0px; 
+    padding:0px; 
+    outline:none;
+  }
+    
+  body {
+    margin:0px; 
+    padding:0px; 
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  section {
+    width:100%; 
+    max-width:1200px; 
+    margin:0px auto; 
+    display:table; 
+    position:relative;
+  }
+  
+  .name-wrapper {
+    border: 1px solid #002e5b;
+    padding: 10px;
+    margin: 1% 10%;
+    .name {
+      text-align: center;
+      background-color: #1e5799;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      padding: 5px;
+      margin-bottom: 10px;
+      a {
+        color: white;
+      }
+      
+      a:hover {
+        color: #fde428;
+      }
+    }
+    p {
+      font-size: 18px;
+  
+    }
+  }
+  
+  .form-horizontal {
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 5px gray;
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    // .form-heading {
+    //     background: #fde428;
+    //     border-radius: 10px;
+    //     padding: 10px 15px;
+    //     h2 {
+    //     text-align: center;
+    //     color: #002e5b;
+    //     margin: 0;
+    //     }
+    // }
+    .form-group {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        max-width: 100%;
+        margin: auto;
+        margin: 15px;
+    }
+    .left {
+        display: grid;
+    }
+    .right {
+        display: grid;
+        justify-content: center;
+        padding: 2px;
+        padding-top: -5px;
+        padding-left: 20px;
+        margin-left: 20px;
+        border: 2px solid #002e5b;
+        border-radius: 10px;
+    }
+    .btn {
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+  }
+  
+  .form-heading {
+    background: #3f729b;
+      border-radius: 10px;
+      padding: 10px 15px;
+      h2 {
+      text-align: center;
+      color: #002e5b;
+      margin: 0;
+      }
+  }
+  
+  @media only screen and (max-width: 1440px) {
+    section {
+        max-width:95%;
+      }
+  }
+  
+  @media only screen and (max-width: 980px) {
+    .content {
+      width:90%;
+      }
+  }
+  
+  a {
+    color: #002e5b;
+  }
+  
+  a:hover {
+    color: #fde428;
+  }

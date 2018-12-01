@@ -16,13 +16,15 @@
         <a href="/" class="navbar-brand"><i class="ion-images"></i> OhanaDaily</a>
         <li><a href="/">Home</a></li>
         <!-- if user is not logged in then display Contents -->        
-        <li class="routes" *ngIf=!user.loggedIn><a (click)="contents()" class="routes">Contents</a></li>
+        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async"><a (click)="contents()" class="routes">Contents</a></li>
         <!-- if user is not logged in then display Seller Dashboard -->        
-        <li class="routes" *ngIf=!user.loggedIn><a (click)="sellerDashboard()" class="routes">Seller Dashboard</a></li>        
+        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async"><a (click)="sellerDashboard()" class="routes">Seller Dashboard</a></li>        
         <!-- if user is not logged in then display Buyer Dashboard -->        
-        <li class="routes" *ngIf=!user.loggedIn><a (click)="buyerDashboard()" class="routes">Buyer Dashboard</a></li>        
+        <li class="logged-in" *ngIf="_isLoggedInAsObservable | async"><a (click)="buyerDashboard()" class="routes">Buyer Dashboard</a></li>        
         <!-- if user is not logged in then signUp -->
-        <li class="routes" *ngIf=!user.loggedIn><a (click)="signUp()" class="routes">Sign up</a></li>
+        <li class="logged-out" *ngIf=!isLoggedInAsObservable()>
+          <a (click)="signUp()" class="routes">Sign up</a>
+        </li>
         <!-- if user is logged in then logout -->
         <!-- <li class="routes" *ngIf="isLoggedIn()"><a ng-click="logout()" href="">Logout</a></li> -->
         <!-- if user is not logged in then signUp -->
@@ -35,7 +37,7 @@
         <li class="logged-out" *ngIf=!isLoggedInAsObservable()>
           <a href (click)="login()">Log In</a>
         </li>
-        
+
       </ul>
     </div>
   </div>

@@ -25,12 +25,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this._isLoggedInAsObservable = this.session.isLoggedInAsAObservable();
+
     this._isLoggedInAsObservable.subscribe(
       (loggedIn: boolean) => {
         this._isLoggedIn = loggedIn;
       },
       (error) => { console.log(error); }
     );
+    
   }
 
   isLoggedIn() {
