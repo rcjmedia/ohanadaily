@@ -65,9 +65,8 @@ export class BackendService {
   }
 
   signup(data) {
-    // return this.http.post(this.url, data).toPromise();
-    // mock api
-    return Promise.resolve({});
+    const signUpUrl = this.baseUrl + 'signup';
+    return this.http.post(signUpUrl, data).toPromise();
   }
 }
 

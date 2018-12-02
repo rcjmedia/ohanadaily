@@ -56,7 +56,8 @@ export class HeaderComponent implements OnInit {
   }
 
   signUp() {
-    return this.router.navigate(['/signup']);
+    window.alert('New Contact Added');
+    return this.router.navigate(['/login']);
   }
 
   isLoggedInAsObservable() {

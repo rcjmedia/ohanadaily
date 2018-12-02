@@ -13,18 +13,18 @@
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
       <ul class="nav navbar-nav">
-        <button class="navbar-brand" (click)="home()"><i class="ion-images"></i> OhanaDaily</button>
-        <button (click)="home()">Home</button>
+        <li><a class="navbar-brand" routerLink="/"><i class="ion-images"></i> OhanaDaily</a></li>
+        <li class="routes" *ngIf=!isLoggedInAsObservable()><a routerLink="/">Home</a></li>
         <!-- if user is not logged in then do not display Contents -->        
-        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="contents()">Contents</button>
-        <!-- if user is not logged in then do not display Seller Dashboard -->        
-        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="sellerDashboard()">Seller Dashboard</button>        
-        <!-- if user is not logged in then do not display Buyer Dashboard -->        
-        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="buyerDashboard()">Buyer Dashboard</button>        
+        <li class="routes" *ngIf="_isLoggedInAsObservable | async"><a routerLink="/contents">Contents</a></li>
+        <!-- if user is not logged in then do not display User Dashboard -->        
+        <li class="routes" *ngIf="_isLoggedInAsObservable | async"><a routerLink="/dashboard">Dashboard</a></li>
+        <!-- if user is not logged in then do not display User Dashboard --> 
+        <li class="routes" *ngIf="_isLoggedInAsObservable | async"><a routerLink="/profile">Profile</a></li>
         <!-- if user is not logged out then display sign up -->
-        <button class="logged-out" *ngIf=!isLoggedInAsObservable() (click)="signUp()" class="routes">Sign up</button>
-        <button class="logged-in" *ngIf="_isLoggedInAsObservable | async" (click)="logout()">Log Out</button>
-        <button class="logged-out" *ngIf=!isLoggedInAsObservable() (click)="login()">Log In</button>
+        <li class="routes" *ngIf=!isLoggedInAsObservable()><a routerLink="/signup" (click)="signUp()">Sign up</a></li>
+        <li class="routes" *ngIf="_isLoggedInAsObservable | async"><a href (click)="logout()">Log Out</a></li>
+        <li class="routes" *ngIf=!isLoggedInAsObservable()><a routerLink="/login" (click)="login()">Log In</a></li>
       </ul>
     </div>
   </div>

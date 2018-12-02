@@ -4,24 +4,22 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { ContentsComponent } from './pages/contents/contents.component';
-import { BuyerComponent } from './pages/buyer/buyer.component';
-import { SellerComponent } from './pages/seller/seller.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { BuyerDashboardComponent } from './pages/buyer-dashboard/buyer-dashboard.component';
-import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
+import { InvalidComponent } from './pages/invalid/invalid.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contents', component: ContentsComponent },
-  { path: 'api/profile', component: BuyerComponent }, // INACTIVE
-  { path: 'api/createcontact', component: SellerComponent }, // INACTIVE
   { path: 'api/contacts/:id', component: CheckoutComponent },
-  { path: 'buyer', component: BuyerDashboardComponent }, // TODO: view by ID
-  { path: 'seller', component: SellerDashboardComponent }, // TODO: view by ID
   { path: 'signup', component: SignupComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: '**', component: InvalidComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

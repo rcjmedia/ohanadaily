@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
+/* Routes */
 import { AppRoutingModule, appRoutes } from './app-routing.module';
 
 /* Components */
@@ -16,17 +17,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { ContentsComponent } from './pages/contents/contents.component';
-import { BuyerComponent } from './pages/buyer/buyer.component';
-import { SellerComponent } from './pages/seller/seller.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { BuyerDashboardComponent } from './pages/buyer-dashboard/buyer-dashboard.component';
-import { SellerDashboardComponent } from './pages/seller-dashboard/seller-dashboard.component';
 
 /* Services */
 import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { SignupComponent } from './pages/signup/signup.component';
+import { InvalidComponent } from './pages/invalid/invalid.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 @NgModule({
@@ -37,12 +38,12 @@ import { SignupComponent } from './pages/signup/signup.component';
     LoginComponent,
     LogoutComponent,
     ContentsComponent,
-    BuyerComponent,
-    SellerComponent,
+    SignupComponent,
+    InvalidComponent,
     CheckoutComponent,
-    BuyerDashboardComponent,
-    SellerDashboardComponent,
-    SignupComponent
+    DashboardComponent,
+    ProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
