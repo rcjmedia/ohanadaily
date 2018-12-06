@@ -1,9 +1,13 @@
-// const bookshelf = require('./bookshelf');
+const bookshelf = require('./bookshelf');
+const UserModel = require('../models/UserModels')
 
-// const User = bookshelf.Model.extend({
-//     tableName: 'content',
-//     idAttribute: 'id',
-//     hasTimestamps: true
-// });
+const ContentModels = bookshelf.Model.extend({
+    tableName: 'content',
+    user_id: function() {
+      return this.belongsTo(UserModel, "user_id");
+  },
+    idAttribute: 'id',
+    hasTimestamps: true
+});
 
-// module.exports = Content;
+module.exports = ContentModels;

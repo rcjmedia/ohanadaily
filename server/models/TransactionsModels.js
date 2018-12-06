@@ -1,6 +1,6 @@
-const bookshelf = require('./bookshelf');
+const bookshelf = require('../models/bookshelf');
 const ContentModel = require('./ContentModels');
-const UserMOdel = require('./UserModels');
+const UserModel = require('./UserModels');
 
 
 
@@ -11,7 +11,7 @@ const Transactions = bookshelf.Model.extend({
         return this.belongsTo(UserModel, "buyer_id");
     },
     seller_id: function() {
-        return this.belongsTo(UserMOdel, "seller_id");
+        return this.belongsTo(UserModel, "seller_id");
     },
     content_id: function() {
         return this.belongsTo(ContentModel, "content_id");

@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
 
 //post new
 router.post('/register', (req, res) => {
-  console.log("\nThis is the req.body", req.body);
+  console.log("\nThis is the req.body for register", req.body);
   const {password} = req.body
   bcrypt.hash(password, 10)
 
