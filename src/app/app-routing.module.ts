@@ -1,30 +1,46 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { LogoutComponent } from './pages/logout/logout.component';
-import { SignupComponent } from './pages/signup/signup.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { ContentsComponent } from './pages/contents/contents.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { InvalidComponent } from './pages/invalid/invalid.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Shell } from '@app/shell/shell.service';
 
-export const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'contents', component: ContentsComponent },
-  { path: 'api/contacts/:id', component: CheckoutComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: '**', component: InvalidComponent },
+const routes: Routes = [
+  Shell.childRoutes([{ 
+    path: 'about', 
+    loadChildren: 'app/about/about.module#AboutModule'
+  }]),
+  Shell.childRoutes([{ 
+    path: 'addcontent', 
+    loadChildren: 'app/addcontent/addcontent.module#AddcontentModule'
+  }]),
+  Shell.childRoutes([{ 
+    path: 'categories', 
+    loadChildren: 'app/categories/categories.module#CategoriesModule'
+  }]),
+  Shell.childRoutes([{ 
+    path: 'contents', 
+    loadChildren: 'app/contents/contents.module#ContentsModule'
+  }]),
+  Shell.childRoutes([{ 
+    path: 'dashboards', 
+    loadChildren: 'app/dashboards/dashboards.module#DashboardsModule'
+  }]),
+  Shell.childRoutes([{ 
+    path: 'preferred', 
+    loadChildren: 'app/preferred/preferred.module#PreferredModule'
+  }]),Shell.childRoutes([{ 
+    path: 'register', 
+    loadChildren: 'app/register/register.module#RegisterModule'
+  }]),
+  Shell.childRoutes([{ 
+    path: 'transactions', 
+    loadChildren: 'app/transactions/transactions.module#TransactionsModule'
+  }]),
+  // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule],
+  providers: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
