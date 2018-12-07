@@ -7,8 +7,7 @@ router.use(bp.json());
 router.use(bp.urlencoded({ extended: true}));
 
 
-//get
-
+//get all
 router.get('/', (req, res) => {
   TransactionsModels
   .fetchAll ({ withRelated: ["buyer_id", "seller_id", "content_id"]})
@@ -24,12 +23,13 @@ router.get('/', (req, res) => {
 
   })
 
+//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
   TransactionsModels
   .where('id', id)
-  .fetchAll({withRelated: ["user_id", "content_id"]})
+  .fetchAll({withRelated: ["buyer_id", "seller_id", "content_id"]})
   .then(transactionId => {
     console.log("\nServer: Display By Transaction ID\n", transactionId);
     res.json(transactionId);
@@ -51,7 +51,7 @@ router.post('/new_purchase', (req, res) => {
   .save()
   .then(() => {
     return TransactionsModels
-    .fetchAll({withRelated: ['user_id', 'content_id']})
+    .fetchAll({withRelated: ["buyer_id", "seller_id", "content_id"]})
     .then(newPurchase => {
       res.json(newPurchase.serialize());
     })
@@ -67,10 +67,9 @@ router.post('/new_purchase', (req, res) => {
 })
 
 //put edit
-// router.put('/edit')
-
+//no need
 //put delete
-
+//no need
 //
 
 
