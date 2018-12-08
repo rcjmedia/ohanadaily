@@ -8,7 +8,13 @@ import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, TransactionsRoutingModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    TransactionsRoutingModule
+  ],
   declarations: [TransactionsComponent]
 })
 export class TransactionsModule {}

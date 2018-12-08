@@ -8,7 +8,13 @@ import { AddcontentRoutingModule } from './addcontent-routing.module';
 import { AddcontentComponent } from './addcontent.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AddcontentRoutingModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    AddcontentRoutingModule
+  ],
   declarations: [AddcontentComponent]
 })
 export class AddcontentModule {}

@@ -8,7 +8,13 @@ import { DashboardsRoutingModule } from './dashboards-routing.module';
 import { DashboardsComponent } from './dashboards.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, DashboardsRoutingModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    DashboardsRoutingModule
+  ],
   declarations: [DashboardsComponent]
 })
 export class DashboardsModule {}

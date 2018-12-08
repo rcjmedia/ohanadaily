@@ -6,7 +6,11 @@ import { TransactionsComponent } from './transactions.component';
 
 const routes: Routes = [
   // Module is lazy loaded, see app-routing.module.ts
-  { path: '', component: TransactionsComponent, data: { title: extract('Transactions') } }
+  {
+    path: '',
+    component: TransactionsComponent,
+    data: { title: extract('Transactions') }
+  }
 ];
 
 @NgModule({

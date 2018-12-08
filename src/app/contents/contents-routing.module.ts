@@ -6,7 +6,11 @@ import { ContentsComponent } from './contents.component';
 
 const routes: Routes = [
   // Module is lazy loaded, see app-routing.module.ts
-  { path: '', component: ContentsComponent, data: { title: extract('Contents') } }
+  {
+    path: '',
+    component: ContentsComponent,
+    data: { title: extract('Contents') }
+  }
 ];
 
 @NgModule({

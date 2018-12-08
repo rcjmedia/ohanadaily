@@ -8,7 +8,13 @@ import { ContentsRoutingModule } from './contents-routing.module';
 import { ContentsComponent } from './contents.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, ContentsRoutingModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    ContentsRoutingModule
+  ],
   declarations: [ContentsComponent]
 })
 export class ContentsModule {}

@@ -6,7 +6,11 @@ import { AddcontentComponent } from './addcontent.component';
 
 const routes: Routes = [
   // Module is lazy loaded, see app-routing.module.ts
-  { path: '', component: AddcontentComponent, data: { title: extract('Add Content') } }
+  {
+    path: '',
+    component: AddcontentComponent,
+    data: { title: extract('Add Content') }
+  }
 ];
 
 @NgModule({

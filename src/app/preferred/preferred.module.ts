@@ -8,7 +8,13 @@ import { PreferredRoutingModule } from './preferred-routing.module';
 import { PreferredComponent } from './preferred.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, PreferredRoutingModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    PreferredRoutingModule
+  ],
   declarations: [PreferredComponent]
 })
 export class PreferredModule {}

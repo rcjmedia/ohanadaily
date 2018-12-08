@@ -6,7 +6,11 @@ import { RegisterComponent } from './register.component';
 
 const routes: Routes = [
   // Module is lazy loaded, see app-routing.module.ts
-  { path: '', component: RegisterComponent, data: { title: extract('Register') } }
+  {
+    path: '',
+    component: RegisterComponent,
+    data: { title: extract('Register') }
+  }
 ];
 
 @NgModule({
