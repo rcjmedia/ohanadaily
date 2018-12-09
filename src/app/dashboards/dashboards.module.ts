@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 import { DashboardsRoutingModule } from './dashboards-routing.module';
 import { DashboardsComponent } from './dashboards.component';
+import { DashboardService } from './dashboard.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DashboardsComponent } from './dashboards.component';
     MaterialModule,
     DashboardsRoutingModule
   ],
-  declarations: [DashboardsComponent]
+  declarations: [DashboardsComponent],
+  providers: [DashboardService]
 })
 export class DashboardsModule {}

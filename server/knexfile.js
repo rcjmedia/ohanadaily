@@ -8,8 +8,8 @@ module.exports = {
     client: 'pg',
     connection: {
       //TO DO : Romeo change back to process.env for your computer.
-      host: process.env.POSTGRES_HOSTNAME || 'localhost',
-      port: process.env.POSTGRES_HOST_PORT || 5432,
+      host: 'localhost',
+      port: 5432,
       database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD
