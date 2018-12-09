@@ -31,20 +31,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService.getUsers().then(result => {
+    this.quoteService.getContent().then(result => {
       this.alphaSort(result);
     });
-
-    // this.isLoading = true;
-    // this.quoteService
-    //   .getRandomQuote({ category: 'users' })
-    //   .pipe(
-    //     finalize(() => {
-    //       this.isLoading = false;
-    //     })
-    //   )
-    //   .subscribe((quote: string) => {
-    //     this.quote = quote;
-    //   });
   }
 }

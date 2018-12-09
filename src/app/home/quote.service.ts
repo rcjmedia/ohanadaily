@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
 //   quote: (c: RandomQuoteContext) => `/jokes/random?category=${c.category}`
 // };
 
-export interface RandomQuoteContext {
-  // The quote's category: 'dev', 'explicit'...
-  category: string;
-}
+// export interface RandomQuoteContext {
+//   // The quote's category: 'dev', 'explicit'...
+//   category: string;
+// }
 
 @Injectable()
 export class QuoteService {
@@ -20,18 +20,8 @@ export class QuoteService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getUsers() {
+  getContent() {
     const url = this.baseUrl + 'content/';
     return this.httpClient.get(url).toPromise();
   }
-
-  // getRandomQuote(context: RandomQuoteContext): Observable<string> {
-  //   return this.httpClient
-  //     .cache()
-  //     .get(routes.quote(context))
-  //     .pipe(
-  //       map((body: any) => body.value),
-  //       catchError(() => of('Error, could not load joke :-('))
-  //     );
-  // }
 }
