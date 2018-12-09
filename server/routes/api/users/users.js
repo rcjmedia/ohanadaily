@@ -49,7 +49,8 @@ router.post('/register', (req, res) => {
     birthdate: req.body.birthdate,
     address: req.body.address,
     user_type: req.body.user_type,
-    rank: req.body.rank
+    rank: req.body.rank,
+    avatar: req.body.avatar
   });
 });
 
@@ -65,7 +66,8 @@ router.put('/edit_user/:id', (req, res) => {
     birthdate: req.body.birthdate,
     address: req.body.address,
     user_type: req.body.user_type,
-    rank: req.body.rank
+    rank: req.body.rank,
+    avatar: req.body.avatar
   };
 
   UserModels.where('id', id)
