@@ -5,9 +5,8 @@ import { extract } from '@app/core';
 import { RegisterComponent } from './register.component';
 
 const routes: Routes = [
-  // Module is lazy loaded, see app-routing.module.ts
   {
-    path: '',
+    path: 'register',
     component: RegisterComponent,
     data: { title: extract('Register') }
   }

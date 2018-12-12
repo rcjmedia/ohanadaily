@@ -1,20 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateModule } from '@ngx-translate/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
-import { Angulartics2Module } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
+import { AboutModule } from './about/about.module';
 import { LoginModule } from './login/login.module';
+import { AddcontentModule } from './addcontent/addcontent.module';
+import { CategoriesModule } from './categories/categories.module';
+import { ContentsModule } from './contents/contents.module';
+import { DashboardsModule } from './dashboards/dashboards.module';
+import { PreferredModule } from './preferred/preferred.module';
+import { RegisterModule } from './register/register.module';
+import { TransactionsModule } from './transactions/transactions.module';
+import { SettingsModule } from './settings/settings.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,18 +35,29 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-    BrowserAnimationsModule,
-    MaterialModule,
+    IonicModule.forRoot(AppComponent, { locationStrategy: 'path' }),
     CoreModule,
     SharedModule,
     ShellModule,
     HomeModule,
+    SettingsModule,
+    AboutModule,
     LoginModule,
-    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
+    AddcontentModule,
+    CategoriesModule,
+    ContentsModule,
+    DashboardsModule,
+    PreferredModule,
+    RegisterModule,
+    TransactionsModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    StatusBar,
+    SplashScreen
+  ],
+  bootstrap: [IonicApp]
 })
 export class AppModule {}

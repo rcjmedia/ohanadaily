@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@app/core';
+import { Shell } from '@app/shell/shell.service';
 import { AddcontentComponent } from './addcontent.component';
 
 const routes: Routes = [
-  // Module is lazy loaded, see app-routing.module.ts
-  {
-    path: '',
-    component: AddcontentComponent,
-    data: { title: extract('Add Content') }
-  }
+  Shell.childRoutes([
+    {
+      path: 'addcontent',
+      component: AddcontentComponent,
+      data: { title: extract('Add Content') }
+    }
+  ])
 ];
 
 @NgModule({

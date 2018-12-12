@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { IonicModule } from 'ionic-angular';
 
-import { MaterialModule } from '@app/material.module';
 import { AddcontentRoutingModule } from './addcontent-routing.module';
 import { AddcontentComponent } from './addcontent.component';
 
@@ -11,10 +10,10 @@ import { AddcontentComponent } from './addcontent.component';
   imports: [
     CommonModule,
     TranslateModule,
-    FlexLayoutModule,
-    MaterialModule,
+    IonicModule,
     AddcontentRoutingModule
   ],
+  entryComponents: [AddcontentComponent],
   declarations: [AddcontentComponent]
 })
 export class AddcontentModule {}

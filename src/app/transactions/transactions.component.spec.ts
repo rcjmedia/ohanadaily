@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from 'ionic-angular';
 
 import { TransactionsComponent } from './transactions.component';
 
@@ -8,6 +9,7 @@ describe('TransactionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(TransactionsComponent)],
       declarations: [TransactionsComponent]
     }).compileComponents();
   }));

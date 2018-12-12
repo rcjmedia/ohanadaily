@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { IonicModule } from 'ionic-angular';
 
-import { MaterialModule } from '@app/material.module';
 import { DashboardsRoutingModule } from './dashboards-routing.module';
 import { DashboardsComponent } from './dashboards.component';
 import { DashboardService } from './dashboard.service';
@@ -12,10 +11,10 @@ import { DashboardService } from './dashboard.service';
   imports: [
     CommonModule,
     TranslateModule,
-    FlexLayoutModule,
-    MaterialModule,
+    IonicModule,
     DashboardsRoutingModule
   ],
+  entryComponents: [DashboardsComponent],
   declarations: [DashboardsComponent],
   providers: [DashboardService]
 })

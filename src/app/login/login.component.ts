@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoadingController, Platform } from 'ionic-angular';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
@@ -17,12 +18,13 @@ export class LoginComponent implements OnInit {
   version: string = environment.version;
   error: string;
   loginForm: FormGroup;
-  isLoading = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private platform: Platform,
+    private loadingController: LoadingController,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService
   ) {
@@ -32,13 +34,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    this.isLoading = true;
+    const loading = this.loadingController.create();
+    loading.present();
     this.authenticationService
       .login(this.loginForm.value)
       .pipe(
         finalize(() => {
           this.loginForm.markAsPristine();
-          this.isLoading = false;
+          loading.dismiss();
         })
       )
       .subscribe(
@@ -65,6 +68,10 @@ export class LoginComponent implements OnInit {
 
   get languages(): string[] {
     return this.i18nService.supportedLanguages;
+  }
+
+  get isWeb(): boolean {
+    return !this.platform.is('cordova');
   }
 
   private createForm() {

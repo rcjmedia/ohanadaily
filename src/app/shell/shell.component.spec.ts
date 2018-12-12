@@ -1,9 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '@app/material.module';
+import { IonicModule } from 'ionic-angular';
 
 import {
   AuthenticationService,
@@ -12,6 +10,12 @@ import {
 } from '@app/core';
 
 import { ShellComponent } from './shell.component';
+import { AboutComponent } from '@app/about/about.component';
+import { SettingsComponent } from '@app/settings/settings.component';
+import { HomeComponent } from '@app/home/home.component';
+import { HomeModule } from '@app/home/home.module';
+import { AboutModule } from '@app/about/about.module';
+import { SettingsModule } from '@app/settings/settings.module';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -22,16 +26,23 @@ describe('ShellComponent', () => {
       imports: [
         RouterTestingModule,
         TranslateModule.forRoot(),
-        BrowserAnimationsModule,
-        FlexLayoutModule,
-        MaterialModule,
+        IonicModule.forRoot(ShellComponent),
+        HomeModule,
+        AboutModule,
+        SettingsModule,
         CoreModule
       ],
       providers: [
         { provide: AuthenticationService, useClass: MockAuthenticationService }
       ],
       declarations: [ShellComponent]
-    }).compileComponents();
+    })
+      .overrideComponent(ShellComponent, {
+        set: {
+          entryComponents: [HomeComponent, AboutComponent, SettingsComponent]
+        }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

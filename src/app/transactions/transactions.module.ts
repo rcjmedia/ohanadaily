@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { IonicModule } from 'ionic-angular';
 
-import { MaterialModule } from '@app/material.module';
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
 
@@ -11,10 +10,10 @@ import { TransactionsComponent } from './transactions.component';
   imports: [
     CommonModule,
     TranslateModule,
-    FlexLayoutModule,
-    MaterialModule,
+    IonicModule,
     TransactionsRoutingModule
   ],
+  entryComponents: [TransactionsComponent],
   declarations: [TransactionsComponent]
 })
 export class TransactionsModule {}

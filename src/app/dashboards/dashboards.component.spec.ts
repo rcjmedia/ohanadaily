@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from 'ionic-angular';
 
 import { DashboardsComponent } from './dashboards.component';
 
@@ -8,6 +9,7 @@ describe('DashboardsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(DashboardsComponent)],
       declarations: [DashboardsComponent]
     }).compileComponents();
   }));

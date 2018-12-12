@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { environment } from '@env/environment';
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -7,6 +9,7 @@ import { DashboardService } from './dashboard.service';
   styleUrls: ['./dashboards.component.scss']
 })
 export class DashboardsComponent implements OnInit {
+  version: string = environment.version;
   isLoading: boolean;
   userDash: any[];
 

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from 'ionic-angular';
 
 import { CategoriesComponent } from './categories.component';
 
@@ -8,6 +9,7 @@ describe('CategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(CategoriesComponent)],
       declarations: [CategoriesComponent]
     }).compileComponents();
   }));

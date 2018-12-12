@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from 'ionic-angular';
 
 import { PreferredComponent } from './preferred.component';
 
@@ -8,6 +9,7 @@ describe('PreferredComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(PreferredComponent)],
       declarations: [PreferredComponent]
     }).compileComponents();
   }));

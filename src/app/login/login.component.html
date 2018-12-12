@@ -1,51 +1,99 @@
-<div fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem" class="mat-typography">
-  <div>
-    <h1 fxLayoutAlign="center" translate>APP_NAME</h1>
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
-      <h4 class="version">v{{version}}</h4>
-      <div class="language-selector">
-        <!-- <button mat-raised-button color="primary" [matMenuTriggerFor]="languageMenu">
-          {{currentLanguage}}
-        </button>
-        <mat-menu #languageMenu="matMenu">
-          <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
-            {{language}}
-          </button>
-        </mat-menu> -->
-      </div>
-    </div>
-  </div>
-  <div class="login-container" fxLayout="row" fxLayoutAlign="center">
-    <mat-card fxFlex="90%" fxFlex.sm="66%" fxFlex.md="50%" fxFlex.gt-md="33%" class="login-box">
-      <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-        <div class="login-error" [hidden]="!error || isLoading" translate>
-          Username or password incorrect.
+<ion-content no-bounce>
+  <div class="login-background"></div>
+  <ion-grid no-padding>
+    <ion-row justify-content-center no-padding>
+      <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
+        <div class="login-header" text-center>
+          <h1 translate>APP_NAME</h1>
+          <h6>v{{ version }}</h6>
+          <ion-list *ngIf="isWeb" color="primary" no-lines no-margin>
+            <ion-item color="primary">
+              <ion-label><span translate>Language</span></ion-label>
+              <ion-select
+                [ngModel]="currentLanguage"
+                (ngModelChange)="setLanguage($event)"
+                interface="popover"
+              >
+                <ion-option
+                  *ngFor="let language of languages"
+                  [value]="language"
+                  >{{ language }}</ion-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
         </div>
-        <br/>
-        <div fxLayout="column">
-          <mat-form-field>
-            <input type="text" matInput formControlName="username" autocomplete="username"
-                   [placeholder]="'Username' | translate"/>
-            <mat-error *ngIf="loginForm.controls.username.valid || loginForm.controls.username.untouched">
-              <span translate>Username is required</span>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input type="password" matInput formControlName="password" autocomplete="current-password"
-                   [placeholder]="'Password' | translate" required/>
-            <mat-error *ngIf="loginForm.controls.password.valid || loginForm.controls.password.untouched">
-              <span translate>Password is required</span>
-            </mat-error>
-          </mat-form-field>
-          <mat-slide-toggle color="primary" formControlName="remember" translate>Remember me</mat-slide-toggle>
-          <br/>
-          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
-            <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
-            <span translate>Login</span>
-          </button>
+        <div class="login-container">
+          <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+            <div
+              padding
+              ion-text
+              color="danger"
+              [hidden]="!error || loginForm.dirty"
+              translate
+            >
+              Username or password incorrect.
+            </div>
+            <ion-list>
+              <ion-item>
+                <ion-label floating>{{ 'Username' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="username"
+                  autocomplete="username"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  loginForm.controls.username.valid ||
+                  loginForm.controls.username.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Username is required
+              </div>
+              <ion-item>
+                <ion-label floating>{{ 'Password' | translate }}</ion-label>
+                <ion-input
+                  type="password"
+                  formControlName="password"
+                  autocomplete="current-password"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  loginForm.controls.password.valid ||
+                  loginForm.controls.password.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Password is required
+              </div>
+              <ion-item padding-top no-lines>
+                <ion-label><span translate>Remember me</span></ion-label>
+                <ion-checkbox formControlName="remember"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+            <div padding-horizontal>
+              <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                ion-button
+                color="primary"
+                block
+              >
+                <span translate>Login</span>
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </mat-card>
-  </div>
-</div>
-
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

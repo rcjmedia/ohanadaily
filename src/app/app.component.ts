@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { merge } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { IonicApp, Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService } from '@app/core';
@@ -17,14 +19,16 @@ const log = new Logger('App');
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild(Nav) nav: Nav;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private translateService: TranslateService,
-    // do not remove the analytics injection, even if the call in ngOnInit() is removed
-    // this injection initializes page tracking through the router
-    private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
     private i18nService: I18nService
   ) {}
 
@@ -35,10 +39,6 @@ export class AppComponent implements OnInit {
     }
 
     log.debug('init');
-
-    this.angulartics2GoogleAnalytics.eventTrack(environment.version, {
-      category: 'App initialized'
-    });
 
     // Setup translations
     this.i18nService.init(
@@ -69,5 +69,36 @@ export class AppComponent implements OnInit {
           this.titleService.setTitle(this.translateService.instant(title));
         }
       });
+
+    // Bind Ionic navigation to Angular router events
+    onNavigationEnd.subscribe(() => this.updateNav(this.activatedRoute));
+
+    // Cordova platform and plugins initialization
+    this.platform.ready().then(() => this.onCordovaReady());
+  }
+
+  private onCordovaReady() {
+    if (window['cordova']) {
+      window['Keyboard'].hideFormAccessoryBar(true);
+      this.statusBar.styleLightContent();
+      this.splashScreen.hide();
+    }
+  }
+  private updateNav(route: ActivatedRoute) {
+    if (route.component === IonicApp) {
+      if (!route.firstChild) {
+        return;
+      }
+      route = route.firstChild;
+      if (
+        !this.nav.getActive() ||
+        this.nav.getActive().component !== route.component
+      ) {
+        this.nav.setRoot(route.component, route.params, {
+          animate: true,
+          direction: 'forward'
+        });
+      }
+    }
   }
 }

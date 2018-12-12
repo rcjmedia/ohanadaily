@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { IonicModule } from 'ionic-angular';
 
-import { MaterialModule } from '@app/material.module';
 import { LoaderComponent } from './loader.component';
 
 describe('LoaderComponent', () => {
@@ -11,7 +9,7 @@ describe('LoaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FlexLayoutModule, MaterialModule],
+      imports: [IonicModule.forRoot(LoaderComponent)],
       declarations: [LoaderComponent]
     }).compileComponents();
   }));
