@@ -16,8 +16,14 @@ export class PreferredComponent implements OnInit {
 
   //need logic to say If buyer is logged in, render seller_id of preferred. or if seller is logged in, render buyer_id of preferred.
   renderList(result: any) {
-    this.preferredList = result(() => {
-      return;
+    this.preferredList = result.sort((a: any, b: any) => {
+      if (a.id < b.id) {
+        return -1;
+      }
+      if (a.id > b.id) {
+        return 1;
+      }
+      return 0;
     });
   }
 

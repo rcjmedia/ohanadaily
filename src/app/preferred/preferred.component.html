@@ -5,8 +5,19 @@
     </p> -->
     <mat-card-content>
       <mat-card-title translate>Preferred Sellers</mat-card-title>
-      <div *ngFor="let prefferedContent; of">
-        {{ prefferedContent.buyer_id }} {{ prefferedContent.seller_id }}
+      <div *ngFor="let prefferedContent of preferredList">
+        buyer: {{ prefferedContent.buyer_id.first_name }}
+        {{ prefferedContent.buyer_id.last_name }}
+        {{ prefferedContent.buyer_id.email }}
+        {{ prefferedContent.buyer_id.rank }}
+        {{ prefferedContent.buyer_id.avatar }}<br />
+
+        seller: {{ prefferedContent.seller_id.first_name }}
+        {{ prefferedContent.seller_id.first_name }}
+        {{ prefferedContent.seller_id.last_name }}
+        {{ prefferedContent.seller_id.email }}
+        {{ prefferedContent.seller_id.rank }}
+        {{ prefferedContent.seller_id.avatar }}
       </div>
     </mat-card-content>
   </mat-card>
