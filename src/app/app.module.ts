@@ -25,6 +25,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { SettingsModule } from './settings/settings.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,7 @@ import { AppRoutingModule } from './app-routing.module';
     TransactionsModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, DetailsComponent],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,

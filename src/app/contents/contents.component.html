@@ -12,6 +12,11 @@
         <ion-icon name="code"></ion-icon> <span translate>Version</span>
         {{ version }}
       </p>
+      <div *ngFor="let content of contents">
+        {{ content.title }} <br />
+
+        {{ content.file_location }}
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

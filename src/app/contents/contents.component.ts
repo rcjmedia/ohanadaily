@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentsService } from './contents.service';
 
 import { environment } from '@env/environment';
 
@@ -9,8 +10,29 @@ import { environment } from '@env/environment';
 })
 export class ContentsComponent implements OnInit {
   version: string = environment.version;
+  isLoading: boolean;
+  contents: any[];
 
-  constructor() {}
+  constructor(private contentsService: ContentsService) {
+    this.contents = [];
+  }
 
-  ngOnInit() {}
+  alphaSort(result: any) {
+    this.contents = result.sort((a: any, b: any) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  ngOnInit() {
+    this.isLoading = true;
+    this.contentsService.getContents().then(result => {
+      this.alphaSort(result);
+    });
+  }
 }
