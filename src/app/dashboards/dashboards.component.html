@@ -5,7 +5,10 @@
     <mat-card-content>
       <mat-card-title translate>OHANADAILY</mat-card-title>
       <div *ngFor="let dashboardContent of userDash">
-        {{ dashboardContent.first_name }} {{ dashboardContent.last_name }}
+        {{ dashboardContent.avatar }} {{ dashboardContent.first_name }}
+        {{ dashboardContent.last_name }} {{ dashboardContent.email }}
+        {{ dashboardContent.birthday }} {{ dashboardContent.address }}
+        {{ dashboardContent.user_type }} {{ dashboardContent.rank }}
       </div>
     </mat-card-content>
   </mat-card>

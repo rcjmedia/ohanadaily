@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 import { PreferredRoutingModule } from './preferred-routing.module';
 import { PreferredComponent } from './preferred.component';
+import { PreferredService } from './preferred.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { PreferredComponent } from './preferred.component';
     MaterialModule,
     PreferredRoutingModule
   ],
-  declarations: [PreferredComponent]
+  declarations: [PreferredComponent],
+  providers: [PreferredService]
 })
 export class PreferredModule {}

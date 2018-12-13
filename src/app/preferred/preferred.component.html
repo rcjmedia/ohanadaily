@@ -5,6 +5,9 @@
     </p> -->
     <mat-card-content>
       <mat-card-title translate>Preferred Sellers</mat-card-title>
+      <div *ngFor="let prefferedContent; of">
+        {{ prefferedContent.buyer_id }} {{ prefferedContent.seller_id }}
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
