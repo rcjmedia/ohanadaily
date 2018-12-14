@@ -4,7 +4,7 @@
   "main": "./server/server.js",
   "private": true,
   "scripts": {
-    "start": "npx nodemon ./server/server.js || true",
+    "start": "npx nodemon ./server/server.js",
     "server": "nodemon ./server/server.js",
     "migrate": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest",
     "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run",
