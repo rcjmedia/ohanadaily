@@ -52,7 +52,10 @@ router.post('/add', (req, res) => {
     status: req.body.status,
     category: req.body.category,
     file_size: req.body.file_size,
-    resolution: req.body.resolution
+    resolution: req.body.resolution,
+    thumb_img: req.body.thumb_img,
+    download_link: req.body.download_link
+
   });
 });
 
