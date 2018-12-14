@@ -8,7 +8,10 @@
         {{ dashboardContent.avatar }} {{ dashboardContent.first_name }}
         {{ dashboardContent.last_name }} {{ dashboardContent.email }}
         {{ dashboardContent.birthday }} {{ dashboardContent.address }}
-        {{ dashboardContent.user_type }} {{ dashboardContent.rank }}
+        {{ dashboardContent.user_type }} {{ dashboardContent.rank }} <br />
+      </div>
+      <div *ngFor="let specificContent of userContent">
+        {{ specificContent.title }}
       </div>
     </mat-card-content>
   </mat-card>

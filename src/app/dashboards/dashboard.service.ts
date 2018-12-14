@@ -15,4 +15,8 @@ export class DashboardService {
     const url = this.baseUrl + 'users/';
     return this.httpClient.get(url).toPromise();
   }
+  getUserContent() {
+    const url = this.baseUrl + 'content/';
+    return this.httpClient.get(url).toPromise();
+  }
 }

@@ -9,9 +9,11 @@ import { DashboardService } from './dashboard.service';
 export class DashboardsComponent implements OnInit {
   isLoading: boolean;
   userDash: any[];
+  userContent: any[];
 
   constructor(private dashboardService: DashboardService) {
     this.userDash = [];
+    this.userContent = [];
   }
 
   alphaSort(result: any) {
@@ -26,10 +28,25 @@ export class DashboardsComponent implements OnInit {
     });
   }
 
+  contentSort(result: any) {
+    this.userContent = result.sort((a: any, b: any) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   ngOnInit() {
     this.isLoading = true;
     this.dashboardService.getDashboard().then(result => {
       this.alphaSort(result);
+    });
+    this.dashboardService.getUserContent().then(result => {
+      this.contentSort(result);
     });
   }
 }

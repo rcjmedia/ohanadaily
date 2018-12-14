@@ -1,8 +1,7 @@
-<div class="container">
+<div class="“container”">
   <mat-card>
     <!-- <p>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-    </p> -->
+      </p> -->
     <mat-card-content>
       <mat-card-title translate>Transactions</mat-card-title>
       <div *ngFor="let transactionsContent of transactionsList">
@@ -11,7 +10,6 @@
         {{ transactionsContent.buyer_id.email }}
         {{ transactionsContent.buyer_id.rank }}
         {{ transactionsContent.buyer_id.avatar }}<br />
-
         seller: {{ transactionsContent.seller_id.first_name }}
         {{ transactionsContent.seller_id.first_name }}
         {{ transactionsContent.seller_id.last_name }}

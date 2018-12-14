@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
+import { TransactionsService } from './transactions.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { TransactionsComponent } from './transactions.component';
     MaterialModule,
     TransactionsRoutingModule
   ],
-  declarations: [TransactionsComponent]
+  declarations: [TransactionsComponent],
+  providers: [TransactionsService]
 })
 export class TransactionsModule {}
