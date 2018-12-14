@@ -25,6 +25,7 @@ Market place to sell videos, pictures, footages, etc. to news media.
 | rank       | integer     | not null                 |
 | created_at | TS w/ TZ    | not null                 |
 | updated_at | TS w/ TZ    | not null                 |
+| avatar | string||
 
 ## Content
 
@@ -65,4 +66,3 @@ Market place to sell videos, pictures, footages, etc. to news media.
 | created_at | TS w/ TZ | not null                 |
 | updated_at | TS w/ TZ | not null                 |
 
-igr
