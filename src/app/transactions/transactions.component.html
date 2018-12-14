@@ -5,6 +5,20 @@
     </p> -->
     <mat-card-content>
       <mat-card-title translate>Transactions</mat-card-title>
+      <div *ngFor="let transactionsContent of transactionsList">
+        buyer: {{ transactionsContent.buyer_id.first_name }}
+        {{ transactionsContent.buyer_id.last_name }}
+        {{ transactionsContent.buyer_id.email }}
+        {{ transactionsContent.buyer_id.rank }}
+        {{ transactionsContent.buyer_id.avatar }}<br />
+
+        seller: {{ transactionsContent.seller_id.first_name }}
+        {{ transactionsContent.seller_id.first_name }}
+        {{ transactionsContent.seller_id.last_name }}
+        {{ transactionsContent.seller_id.email }}
+        {{ transactionsContent.seller_id.rank }}
+        {{ transactionsContent.seller_id.avatar }}
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
