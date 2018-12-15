@@ -2,4 +2,6 @@ version: '3'
 services:
   ohana-daily:
     build: .
-    image: cwlauger/ohana-daily
+    image: rcjmedia/ohana-daily
+    volumes:
+      - /app/node_modules/

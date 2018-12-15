@@ -10,7 +10,6 @@ router.use(bp.urlencoded({ extended: true }));
 //get all
 router.get('/', (req, res) => {
   ContentModels.fetchAll({ withRelated: ['user_id'] })
-
     .then(contentList => {
       res.json(contentList.serialize());
       console.log('\nServer: List Of Users: \n', contentList);
@@ -27,7 +26,7 @@ router.get('/:id', (req, res) => {
   ContentModels.where('id', id)
     .fetchAll({ withRelated: ['user_id'] })
     .then(contentId => {
-      console.log('\nServer: Display By User ID\n');
+      console.log('\nServer: Display By User ID\n', contentId);
       res.json(contentId);
     })
     .catch(err => {
@@ -52,7 +51,9 @@ router.post('/add', (req, res) => {
     status: req.body.status,
     category: req.body.category,
     file_size: req.body.file_size,
-    resolution: req.body.resolution
+    resolution: req.body.resolution,
+    thumb_img: req.body.thumb_img,
+    download_link: req.body.download_link
   });
 });
 

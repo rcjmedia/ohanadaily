@@ -15,7 +15,8 @@ exports.up = function(knex, Promise) {
     table.string('category').notNullable();
     table.integer('file_size').notNullable();
     table.string('resolution').notNullable();
-    table.string('file_location', 1000).notNullable();
+    table.string('thumb_img', 1000).notNullable();
+    table.string('download_link', 1000).notNullable();
   });
 };
 

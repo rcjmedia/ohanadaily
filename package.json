@@ -26,12 +26,7 @@
     "cordova:clean": "ngx-scripts clean",
     "cordova": "cordova",
     "generate": "ng generate",
-    "server": "nodemon ./server/server.js",
-    "migrate": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest",
-    "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run",
-    "flushdb": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:rollback ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run",
-    "migrateCarl": "npx knex --knexfile ./server/knexfile.js migrate:latest",
-    "seedCarl": "npx knex --knexfile ./server/knexfile.js seed:run"
+    "server": "nodemon ./server/server.js"
   },
   "proxy": "http://localhost:8080",
   "dependencies": {
@@ -69,7 +64,7 @@
     "express-session": "^1.15.6",
     "ionic-angular": "^3.9.2",
     "ionicons": "^3.0.0",
-    "knex": "^0.16.2",
+    "knex": "^0.15.0",
     "lodash": "^4.17.10",
     "nodemon": "^1.18.8",
     "passport": "^0.4.0",

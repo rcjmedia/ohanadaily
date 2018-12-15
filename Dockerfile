@@ -13,6 +13,8 @@ COPY package.json .
 # Install node module dependencies
 RUN npm install
 
+RUN npm install -g knex
+
 EXPOSE 4200
 
 # Add the rest of the project files(most builds will start from here based on cache)
