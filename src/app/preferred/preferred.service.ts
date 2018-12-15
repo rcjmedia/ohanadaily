@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PreferredService {
-  baseUrl: string = 'http://34.222.113.192:8080/api/';
+  baseUrl: string = 'http://localhost:8080/api/';
 
   preferredList: any[] = [];
 
