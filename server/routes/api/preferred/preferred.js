@@ -39,8 +39,8 @@ router.post('/preferred/new', (req, res) => {
 
   PreferredModels
   .forge({
-    seller_id: req.body.seller_id,
-    buyer_id: req.body.buyer_id
+    buyer_id: req.body.buyer_id,
+    seller_id: req.body.seller_id
   })
   .save()
   .then(() => {
