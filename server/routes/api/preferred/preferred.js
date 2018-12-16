@@ -34,5 +34,30 @@ router.get('/:id', (req, res) => {
 });
 
 //post new preferred seller/buyer
+router.post('/preferred/new', (req, res) => {
+  console.log('\nthis is req.body for register', req.body);
+
+  PreferredModels
+  .forge({
+    seller_id: req.body.seller_id,
+    buyer_id: req.body.buyer_id
+  })
+  .save()
+  .then(() => {
+    return PreferredModels
+    .fetchAll()
+    .then(newPreferred => {
+      res.json(newPreferred.serialize());
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err');
+    })
+  })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err');
+    })
+  })
 
 module.exports = router;
