@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
           category: 'school',
           file_size: '845',
           resolution: '1280x720',
-          thumb_img: '/media/images/newwhatisschoolreport.png',
+          thumb_img: '/media/images/maia-2-1436576.jpg',
           download_link: '/media/videos/newwhatisschoolreport.mp4'
         },
         {
@@ -30,7 +30,7 @@ exports.seed = function(knex, Promise) {
           category: 'sports',
           file_size: '2793',
           resolution: '1280x720',
-          thumb_img: '/media/images/sonalimasterclassfinal_fido.png',
+          thumb_img: '/media/images/large-pumpkin-1387927.jpg',
           download_link: '/media/videos/sonalimasterclassfinal_fido.mp4'
         },
         {
@@ -44,7 +44,7 @@ exports.seed = function(knex, Promise) {
           category: 'info',
           file_size: '643',
           resolution: '1474x874',
-          thumb_img: '/media/images/Video1whatisnews.png',
+          thumb_img: '/media/images/lrt-interior-1626389.jpg',
           download_link: '/media/videos/Video1whatisnews.mp4'
         },
         {
@@ -58,7 +58,7 @@ exports.seed = function(knex, Promise) {
           category: 'broadcast',
           file_size: '587',
           resolution: '1244x766',
-          thumb_img: '/media/images/VIDEO5broadcastingnews.png',
+          thumb_img: '/media/images/cow-1380252.jpg',
           download_link: '/media/videos/VIDEO5broadcastingnews.mp4'
         }
       ]);

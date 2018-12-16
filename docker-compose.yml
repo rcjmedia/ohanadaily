@@ -3,3 +3,5 @@ services:
   ohana-daily:
     build: .
     image: cwlauger/ohana-daily
+    volumes: 
+      - /app/node_modules/
