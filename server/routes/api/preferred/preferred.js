@@ -47,7 +47,7 @@ router.post('/preferred/new', (req, res) => {
     return PreferredModels
     .fetchAll({withRelated: ["buyer_id", "seller_id"]}) 
     .then(newPreferred => {
-      res.json(newPreferred.serialize());
+    res.json(newPreferred.serialize());
     })
     .catch(err => {
       console.log('err', err);
