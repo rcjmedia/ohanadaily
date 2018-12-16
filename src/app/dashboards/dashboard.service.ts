@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DashboardService {
-  baseUrl: string = 'http://localhost:8080/api/';
+  baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
   userDash: any[] = [];
 

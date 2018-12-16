@@ -31,7 +31,8 @@
     <!-- Include Cordova script only when needed -->
     <script>
       if (
-        !/^http/.test(location.protocol) | /^localhost:8080/.test(location.host)
+        !/^http/.test(location.protocol) |
+        /^ohanadaily.com:8080/.test(location.host)
       ) {
         /**
          * https://github.com/angular/angular/issues/22509

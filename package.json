@@ -28,7 +28,7 @@
     "generate": "ng generate",
     "server": "nodemon ./server/server.js"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://ohanadaily.com:8080",
   "dependencies": {
     "@angular/animations": "^7.0.0",
     "@angular/common": "^7.0.0",

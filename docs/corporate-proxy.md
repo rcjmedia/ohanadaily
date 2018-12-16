@@ -34,12 +34,12 @@ variable, in the same way as `HTTP_PROXY`:
 
 ### Windows
 
-- NO_PROXY: `127.0.0.1, localhost, <your_local_server_ip_or_hostname>`
+- NO_PROXY: `127.0.0.1, ohanadaily.com, <your_local_server_ip_or_hostname>`
 
 ### Unix
 
 ```sh
-export NO_PROXY="127.0.0.1, localhost, <your_local_server_ip_or_hostname>"
+export NO_PROXY="127.0.0.1, ohanadaily.com, <your_local_server_ip_or_hostname>"
 ```
 
 ### Npm
