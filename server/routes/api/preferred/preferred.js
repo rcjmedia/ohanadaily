@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 });
 
 //post new preferred seller/buyer
-router.post('/preferred/new', (req, res) => {
-  console.log('\nthis is req.body for register', req.body);
+router.post('/new', (req, res) => {
+  console.log('\nNEW PREFERRED', req.body);
 
   PreferredModels
   .forge({
@@ -48,7 +48,8 @@ router.post('/preferred/new', (req, res) => {
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
-  PreferredModels.where('id', id)
+  PreferredModels
+  .where('id', id)
     .fetchAll({ withRelated: ['buyer_id', 'seller_id'] })
     .then(preferredId => {
       console.log('\nServer: Display By Transaction ID\n', preferredId);
