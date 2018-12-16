@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from './categories.service';
 
 import { environment } from '@env/environment';
 
@@ -8,9 +9,30 @@ import { environment } from '@env/environment';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  version: string = environment.version;
+  quote: string;
+  isLoading: boolean;
+  categoryList: any[];
 
-  constructor() {}
+  constructor(private categoriesService: CategoriesService) {
+    this.categoryList = [];
+  }
 
-  ngOnInit() {}
+  alphaSort(result: any) {
+    this.categoryList = result.sort((a: any, b: any) => {
+      if (a.category < b.category) {
+        return -1;
+      }
+      if (a.category > b.category) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  ngOnInit() {
+    this.isLoading = true;
+    this.categoriesService.getCategory().then(result => {
+      this.alphaSort(result);
+    });
+  }
 }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title><span translate>Categories</span></ion-title>
+    <ion-title><span translate>Dashboard</span></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -12,6 +12,9 @@
         <ion-icon name="code"></ion-icon> <span translate>Version</span>
         {{ version }}
       </p>
+      <div *ngFor="let newsCategory of categoryList">
+        {{ newsCategory.category }}<br />
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

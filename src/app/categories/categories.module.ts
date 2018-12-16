@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from 'ionic-angular';
+import { CategoriesService } from './categories.service';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesComponent } from './categories.component';
@@ -14,6 +15,7 @@ import { CategoriesComponent } from './categories.component';
     CategoriesRoutingModule
   ],
   entryComponents: [CategoriesComponent],
-  declarations: [CategoriesComponent]
+  declarations: [CategoriesComponent],
+  providers: [CategoriesService]
 })
 export class CategoriesModule {}

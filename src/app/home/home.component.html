@@ -1,18 +1,22 @@
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title><span translate>Home</span></ion-title>
+    <ion-title><span translate>Ohana Daily</span></ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
   <ion-card text-center>
-    <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
     <ion-card-content>
-      <ion-card-title> <span translate>Hello world !</span> </ion-card-title>
-      <p>
-        <app-loader [isLoading]="isLoading"></app-loader>
-        <q [hidden]="isLoading">{{ quote }}</q>
-      </p>
+      <div *ngFor="let content of ohana">
+        <a href="content/:id">
+          <p>{{ content.title }}</p>
+          <img src="{{ content.thumb_img }}" />
+          <p>{{ content.description }}</p>
+          <br />
+          <br />
+        </a>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
