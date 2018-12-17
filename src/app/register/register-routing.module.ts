@@ -10,7 +10,7 @@ const routes: Routes = [
     {
       path: 'register',
       component: RegisterComponent,
-      data: { title: extract('Preferred Sellers') }
+      data: { title: extract('Register') }
     }
   ])
 ];

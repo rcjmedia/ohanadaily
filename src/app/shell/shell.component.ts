@@ -31,37 +31,37 @@ export class ShellComponent implements OnInit {
       component: ContentsComponent,
       route: 'contents',
       title: 'Contents',
-      icon: 'contents'
+      icon: 'photos'
     },
     {
       component: AddcontentComponent,
       route: 'addcontent',
       title: 'Add Content',
-      icon: 'add-content'
+      icon: 'aperture'
     },
     {
       component: CategoriesComponent,
       route: 'categories',
       title: 'Categories',
-      icon: 'categories'
+      icon: 'list-box'
     },
     {
       component: DashboardsComponent,
       route: 'dashboard',
       title: 'Dashboard',
-      icon: 'dashboard'
+      icon: 'options'
     },
     {
       component: PreferredComponent,
       route: 'preferred',
       title: 'Preferred Seller',
-      icon: 'preferred-seller'
+      icon: 'people'
     },
     {
       component: TransactionsComponent,
       route: 'transactions',
       title: 'Transactions',
-      icon: 'transactions'
+      icon: 'cart'
     },
     {
       component: AboutComponent,
@@ -73,7 +73,7 @@ export class ShellComponent implements OnInit {
       component: RegisterComponent,
       route: 'register',
       title: 'Register',
-      icon: 'register'
+      icon: 'contact'
     },
     {
       component: SettingsComponent,

@@ -13,6 +13,14 @@ import { ShellComponent } from './shell.component';
 import { AboutComponent } from '@app/about/about.component';
 import { SettingsComponent } from '@app/settings/settings.component';
 import { HomeComponent } from '@app/home/home.component';
+import { AddcontentComponent } from '@app/addcontent/addcontent.component';
+import { CategoriesComponent } from '@app/categories/categories.component';
+import { ContentsComponent } from '@app/contents/contents.component';
+import { DashboardsComponent } from '@app/dashboards/dashboards.component';
+import { PreferredComponent } from '@app/preferred/preferred.component';
+import { RegisterComponent } from '@app/register/register.component';
+import { TransactionsComponent } from '@app/transactions/transactions.component';
+
 import { HomeModule } from '@app/home/home.module';
 import { AboutModule } from '@app/about/about.module';
 import { AddcontentModule } from '@app/addcontent/addcontent.module';
@@ -53,7 +61,18 @@ describe('ShellComponent', () => {
     })
       .overrideComponent(ShellComponent, {
         set: {
-          entryComponents: [HomeComponent, AboutComponent, SettingsComponent]
+          entryComponents: [
+            HomeComponent,
+            AboutComponent,
+            SettingsComponent,
+            AddcontentComponent,
+            CategoriesComponent,
+            ContentsComponent,
+            DashboardsComponent,
+            PreferredComponent,
+            RegisterComponent,
+            TransactionsComponent
+          ]
         }
       })
       .compileComponents();

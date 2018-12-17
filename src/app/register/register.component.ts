@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoadingController, Platform } from 'ionic-angular';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
+import { LoadingController, Platform, Form } from 'ionic-angular';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
@@ -31,9 +36,32 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.registerForm = this.formBuilder.group({
+    //   full_name: [''],
+    //   last_name: [''],
+    //   email: [''],
+    //   birthdate: [''],
+    //   address: [''],
+    //   user_type: [''],
+    //   rank: [''],
+    //   avatar: [''],
+    //   password: ['']
+    // })
+    // this.registerForm = new FormGroup({
+    //   full_name: new FormControl(),
+    //   last_name: new FormControl(),
+    //   email: new FormControl(),
+    //   birthdate: new FormControl(),
+    //   address: new FormControl(),
+    //   user_type: new FormControl(),
+    //   rank: new FormControl(),
+    //   avatar: new FormControl(),
+    //   password: new FormControl()
+    // });
+  }
 
-  login() {
+  register() {
     const loading = this.loadingController.create();
     loading.present();
     this.authenticationService
