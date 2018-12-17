@@ -1,5 +1,4 @@
 // Update with your config settings.
-const path = require('path');
 require('dotenv').config({ path: '../.env' });
 // console.log(process.env)
 
@@ -7,7 +6,6 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      //TO DO : Romeo change back to process.env for your computer.
       host: process.env.POSTGRES_HOSTNAME,
       port: process.env.POSTGRES_CONTAINER_PORT,
       database: process.env.POSTGRES_DB,

@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npx nodemon ./server/server.js",
     "server": "nodemon ./server/server.js",
-    "migrate": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest",
-    "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run",
-    "flushdb": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:rollback ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run",
+    "migrate": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js migrate:latest",
+    "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js seed:run",
+    "flushdb": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js migrate:rollback ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js migrate:latest ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js seed:run",
     "migrateCarl": "npx knex --knexfile ./server/knexfile.js migrate:latest",
     "seedCarl": "npx knex --knexfile ./server/knexfile.js seed:run"
   },

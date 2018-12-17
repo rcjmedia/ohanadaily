@@ -1,5 +1,3 @@
-//figure out if we need password field for this.
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', function(table) {
     table.increments('id').primary();
