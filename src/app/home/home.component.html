@@ -9,9 +9,9 @@
   <ion-card text-center>
     <ion-card-content>
       <div *ngFor="let content of ohana">
-        <a href="content/:id">
+        <a href="content/{{ content.id }}">
           <p>{{ content.title }}</p>
-          <img src="{{ content.thumb_img }}" />
+          <img src="/assets/{{ content.thumb_img }}" />
           <p>{{ content.description }}</p>
           <br />
           <br />
