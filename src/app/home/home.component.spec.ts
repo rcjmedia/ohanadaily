@@ -5,7 +5,7 @@ import { IonicModule } from 'ionic-angular';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeComponent } from './home.component';
-import { QuoteService } from './quote.service';
+import { HomeService } from './home.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -20,7 +20,7 @@ describe('HomeComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [HomeComponent],
-      providers: [QuoteService]
+      providers: [HomeService]
     }).compileComponents();
   }));
 

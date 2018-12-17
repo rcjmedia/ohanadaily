@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 // import { map, catchError } from ‘rxjs/operators’;
 
 @Injectable()
-export class QuoteService {
+export class HomeService {
   baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
   ohana: any[] = [];

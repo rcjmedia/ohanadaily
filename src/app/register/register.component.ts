@@ -17,7 +17,7 @@ const log = new Logger('Register');
 export class RegisterComponent implements OnInit {
   version: string = environment.version;
   error: string;
-  loginForm: FormGroup;
+  registerForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -37,10 +37,10 @@ export class RegisterComponent implements OnInit {
     const loading = this.loadingController.create();
     loading.present();
     this.authenticationService
-      .login(this.loginForm.value)
+      .login(this.registerForm.value)
       .pipe(
         finalize(() => {
-          this.loginForm.markAsPristine();
+          this.registerForm.markAsPristine();
           loading.dismiss();
         })
       )
@@ -75,8 +75,15 @@ export class RegisterComponent implements OnInit {
   }
 
   private createForm() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+    this.registerForm = this.formBuilder.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: ['', Validators.required],
+      birthdate: ['', Validators.required],
+      address: ['', Validators.required],
+      user_type: ['', Validators.required],
+      rank: ['', Validators.required],
+      avatar: ['', Validators.required],
       password: ['', Validators.required],
       remember: true
     });

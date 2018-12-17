@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
-import { QuoteService } from './quote.service';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   isLoading: boolean;
   ohana: any[];
 
-  constructor(private quoteService: QuoteService) {
+  constructor(private homeService: HomeService) {
     this.ohana = [];
   }
 
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService.getContent().then(result => {
+    this.homeService.getContent().then(result => {
       this.alphaSort(result);
     });
   }

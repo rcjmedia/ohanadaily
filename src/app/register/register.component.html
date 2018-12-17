@@ -1,9 +1,9 @@
 <ion-content no-bounce>
-  <div class="login-background"></div>
+  <div class="register-background"></div>
   <ion-grid no-padding>
     <ion-row justify-content-center no-padding>
       <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
-        <div class="login-header" text-center>
+        <div class="register-header" text-center>
           <h1 translate>APP_NAME</h1>
           <h6>v{{ version }}</h6>
           <ion-list *ngIf="isWeb" color="primary" no-lines no-margin>
@@ -23,38 +23,82 @@
             </ion-item>
           </ion-list>
         </div>
-        <div class="login-container">
-          <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+        <div class="register-container">
+          <form (ngSubmit)="login()" [formGroup]="registerForm" novalidate>
             <div
               padding
               ion-text
               color="danger"
-              [hidden]="!error || loginForm.dirty"
+              [hidden]="!error || registerForm.dirty"
               translate
             >
               Username or password incorrect.
             </div>
             <ion-list>
+              <!-- First name -->
               <ion-item>
-                <ion-label floating>{{ 'Username' | translate }}</ion-label>
+                <ion-label floating>{{ 'First Name' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  formControlName="username"
-                  autocomplete="username"
+                  formControlName="first_name"
+                  autocomplete="first_name"
                 ></ion-input>
               </ion-item>
               <div
                 padding
                 [hidden]="
-                  loginForm.controls.username.valid ||
-                  loginForm.controls.username.untouched
+                  registerForm.controls.first_name.valid ||
+                  registerForm.controls.first_name.untouched
                 "
                 ion-text
                 color="danger"
                 translate
               >
-                Username is required
+                First Name is required
               </div>
+              <!-- Last Name -->
+              <ion-item>
+                <ion-label floating>{{ 'Last Name' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="last_name"
+                  autocomplete="last_name"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.last_name.valid ||
+                  registerForm.controls.last_name.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Last Name is required
+              </div>
+              <!-- Email -->
+              <ion-item>
+                <ion-label floating>{{ 'Email' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="email"
+                  autocomplete="email"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.email.valid ||
+                  registerForm.controls.email.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Email is required
+              </div>
+              <!-- Password -->
               <ion-item>
                 <ion-label floating>{{ 'Password' | translate }}</ion-label>
                 <ion-input
@@ -66,14 +110,119 @@
               <div
                 padding
                 [hidden]="
-                  loginForm.controls.password.valid ||
-                  loginForm.controls.password.untouched
+                  registerForm.controls.password.valid ||
+                  registerForm.controls.password.untouched
                 "
                 ion-text
                 color="danger"
                 translate
               >
                 Password is required
+              </div>
+              <!-- Birthdate -->
+              <ion-item>
+                <ion-label floating>{{ 'Birthdate' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="birthdate"
+                  autocomplete="birthdate"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.birthdate.valid ||
+                  registerForm.controls.birthdate.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Birthdate is required
+              </div>
+              <!-- Address   -->
+              <ion-item>
+                <ion-label floating>{{ 'Address' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="address"
+                  autocomplete="address"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.address.valid ||
+                  registerForm.controls.address.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Address is required
+              </div>
+              <!-- User type -->
+              <ion-item>
+                <ion-label floating>{{ 'User Type' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="user_type"
+                  autocomplete="user_type"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.user_type.valid ||
+                  registerForm.controls.user_type.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                User Type is required
+              </div>
+              <!-- Rank     -->
+              <ion-item>
+                <ion-label floating>{{ 'Rank' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="rank"
+                  autocomplete="rank"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.rank.valid ||
+                  registerForm.controls.rank.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Rank is required
+              </div>
+              <!-- Avatar -->
+              <ion-item>
+                <ion-label floating>{{ 'Avatar' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="avatar"
+                  autocomplete="avatar"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  registerForm.controls.avatar.valid ||
+                  registerForm.controls.avatar.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Avatar is required
               </div>
               <ion-item padding-top no-lines>
                 <ion-label><span translate>Remember me</span></ion-label>
@@ -83,7 +232,7 @@
             <div padding-horizontal>
               <button
                 type="submit"
-                [disabled]="loginForm.invalid"
+                [disabled]="registerForm.invalid"
                 ion-button
                 color="primary"
                 block
