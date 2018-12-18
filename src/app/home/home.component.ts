@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
 
   alphaSort(result: any) {
     this.ohana = result.sort((a: any, b: any) => {
-      if (a.title < b.title) {
+      if (a.id < b.id) {
         return -1;
       }
-      if (a.title > b.title) {
+      if (a.id > b.id) {
         return 1;
       }
       return 0;

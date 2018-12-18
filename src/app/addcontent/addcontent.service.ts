@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 // import { map, catchError } from ‘rxjs/operators’;
 
 @Injectable()
-export class RegisterService {
+export class AddcontentService {
   baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
   userDash: any[] = [];
@@ -12,7 +12,7 @@ export class RegisterService {
   constructor(private httpClient: HttpClient) {}
 
   getDashboard() {
-    const dashUrl = this.baseUrl + 'users/';
+    const dashUrl = this.baseUrl + 'content/';
     return this.httpClient.get(dashUrl).toPromise();
   }
 

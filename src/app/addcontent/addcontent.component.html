@@ -1,18 +1,309 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title><span translate>Add Content</span></ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content>
-  <ion-card text-center>
-    <ion-card-content>
-      <ion-card-title translate>APP_NAME</ion-card-title>
-      <p>
-        <ion-icon name="code"></ion-icon> <span translate>Version</span>
-        {{ version }}
-      </p>
-      <div class="”btn”" id="”upload_image”">Upload image</div>
-    </ion-card-content>
-  </ion-card>
+<ion-content no-bounce>
+  <div class="register-background"></div>
+  <ion-grid no-padding>
+    <ion-row justify-content-center no-padding>
+      <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
+        <div class="register-header" text-center>
+          <h1 translate>APP_NAME</h1>
+          <h6>v{{ version }}</h6>
+          <ion-list *ngIf="isWeb" color="primary" no-lines no-margin>
+            <ion-item color="primary">
+              <ion-label><span translate>Language</span></ion-label>
+              <ion-select
+                [ngModel]="currentLanguage"
+                (ngModelChange)="setLanguage($event)"
+                interface="popover"
+              >
+                <ion-option
+                  *ngFor="let language of languages"
+                  [value]="language"
+                  >{{ language }}</ion-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="register-container">
+          <form (ngSubmit)="register()" [formGroup]="contentForm" novalidate>
+            <div
+              padding
+              ion-text
+              color="danger"
+              [hidden]="!error || contentForm.dirty"
+              translate
+            >
+              Username or password incorrect.
+            </div>
+            <ion-list>
+              <!-- Content Type -->
+              <ion-item>
+                <ion-label floating>{{ 'Content Type' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="type"
+                  autocomplete="type"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.type.valid ||
+                  contentForm.controls.type.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Content Type is required
+              </div>
+              <!-- Content By -->
+              <ion-item>
+                <ion-label floating>{{ 'Content By' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="user_id"
+                  autocomplete="user_id"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.user_id.valid ||
+                  contentForm.controls.user_id.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Content By is required
+              </div>
+              <!-- Title -->
+              <ion-item>
+                <ion-label floating>{{ 'Title' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="title"
+                  autocomplete="title"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.title.valid ||
+                  contentForm.controls.title.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Title is required
+              </div>
+              <!-- Description -->
+              <ion-item>
+                <ion-label floating>{{ 'Description' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="description"
+                  autocomplete="current-description"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.description.valid ||
+                  contentForm.controls.description.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Description is required
+              </div>
+              <!-- Location -->
+              <ion-item>
+                <ion-label floating>{{ 'Location' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="location"
+                  autocomplete="location"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.location.valid ||
+                  contentForm.controls.location.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Location is required
+              </div>
+              <!-- Bid   -->
+              <ion-item>
+                <ion-label floating>{{ 'Bid' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="bid"
+                  autocomplete="bid"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.bid.valid ||
+                  contentForm.controls.bid.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Bid is required
+              </div>
+              <!-- Status -->
+              <ion-item>
+                <ion-label floating>{{ 'Status' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="status"
+                  autocomplete="status"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.status.valid ||
+                  contentForm.controls.status.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Status is required
+              </div>
+              <!-- Category -->
+              <ion-item>
+                <ion-label floating>{{ 'Category' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="category"
+                  autocomplete="category"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.category.valid ||
+                  contentForm.controls.category.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Category is required
+              </div>
+              <!-- File Size -->
+              <ion-item>
+                <ion-label floating>{{ 'File Size' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="file_size"
+                  autocomplete="file_size"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.file_size.valid ||
+                  contentForm.controls.file_size.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                File Size is required
+              </div>
+              <!-- Resolution -->
+              <ion-item>
+                <ion-label floating>{{ 'Resolution' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="resolution"
+                  autocomplete="resolution"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.resolution.valid ||
+                  contentForm.controls.resolution.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Resolution is required
+              </div>
+              <!-- Thumb Image -->
+              <ion-item>
+                <ion-label floating>{{ 'Thumb Image' | translate }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="thumb_img"
+                  autocomplete="thumb_img"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.thumb_img.valid ||
+                  contentForm.controls.thumb_img.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Thumb Image is required
+              </div>
+              <!-- Download Link -->
+              <ion-item>
+                <ion-label floating>{{
+                  'Download Link' | translate
+                }}</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="download_link"
+                  autocomplete="download_link"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.download_link.valid ||
+                  contentForm.controls.download_link.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Download Link is required
+              </div>
+            </ion-list>
+            <div padding-horizontal>
+              <button
+                type="submit"
+                [disabled]="contentForm.invalid"
+                ion-button
+                color="primary"
+                block
+              >
+                <span translate>Add</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row> </ion-grid
+  ><br /><br /><br /><br /><br /><br />
 </ion-content>
