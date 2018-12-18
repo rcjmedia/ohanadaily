@@ -13,12 +13,11 @@
         {{ version }}
       </p>
       <div *ngFor="let sale of saleTransaction">
-        <h2>Buyer:</h2>
-        {{ sale.buyer_id.first_name }} {{ sale.buyer_id.last_name }}<br />
-        <h2>Seller:</h2>
-        {{ sale.seller_id.first_name }} {{ sale.seller_id.last_name }}<br />
-        <h2>Content ID</h2>
-        {{ sale.content_id }}
+        Buyer: {{ sale.buyer_id.first_name }} {{ sale.buyer_id.last_name
+        }}<br />
+        Seller: {{ sale.seller_id.first_name }} {{ sale.seller_id.last_name
+        }}<br />
+        Content: {{ sale.content_id.title }}
       </div>
     </ion-card-content>
   </ion-card>
