@@ -69,12 +69,12 @@ export class ShellComponent implements OnInit {
       title: 'About',
       icon: 'logo-angular'
     },
-    {
-      component: RegisterComponent,
-      route: 'register',
-      title: 'Register',
-      icon: 'contact'
-    },
+    // {
+    //   component: RegisterComponent,
+    //   route: 'register',
+    //   title: 'Register',
+    //   icon: 'contact'
+    // },
     {
       component: SettingsComponent,
       route: 'settings',

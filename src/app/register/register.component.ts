@@ -36,30 +36,7 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() {
-    // this.registerForm = this.formBuilder.group({
-    //   full_name: [''],
-    //   last_name: [''],
-    //   email: [''],
-    //   birthdate: [''],
-    //   address: [''],
-    //   user_type: [''],
-    //   rank: [''],
-    //   avatar: [''],
-    //   password: ['']
-    // })
-    // this.registerForm = new FormGroup({
-    //   full_name: new FormControl(),
-    //   last_name: new FormControl(),
-    //   email: new FormControl(),
-    //   birthdate: new FormControl(),
-    //   address: new FormControl(),
-    //   user_type: new FormControl(),
-    //   rank: new FormControl(),
-    //   avatar: new FormControl(),
-    //   password: new FormControl()
-    // });
-  }
+  ngOnInit() {}
 
   register() {
     const loading = this.loadingController.create();
