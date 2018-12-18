@@ -5,10 +5,12 @@ import { IonicModule } from 'ionic-angular';
 
 import { PreferredRoutingModule } from './preferred-routing.module';
 import { PreferredComponent } from './preferred.component';
+import { PreferredService } from './preferred.service';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, IonicModule, PreferredRoutingModule],
   entryComponents: [PreferredComponent],
-  declarations: [PreferredComponent]
+  declarations: [PreferredComponent],
+  providers: [PreferredService]
 })
 export class PreferredModule {}
