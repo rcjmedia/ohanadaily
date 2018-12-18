@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title><span translate>Transactions</span></ion-title>
+    <ion-title><span translate>Preferred Sellers</span></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -12,6 +12,14 @@
         <ion-icon name="code"></ion-icon> <span translate>Version</span>
         {{ version }}
       </p>
+      <div *ngFor="let sale of saleTransaction">
+        <h2>Buyer:</h2>
+        {{ sale.buyer_id.first_name }} {{ sale.buyer_id.last_name }}<br />
+        <h2>Seller:</h2>
+        {{ sale.seller_id.first_name }} {{ sale.seller_id.last_name }}<br />
+        <h2>Content ID</h2>
+        {{ sale.content_id }}
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
