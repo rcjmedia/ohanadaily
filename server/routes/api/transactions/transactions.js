@@ -41,7 +41,8 @@ router.get('/:id', (req, res) => {
 //post new
 router.post('/new_purchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
-  TransactionsModels.forge({
+  TransactionsModels
+  .forge({
     user_id: req.body.user_id,
     content_id: req.body.content_id
   })
