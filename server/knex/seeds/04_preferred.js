@@ -4,6 +4,11 @@ exports.seed = function(knex, Promise) {
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('preferred').insert([{ buyer_id: 4, seller_id: 2 }]);
+      return knex('preferred').insert([
+        { 
+          buyer_id: 4, 
+          seller_id: 2 
+        }
+      ]);
     });
 };
