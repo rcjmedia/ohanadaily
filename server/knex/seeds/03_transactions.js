@@ -5,11 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       return knex('transactions').insert([
-        { 
-          buyer_id: 4, 
-          seller_id: 2, 
-          content_id: 1 
-        }
+        { buyer_id: 4, seller_id: 2, content_id: 1 }
       ]);
     });
 };
