@@ -31,18 +31,21 @@ app.get('/', (req, res) => {
             <tr align="center">
               <td><strong>USERS</strong></td>
               <td><strong>CONTENT</strong></td>
+              <td><strong>BIDS</strong></td>
               <td><strong>TRANSACTIONS</strong></td>
               <td><strong>PREFERRED</strong></td>
             </tr>
             <tr>
               <td><a href="/api/users">/api/users</a></td>
               <td><a href="/api/content">/api/content</a></td>
+              <td><a href="/api/bids">/api/bids</a></td>
               <td><a href="/api/transactions">/api/transactions</a></td>
               <td><a href="/api/preferred">/api/preferred</a></td>
             </tr>
             <tr>
             <td><a href="/api/users/1">/api/users/1</a></td>
             <td><a href="/api/content/1">/api/content/1</a></td>
+            <td><a href="/api/bids/1">/api/bids/1</a></td>
             <td><a href="/api/transactions/1">/api/transactions/1</a></td>
             <td><a href="/api/preferred/1">/api/preferred/1</a></td>
             </tr>
