@@ -49,7 +49,6 @@ router.post('/register', (req, res) => {
     password: req.body.password,
     birthdate: req.body.birthdate,
     address: req.body.address,
-    user_type: req.body.user_type,
     rank: req.body.rank,
     avatar: req.body.avatar
   })
@@ -82,7 +81,6 @@ router.put('/edituser/:id', (req, res) => {
     password: req.body.password,
     birthdate: req.body.birthdate,
     address: req.body.address,
-    user_type: req.body.user_type,
     rank: req.body.rank,
     avatar: req.body.avatar
   };
