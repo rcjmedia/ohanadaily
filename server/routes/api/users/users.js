@@ -62,12 +62,12 @@ router.post('/register', (req, res) => {
     })
     .catch(err => {
       console.log('err', err);
-      res.json('err');
+      res.json('err', err);
     })
   })
   .catch(err => {
     console.log('err', err);
-    res.json('err');
+    res.json('err', err);
   })
 })
 
