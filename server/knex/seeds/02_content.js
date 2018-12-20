@@ -64,6 +64,21 @@ exports.seed = function(knex, Promise) {
           resolution: '1244x766',
           thumb_img: 'cow-1380252.jpg',
           download_link: 'VIDEO5broadcastingnews.mp4'
+        },
+        {
+          type: 'photo',
+          user_id: 3,
+          title: 'Ohana Background',
+          description: 'Ohana Background',
+          location: 'Oahu ft. shafter',
+          bid: '55',
+          bid_time_duration: '05:00:00',
+          status: 'true',
+          category: 'broadcast',
+          file_size: '587',
+          resolution: '1244x766',
+          thumb_img: 'ohanadaily2.jpg',
+          download_link: 'VIDEO5broadcastingnews.mp4'
         }
       ]);
     });
