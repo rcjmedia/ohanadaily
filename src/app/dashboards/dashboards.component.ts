@@ -19,10 +19,10 @@ export class DashboardsComponent implements OnInit {
 
   alphaSort(result: any) {
     this.userDash = result.sort((a: any, b: any) => {
-      if (a.first_name < b.first_name) {
+      if (a.id < b.id) {
         return -1;
       }
-      if (a.first_name > b.first_name) {
+      if (a.id > b.id) {
         return 1;
       }
       return 0;

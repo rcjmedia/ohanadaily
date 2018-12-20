@@ -8,12 +8,11 @@
   <ion-card text-center>
     <ion-card-content>
       <ion-card-title translate>APP_NAME</ion-card-title>
-      <p>
-        <ion-icon name="code"></ion-icon> <span translate>Version</span>
-        {{ version }}
-      </p>
       <div *ngFor="let dashboardContent of userDash">
-        {{ dashboardContent.first_name }} {{ dashboardContent.last_name }}
+        <h3>
+          Welcome {{ dashboardContent.first_name }}
+          {{ dashboardContent.last_name }}!
+        </h3>
       </div>
     </ion-card-content>
   </ion-card>

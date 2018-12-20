@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class PreferredService {
   baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
-  userDash: any[] = [];
+  prefSellers: any[] = [];
 
   constructor(private httpClient: HttpClient) {}
 

@@ -6,7 +6,7 @@
 import { browser, element, by } from 'protractor';
 
 export class AppPage {
-  usernameField = element(by.css('input[formControlName="username"]'));
+  emailField = element(by.css('input[formControlName="email"]'));
   passwordField = element(by.css('input[formControlName="password"]'));
   loginButton = element(by.css('button[type="submit"]'));
 
@@ -21,7 +21,7 @@ export class AppPage {
   }
 
   login() {
-    this.usernameField.sendKeys('test');
+    this.emailField.sendKeys('test');
     this.passwordField.sendKeys('123');
     this.loginButton.click();
   }

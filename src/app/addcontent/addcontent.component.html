@@ -1,25 +1,32 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title><span translate>Add Content</span></ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content no-bounce>
   <div class="register-background"></div>
   <ion-grid no-padding>
     <ion-row justify-content-center no-padding>
       <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
         <div class="register-header" text-center>
-          <h1 translate>APP_NAME</h1>
-          <h6>v{{ version }}</h6>
+          <!-- <h1 translate>APP_NAME</h1> -->
+          <h1>Add Content</h1>
+          <!-- <h6>v{{ version }}</h6> -->
           <ion-list *ngIf="isWeb" color="primary" no-lines no-margin>
             <ion-item color="primary">
-              <ion-label><span translate>Language</span></ion-label>
-              <ion-select
+              <ion-label>
+                <!-- <span translate>Add Content</span> -->
+              </ion-label>
+              <!-- <ion-select
                 [ngModel]="currentLanguage"
                 (ngModelChange)="setLanguage($event)"
-                interface="popover"
-              >
-                <ion-option
-                  *ngFor="let language of languages"
-                  [value]="language"
-                  >{{ language }}</ion-option
-                >
-              </ion-select>
+                interface="popover">
+                <ion-option *ngFor="let language of languages" [value]="language">
+                  {{ language }}
+                </ion-option>
+              </ion-select> -->
             </ion-item>
           </ion-list>
         </div>
@@ -305,5 +312,5 @@
         </div>
       </ion-col>
     </ion-row> </ion-grid
-  ><br /><br /><br /><br /><br /><br />
+  ><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </ion-content>

@@ -1,1 +1,31 @@
-<p>details works!</p>
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title><span translate>Details</span></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card text-center>
+    <ion-card-content>
+      <div *ngFor="let detail of contDetails">
+        Title: {{ detail.title }}<br />
+        Description: {{ detail.description }}<br />
+        Thumbnail Image:
+        <a href="/assets/{{ detail.thumb_img }}"> {{ detail.thumb_img }} </a
+        ><br />
+        Content type: {{ detail.type }}<br />
+        Location: {{ detail.location }}<br />
+        Starting Bid: {{ detail.bid }}<br />
+        Bid time: {{ detail.bid_time_duration }}<br />
+        Bid Status: {{ detail.status }}<br />
+        Category: {{ detail.category }}<br />
+        File Size: {{ detail.file_size }}<br />
+        Resolution: {{ detail.resolution }}<br />
+        Download Link: {{ detail.download_link }}<br />
+        Upload Date: {{ detail.created_at }} <br /><br /><br /><br />
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <br /><br /><br /><br /><br /><br />
+</ion-content>

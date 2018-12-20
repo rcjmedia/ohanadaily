@@ -7,14 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddcontentService {
   baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
-  userDash: any[] = [];
-
   constructor(private httpClient: HttpClient) {}
-
-  getDashboard() {
-    const dashUrl = this.baseUrl + 'content/';
-    return this.httpClient.get(dashUrl).toPromise();
-  }
 
   register(data: any) {
     const registerUrl = this.baseUrl + 'users';

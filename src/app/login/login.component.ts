@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoadingController, Platform } from 'ionic-angular';
 import { finalize } from 'rxjs/operators';
+import { LoginService } from './login.service';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
   version: string = environment.version;
   error: string;
   loginForm: FormGroup;
+  images: any[];
+  isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -26,12 +29,24 @@ export class LoginComponent implements OnInit {
     private platform: Platform,
     private loadingController: LoadingController,
     private i18nService: I18nService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private loginService: LoginService
   ) {
     this.createForm();
+    this.images = [];
   }
 
-  ngOnInit() {}
+  alphaSort(result: any) {
+    this.images = result.sort((a: any, b: any) => {
+      if (a.id < b.id) {
+        return -1;
+      }
+      if (a.id > b.id) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   login() {
     const loading = this.loadingController.create();
@@ -46,7 +61,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         credentials => {
-          log.debug(`${credentials.username} successfully logged in`);
+          log.debug(`${credentials.email} successfully logged in`);
           this.route.queryParams.subscribe(params =>
             this.router.navigate([params.redirect || '/'], { replaceUrl: true })
           );
@@ -76,9 +91,16 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
       remember: true
+    });
+  }
+
+  ngOnInit() {
+    this.isLoading = true;
+    this.loginService.getImages().then(result => {
+      this.alphaSort(result);
     });
   }
 }

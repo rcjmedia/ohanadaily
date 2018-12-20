@@ -9,14 +9,20 @@
   <ion-card text-center>
     <ion-card-content>
       <div *ngFor="let content of ohana">
+        <ion-icon name="contact"></ion-icon>
+        <a href="/user-profiles">{{ content.user_id.first_name }}</a
+        >: {{ content.title }} ( ${{ content.bid }} )
         <a href="content/{{ content.id }}">
-          <p>{{ content.title }}</p>
-          <img src="/assets/{{ content.thumb_img }}" />
-          <p>{{ content.description }}</p>
-          <br />
-          <br />
+          <a href="/assets/{{ content.thumb_img }}">
+            <img src="/assets/{{ content.thumb_img }}" />
+          </a>
         </a>
+        {{ content.description }}
+        <a href="transactions">
+          <h2>Buy Now! ( {{ content.bid }} )</h2>
+        </a>
+        <br /><br /><br />
       </div>
-    </ion-card-content> </ion-card
-  ><br /><br /><br /><br /><br /><br />
+    </ion-card-content>
+  </ion-card>
 </ion-content>

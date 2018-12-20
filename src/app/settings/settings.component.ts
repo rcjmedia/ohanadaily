@@ -32,9 +32,9 @@ export class SettingsComponent implements OnInit {
     return !this.platform.is('cordova');
   }
 
-  get username(): string | null {
+  get email(): string | null {
     const credentials = this.authenticationService.credentials;
-    return credentials ? credentials.username : null;
+    return credentials ? credentials.email : null;
   }
 
   logout() {

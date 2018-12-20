@@ -13,7 +13,12 @@ exports.up = function(knex, Promise) {
       .inTable('users')
       .onDelete('CASCADE')
       .index();
-    table.integer('content_id').notNullable();
+    table
+      .integer('content_id')
+      .references('id')
+      .inTable('content')
+      .onDelete('CASCADE')
+      .index();
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

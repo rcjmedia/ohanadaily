@@ -1,24 +1,23 @@
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title><span translate>Preferred Sellers</span></ion-title>
+    <ion-title><span translate>Transaction</span></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <ion-card text-center>
     <ion-card-content>
-      <ion-card-title translate>APP_NAME</ion-card-title>
-      <p>
-        <ion-icon name="code"></ion-icon> <span translate>Version</span>
-        {{ version }}
-      </p>
-      <div *ngFor="let sale of saleTransaction">
-        <h2>Buyer:</h2>
-        {{ sale.buyer_id.first_name }} {{ sale.buyer_id.last_name }}<br />
-        <h2>Seller:</h2>
-        {{ sale.seller_id.first_name }} {{ sale.seller_id.last_name }}<br />
-        <h2>Content ID</h2>
-        {{ sale.content_id }}
+      <ion-card-title translate>Transaction</ion-card-title>
+      <!-- <div *ngFor="let sale of saleTransaction">
+        Buyer: {{ sale.buyer_id.first_name }} {{ sale.buyer_id.last_name }}<br />
+        Seller: {{ sale.seller_id.first_name }} {{ sale.seller_id.last_name }}<br />
+        Content: {{ sale.content_id.title }}
+      </div> -->
+      <div *ngFor="let saleBid of saleAmount">
+        Bidder: {{ saleBid.bidder.first_name }} {{ saleBid.bidder.last_name
+        }}<br />
+        Bid Amount: {{ saleBid.bid_amount }}<br />
+        Content: {{ saleBid.content_id.title }} <br /><br /><br />
       </div>
     </ion-card-content>
   </ion-card>

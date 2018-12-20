@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title><span translate>Profile</span></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card text-center>
+    <ion-card-content>
+      <ion-card-title translate>APP_NAME</ion-card-title>
+      <div *ngFor="let profile of userProfiles">
+        <h3>{{ profile.first_name }} {{ profile.last_name }}!</h3>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

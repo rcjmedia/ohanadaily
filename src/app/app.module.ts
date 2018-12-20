@@ -18,6 +18,9 @@ import { LoginModule } from './login/login.module';
 import { AddcontentModule } from './addcontent/addcontent.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ContentsModule } from './contents/contents.module';
+import { DetailsModule } from './details/details.module';
+import { BidsModule } from './bids/bids.module';
+import { UserProfilesModule } from './user-profiles/user-profiles.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { PreferredModule } from './preferred/preferred.module';
 import { RegisterModule } from './register/register.module';
@@ -25,7 +28,6 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { SettingsModule } from './settings/settings.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -47,13 +49,16 @@ import { DetailsComponent } from './details/details.component';
     AddcontentModule,
     CategoriesModule,
     ContentsModule,
+    DetailsModule,
+    BidsModule,
+    UserProfilesModule,
     DashboardsModule,
     PreferredModule,
     RegisterModule,
     TransactionsModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, DetailsComponent],
+  declarations: [AppComponent],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,

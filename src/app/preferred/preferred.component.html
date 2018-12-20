@@ -7,16 +7,12 @@
 <ion-content>
   <ion-card text-center>
     <ion-card-content>
-      <ion-card-title translate>APP_NAME</ion-card-title>
-      <p>
-        <ion-icon name="code"></ion-icon> <span translate>Version</span>
-        {{ version }}
-      </p>
+      <ion-card-title translate>Preferred Sellers</ion-card-title>
       <div *ngFor="let user of prefSellers">
-        <h2>Buyer:</h2>
-        {{ user.buyer_id.first_name }} {{ user.buyer_id.last_name }}<br />
-        <h2>Seller:</h2>
-        {{ user.seller_id.first_name }} {{ user.seller_id.last_name }}
+        Welcome {{ user.buyer_id.first_name }}
+        {{ user.buyer_id.last_name }}!<br />
+        Your Preferred Sellers: {{ user.seller_id.first_name }}
+        {{ user.seller_id.last_name }}
       </div>
     </ion-card-content>
   </ion-card>

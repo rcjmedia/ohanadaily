@@ -20,6 +20,8 @@ import { DashboardsComponent } from '@app/dashboards/dashboards.component';
 import { PreferredComponent } from '@app/preferred/preferred.component';
 import { RegisterComponent } from '@app/register/register.component';
 import { TransactionsComponent } from '@app/transactions/transactions.component';
+import { BidsComponent } from '@app/bids/bids.component';
+import { DetailsComponent } from '@app/details/details.component';
 
 import { HomeModule } from '@app/home/home.module';
 import { AboutModule } from '@app/about/about.module';
@@ -30,6 +32,8 @@ import { DashboardsModule } from '@app/dashboards/dashboards.module';
 import { PreferredModule } from '@app/preferred/preferred.module';
 import { RegisterModule } from '@app/register/register.module';
 import { TransactionsModule } from '@app/transactions/transactions.module';
+import { BidsModule } from '@app/bids/bids.module';
+import { DetailsModule } from '@app/details/details.module';
 import { SettingsModule } from '@app/settings/settings.module';
 
 describe('ShellComponent', () => {
@@ -51,6 +55,8 @@ describe('ShellComponent', () => {
         PreferredModule,
         RegisterModule,
         TransactionsModule,
+        BidsModule,
+        DetailsModule,
         SettingsModule,
         CoreModule
       ],
@@ -71,7 +77,9 @@ describe('ShellComponent', () => {
             DashboardsComponent,
             PreferredComponent,
             RegisterComponent,
-            TransactionsComponent
+            TransactionsComponent,
+            BidsComponent,
+            DetailsModule
           ]
         }
       })

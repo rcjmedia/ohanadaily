@@ -7,8 +7,6 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterService {
   baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
-  userDash: any[] = [];
-
   constructor(private httpClient: HttpClient) {}
 
   getDashboard() {

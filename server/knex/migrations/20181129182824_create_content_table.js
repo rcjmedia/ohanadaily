@@ -12,18 +12,19 @@ exports.up = function(knex, Promise) {
     table.string('description', 855).notNullable();
     table.string('location', 95).notNullable();
     table.integer('bid').notNullable();
-    table.boolean('status').notNullable();
+    table.time('bid_time_start');
+    table.boolean('status').notNullable(); // true or false; closes the bidding module if false
     table.string('category').notNullable();
     table.integer('file_size').notNullable();
     table.string('resolution').notNullable();
     table
       .string('thumb_img', 1000)
       .notNullable()
-      .defaultTo('/src/assets/default.jpg');
+      .defaultTo('default.jpg');
     table
       .string('download_link', 1000)
       .notNullable()
-      .defaultTo('/src/assets/photos/default.jpg');
+      .defaultTo('default.jpg');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

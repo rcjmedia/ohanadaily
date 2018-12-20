@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title><span translate>Bids</span></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card text-center>
+    <ion-card-content>
+      <ion-card-title translate>Bids</ion-card-title>
+      <div *ngFor="let bid of saleBids">
+        Bidder: {{ bid.bidder.first_name }} {{ bid.bidder.last_name }}<br />
+        Amount: {{ bid.bid_amount }}<br />
+        Content: {{ bid.content_id.title }} <br /><br /><br />
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

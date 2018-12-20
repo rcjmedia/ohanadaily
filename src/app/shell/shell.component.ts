@@ -7,12 +7,15 @@ import { SettingsComponent } from '@app/settings/settings.component';
 import { AboutComponent } from '@app/about/about.component';
 import { HomeComponent } from '@app/home/home.component';
 import { DashboardsComponent } from '@app/dashboards/dashboards.component';
+import { UserProfilesComponent } from '@app/user-profiles/user-profiles.component';
 import { RegisterComponent } from '@app/register/register.component';
 import { PreferredComponent } from '@app/preferred/preferred.component';
 import { CategoriesComponent } from '@app/categories/categories.component';
 import { AddcontentComponent } from '@app/addcontent/addcontent.component';
 import { ContentsComponent } from '@app/contents/contents.component';
 import { TransactionsComponent } from '@app/transactions/transactions.component';
+import { BidsComponent } from '@app/bids/bids.component';
+import { DetailsComponent } from '@app/details/details.component';
 
 @Component({
   selector: 'app-shell',
@@ -24,49 +27,67 @@ export class ShellComponent implements OnInit {
     {
       component: HomeComponent,
       route: 'home',
-      title: 'Home',
+      // title: 'Home',
       icon: 'home'
     },
     {
-      component: ContentsComponent,
-      route: 'contents',
-      title: 'Contents',
-      icon: 'photos'
-    },
-    {
-      component: AddcontentComponent,
-      route: 'addcontent',
-      title: 'Add Content',
-      icon: 'aperture'
-    },
-    {
-      component: CategoriesComponent,
-      route: 'categories',
-      title: 'Categories',
-      icon: 'list-box'
+      component: DetailsComponent,
+      route: 'details',
+      // title: 'Details',
+      icon: 'more'
     },
     {
       component: DashboardsComponent,
       route: 'dashboard',
-      title: 'Dashboard',
+      // title: 'Dashboard',
       icon: 'options'
     },
     {
+      component: UserProfilesComponent,
+      route: 'user-profiles',
+      // title: 'Profile',
+      icon: 'bicycle'
+    },
+    // {
+    //   component: ContentsComponent,
+    //   route: 'contents',
+    //   title: 'Contents',
+    //   icon: 'photos'
+    // },
+    {
       component: PreferredComponent,
       route: 'preferred',
-      title: 'Preferred Seller',
+      // title: 'Preferred Seller',
       icon: 'people'
+    },
+    {
+      component: AddcontentComponent,
+      route: 'addcontent',
+      // title: 'Add Content',
+      icon: 'aperture'
+    },
+    // {
+    //   component: CategoriesComponent,
+    //   route: 'categories',
+    //   title: 'Categories',
+    //   icon: 'list-box'
+    // },
+    {
+      component: BidsComponent,
+      route: 'bids',
+      // title: 'Bids',
+      icon: 'timer'
     },
     {
       component: TransactionsComponent,
       route: 'transactions',
-      title: 'Transactions',
-      icon: 'cart'
+      // title: 'Transactions',
+      icon: 'logo-usd'
     },
     {
       component: AboutComponent,
       route: 'about',
-      title: 'About',
+      // title: 'About',
       icon: 'logo-angular'
     },
     // {
@@ -78,7 +99,7 @@ export class ShellComponent implements OnInit {
     {
       component: SettingsComponent,
       route: 'settings',
-      title: 'Settings',
+      // title: 'Settings',
       icon: 'cog'
     }
   ];

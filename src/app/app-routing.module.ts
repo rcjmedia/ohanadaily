@@ -23,8 +23,20 @@ const routes: Routes = [
   ]),
   Shell.childRoutes([
     {
+      path: 'bids',
+      loadChildren: 'app/bids/bids.module#BidsModule'
+    }
+  ]),
+  Shell.childRoutes([
+    {
       path: 'contents',
       loadChildren: 'app/contents/contents.module#ContentsModule'
+    }
+  ]),
+  Shell.childRoutes([
+    {
+      path: 'details',
+      loadChildren: 'app/details/details.module#DetailsModule'
     }
   ]),
   Shell.childRoutes([
@@ -37,6 +49,12 @@ const routes: Routes = [
     {
       path: 'preferred',
       loadChildren: 'app/preferred/preferred.module#PreferredModule'
+    }
+  ]),
+  Shell.childRoutes([
+    {
+      path: 'user-profiles',
+      loadChildren: 'app/user-profiles/user-profiles.module#UserProfilesModule'
     }
   ]),
   Shell.childRoutes([
