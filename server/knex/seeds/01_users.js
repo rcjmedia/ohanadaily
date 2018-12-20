@@ -1,5 +1,3 @@
-// figure out if we need password field.
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('users')
@@ -14,9 +12,8 @@ exports.seed = function(knex, Promise) {
           password: 'Lbomb',
           birthdate: '09/23/1985',
           address: '123 Boulevard Street, Honolulu, Hawaii 96822',
-          user_type: 'seller',
           rank: 1,
-          avatar: '/public/avatars/defaultAvatar.png'
+          avatar: 'defaultAvatar.png'
         },
         {
           first_name: 'Romeo',
@@ -25,9 +22,8 @@ exports.seed = function(knex, Promise) {
           password: 'Rbomb',
           birthdate: '10/22/1986',
           address: '1234 Boulevard Avenue, Honolulu, Hawaii, 96811',
-          user_type: 'seller',
           rank: 2,
-          avatar: '/public/avatars/defaultAvatar.png'
+          avatar: 'defaultAvatar.png'
         },
         {
           first_name: 'Chad',
@@ -36,9 +32,8 @@ exports.seed = function(knex, Promise) {
           password: 'password',
           birthdate: '1/23/1993',
           address: '4353 Laniakea street, Honolulu, Hawaii, 94324',
-          user_type: 'buyer',
           rank: 23,
-          avatar: '/public/avatars/defaultAvatar.png'
+          avatar: 'defaultAvatar.png'
         },
         {
           first_name: 'Walt',
@@ -47,9 +42,8 @@ exports.seed = function(knex, Promise) {
           password: 'walts',
           birthdate: '3/21/1934',
           address: '3455 Tops Street, Lake Tahoe, Nevada, 93452',
-          user_type: 'buyer',
           rank: 5,
-          avatar: '/public/avatars/defaultAvatar.png'
+          avatar: 'defaultAvatar.png'
         }
       ]);
     });

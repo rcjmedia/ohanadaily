@@ -8,7 +8,8 @@ router.use(bp.urlencoded({ extended: true }));
 
 //get all
 router.get('/', (req, res) => {
-  TransactionsModels.fetchAll({
+  TransactionsModels
+  .fetchAll({
     withRelated: ['buyer_id', 'seller_id', 'content_id']
   })
 
@@ -26,7 +27,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
-  TransactionsModels.where('id', id)
+  TransactionsModels
+  .where('id', id)
     .fetchAll({ withRelated: ['buyer_id', 'seller_id', 'content_id'] })
     .then(transactionId => {
       console.log('\nServer: Display By Transaction ID\n', transactionId);
@@ -41,13 +43,16 @@ router.get('/:id', (req, res) => {
 //post new
 router.post('/new_purchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
-  TransactionsModels.forge({
-    user_id: req.body.user_id,
+  TransactionsModels
+  .forge({
+    buyer_id: req.body.buyer_id,
+    seller_id: req.body.seller_id,
     content_id: req.body.content_id
   })
     .save()
     .then(() => {
-      return TransactionsModels.fetchAll({
+      return TransactionsModels
+      .fetchAll({
         withRelated: ['buyer_id', 'seller_id', 'content_id']
       })
         .then(newPurchase => {
