@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
       console.log('err', err);
       res.json('err');
     });
-})
+});
 
 //get by id
 router.get('/:id', (req, res) => {
@@ -71,7 +71,7 @@ router.post('/add', (req, res) => {
     console.log('err', err);
     res.json('err');
   })
-})
+});
 
 
   //put edit content by id 
@@ -106,7 +106,7 @@ router.post('/add', (req, res) => {
       console.log("GIVE ME THE err", err);
       res.json(err, 'sanity from put')
     })
-  })
+  });
 
   //DELETE CONTENT BY ID
   router.delete('/deletestory', (req, res) => {
