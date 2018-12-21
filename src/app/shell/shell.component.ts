@@ -54,12 +54,12 @@ export class ShellComponent implements OnInit {
     //   title: 'Contents',
     //   icon: 'photos'
     // },
-    {
-      component: PreferredComponent,
-      route: 'preferred',
-      // title: 'Preferred Seller',
-      icon: 'people'
-    },
+    // {
+    //   component: PreferredComponent,
+    //   route: 'preferred',
+    //   // title: 'Preferred Seller',
+    //   icon: 'people'
+    // },
     {
       component: AddcontentComponent,
       route: 'addcontent',
@@ -78,12 +78,12 @@ export class ShellComponent implements OnInit {
       // title: 'Bids',
       icon: 'timer'
     },
-    {
-      component: TransactionsComponent,
-      route: 'transactions',
-      // title: 'Transactions',
-      icon: 'logo-usd'
-    },
+    // {
+    //   component: TransactionsComponent,
+    //   route: 'transactions',
+    //   // title: 'Transactions',
+    //   icon: 'logo-usd'
+    // },
     {
       component: AboutComponent,
       route: 'about',

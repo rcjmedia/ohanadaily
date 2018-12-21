@@ -68,4 +68,12 @@ export class SettingsComponent implements OnInit {
       })
       .present();
   }
+  aboutPage() {
+    this.alertController
+      .create({
+        title: this.translateService.instant('About Ohanadaily'),
+        message: this.translateService.instant('Test')
+      })
+      .present();
+  }
 }
