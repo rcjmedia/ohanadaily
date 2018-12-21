@@ -23,9 +23,10 @@ import { BidsModule } from './bids/bids.module';
 import { UserProfilesModule } from './user-profiles/user-profiles.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { PreferredModule } from './preferred/preferred.module';
-import { RegisterModule } from './register/register.module';
+// import { RegisterModule } from './register/register.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { SettingsModule } from './settings/settings.module';
+import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -54,11 +55,11 @@ import { AppRoutingModule } from './app-routing.module';
     UserProfilesModule,
     DashboardsModule,
     PreferredModule,
-    RegisterModule,
+    // RegisterModule,
     TransactionsModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, RegisterComponent],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  { path: 'register', component: RegisterComponent },
   Shell.childRoutes([
     {
       path: 'about',
@@ -57,12 +59,12 @@ const routes: Routes = [
       loadChildren: 'app/user-profiles/user-profiles.module#UserProfilesModule'
     }
   ]),
-  Shell.childRoutes([
-    {
-      path: 'register',
-      loadChildren: 'app/register/register.module#RegisterModule'
-    }
-  ]),
+  // Shell.childRoutes([
+  //   {
+  //     path: 'register',
+  //     loadChildren: 'app/register/register.module#RegisterModule'
+  //   }
+  // ]),
   Shell.childRoutes([
     {
       path: 'transactions',
