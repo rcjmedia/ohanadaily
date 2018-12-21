@@ -7,17 +7,17 @@ import { HttpClient } from '@angular/common/http';
 export class DashboardService {
   baseUrl: string = 'http://ohanadaily.com:8080/api/';
 
-  userDash: any[] = [];
-  contDash: any[] = [];
+  bidsTable: any[] = [];
+  preferredTable: any[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
-  getDashboard() {
-    const url = this.baseUrl + 'users/';
+  getBidsTable() {
+    const url = this.baseUrl + 'bids/';
     return this.httpClient.get(url).toPromise();
   }
-  getDashCont() {
-    const url = this.baseUrl + 'content/';
+  getPreferredTable() {
+    const url = this.baseUrl + 'preferred/';
     return this.httpClient.get(url).toPromise();
   }
 }

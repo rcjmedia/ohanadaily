@@ -11,15 +11,16 @@ import { DashboardService } from './dashboard.service';
 export class DashboardsComponent implements OnInit {
   version: string = environment.version;
   isLoading: boolean;
-  userDash: any[];
-  contDash: any[];
+  bidsTable: any[];
+  preferredTable: any[];
 
   constructor(private dashboardService: DashboardService) {
-    this.userDash = [];
+    this.bidsTable = [];
+    this.preferredTable = [];
   }
 
-  alphaSort(result: any) {
-    this.userDash = result.sort((a: any, b: any) => {
+  sortBidsTable(result: any) {
+    this.bidsTable = result.sort((a: any, b: any) => {
       if (a.id < b.id) {
         return -1;
       }
@@ -30,25 +31,25 @@ export class DashboardsComponent implements OnInit {
     });
   }
 
-  // sortDash(result: any) {
-  //   this.userDash = result.sort((a: any, b: any) => {
-  //     if (a.id < b.id) {
-  //       return -1;
-  //     }
-  //     if (a.id > b.id) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  // }
+  sortPreferredTable(result: any) {
+    this.preferredTable = result.sort((a: any, b: any) => {
+      if (a.id < b.id) {
+        return -1;
+      }
+      if (a.id > b.id) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   ngOnInit() {
     this.isLoading = true;
-    this.dashboardService.getDashboard().then(result => {
-      this.alphaSort(result);
+    this.dashboardService.getBidsTable().then(result => {
+      this.sortBidsTable(result);
     });
-    // this.dashboardService.getDashCont().then(result => {
-    //   this.sortDash(result);
-    // });
+    this.dashboardService.getPreferredTable().then(result => {
+      this.sortPreferredTable(result);
+    });
   }
 }

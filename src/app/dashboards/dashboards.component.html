@@ -8,11 +8,21 @@
   <ion-card text-center>
     <ion-card-content>
       <ion-card-title translate>APP_NAME</ion-card-title>
-      <div *ngFor="let dashboardContent of userDash">
+      <!-- <div *ngFor="let dashboardContent of contentTable">
         <h3>
-          Welcome {{ dashboardContent.first_name }}
-          {{ dashboardContent.last_name }}!
+          Welcome {{ dashboardContent.user_id.first_name }}
+          {{ dashboardContent.user_id.last_name }}!
         </h3>
+      </div> -->
+      <div *ngFor="let bidsContent of bidsTable">
+        Welcome {{ bidsContent.bidder.first_name }}
+        {{ bidsContent.bidder.last_name }}!<br />
+        Your Bids: {{ bidsContent.content_id.title }} -
+        {{ bidsContent.bid_amount }}<br /><br />
+      </div>
+      <div *ngFor="let preferredContent of preferredTable">
+        Your Preferred Seller(s): {{ preferredContent.seller_id.first_name }}
+        {{ preferredContent.seller_id.last_name }}
       </div>
     </ion-card-content>
   </ion-card>
