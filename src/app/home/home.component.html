@@ -8,10 +8,9 @@
 <ion-content>
   <ion-card text-center>
     <ion-card-content>
-      <div *ngFor="let content of ohana">
+      <!-- <div *ngFor="let content of ohana">
         <ion-icon name="contact"></ion-icon>
-        <a href="/user-profiles">{{ content.user_id.first_name }}</a
-        >: {{ content.title }} ( ${{ content.bid }} )
+        <a href="/user-profiles">{{ content.user_id.first_name }}</a>: {{ content.title }} ( ${{ content.bid }} )
         <a href="content/{{ content.id }}">
           <a href="/assets/{{ content.thumb_img }}">
             <img src="/assets/{{ content.thumb_img }}" />
@@ -22,6 +21,34 @@
           <h2>Buy Now! ( {{ content.bid }} )</h2>
         </a>
         <br /><br /><br />
+      </div> -->
+
+      <!-- /////////////////////////// -->
+      <div *ngFor="let content of ohana">
+        <article>
+          <header class="flexed relative padding4">
+            <a class="flexed">
+              <ion-icon name="contact"></ion-icon>
+              <a href="/user-profiles/{{ content.user_id }}">{{
+                content.user_id.first_name
+              }}</a>
+            </a>
+            <span class="post-time">{{ content.created_at }}</span>
+          </header>
+          <div class="post-image-holder">
+            <img
+              class="post-pic"
+              src="/assets/{{ content.thumb_img }}"
+              alt=""
+            />
+          </div>
+          <div class="post-caption">
+            <p style="margin-bottom: 0px;">
+              <a class="bold pointer">{{ content.user_id.first_name }} </a
+              >{{ content.description }}
+            </p>
+          </div>
+        </article>
       </div>
     </ion-card-content>
   </ion-card>
