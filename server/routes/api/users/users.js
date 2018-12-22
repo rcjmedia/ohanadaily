@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bp = require('body-parser');
 const UserModels = require('../../../models/UserModels');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
@@ -38,8 +38,6 @@ router.get('/:id', (req, res) => {
 //post new
 router.post('/register', (req, res) => {
   console.log('\nThis is the req.body for register', req.body);
-  const { password } = req.body;
-  bcrypt.hash(password, 10);
 
   UserModels.forge({
     first_name: req.body.first_name,
@@ -48,13 +46,28 @@ router.post('/register', (req, res) => {
     password: req.body.password,
     birthdate: req.body.birthdate,
     address: req.body.address,
-    user_type: req.body.user_type,
-    rank: req.body.rank
-  });
+    rank: req.body.rank,
+    avatar: req.body.avatar
+  })
+    .save()
+    .then(() => {
+      return UserModels.fetch()
+        .then(newUser => {
+          res.json(newUser.serialize());
+        })
+        .catch(err => {
+          console.log('err', err);
+          res.json('err', err);
+        });
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err', err);
+    });
 });
 
 //put edit
-router.put('/edit_user/:id', (req, res) => {
+router.put('/edituser/:id', (req, res) => {
   console.log('\nThis is the req.body edit user', req.body);
   const { id } = req.params;
   const updateUser = {
@@ -64,8 +77,8 @@ router.put('/edit_user/:id', (req, res) => {
     password: req.body.password,
     birthdate: req.body.birthdate,
     address: req.body.address,
-    user_type: req.body.user_type,
-    rank: req.body.rank
+    rank: req.body.rank,
+    avatar: req.body.avatar
   };
 
   UserModels.where('id', id)
@@ -82,16 +95,17 @@ router.put('/edit_user/:id', (req, res) => {
 });
 
 //put delete
-router.put('/delete_user', (req, res) => {
+router.delete('/deleteuser', (req, res) => {
   const id = req.body.id;
 
-  UserModels.where({ id });
-  destroy()
+  UserModels.where({ id })
+    .destroy()
     .then(userDetails => {
       res.json(userDetails.serialize());
     })
     .catch(err => {
-      console.log('err:');
+      console.log('err', err);
+      res.json('err');
     });
 });
 

@@ -8,6 +8,7 @@ export interface Credentials {
 }
 
 export interface LoginContext {
+  userId: number;
   email: string;
   password: string;
   remember?: boolean;
@@ -40,6 +41,7 @@ export class AuthenticationService {
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
     const data = {
+      id: context.userId,
       email: context.email,
       token: '123456'
     };

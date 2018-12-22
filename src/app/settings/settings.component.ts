@@ -72,7 +72,34 @@ export class SettingsComponent implements OnInit {
     this.alertController
       .create({
         title: this.translateService.instant('About Ohanadaily'),
-        message: this.translateService.instant('Test')
+        message: this.translateService.instant(`
+        <p>
+        Welcome To Ohana Daily. We've created this resource to connect news
+        media outlets with the civilian reporter. In today's world of technology
+        almost any one can contribute content to the various local and national
+        news outlets. We would like to help you make a little extra money while
+        doing so!
+      </p>
+      <p>
+        DISCALIMER: ANY news story and or content submitted to OhanaDaily inc.
+        is deemed the intellectual property of Ohana Daily inc. from here on out
+        until the end of time. Ohana Daily inc. is not responsible for any
+        damages incurred from buying or selling news story and or content on the
+        Ohana Daily inc. platform. We reserve the right to terminate any buyer
+        or any seller at any time for any reason.
+      </p>`),
+        buttons: [
+          {
+            text: this.translateService.instant('Cancel'),
+            role: 'cancel'
+          },
+          {
+            text: this.translateService.instant('Ok'),
+            handler: language => {
+              this.i18nService.language = language;
+            }
+          }
+        ]
       })
       .present();
   }

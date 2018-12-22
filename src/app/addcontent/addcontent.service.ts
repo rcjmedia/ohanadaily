@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AddcontentService {
-  baseUrl: string = 'http://ohanadaily.com:8080/api/';
+  baseUrl: string = 'http://ohanadaily.com:8080/api/content/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -24,5 +24,10 @@ export class AddcontentService {
     };
 
     return this.httpClient.post(registerUrl, input).toPromise();
+  }
+
+  addContent(data: any) {
+    const addUrl = this.baseUrl + `add`;
+    return this.httpClient.post(addUrl, data).toPromise();
   }
 }

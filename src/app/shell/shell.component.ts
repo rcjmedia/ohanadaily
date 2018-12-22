@@ -30,24 +30,24 @@ export class ShellComponent implements OnInit {
       // title: 'Home',
       icon: 'home'
     },
-    {
-      component: DetailsComponent,
-      route: 'details',
-      // title: 'Details',
-      icon: 'more'
-    },
+    // {
+    //   component: DetailsComponent,
+    //   route: 'details',
+    //   // title: 'Details',
+    //   icon: 'more'
+    // },
     {
       component: DashboardsComponent,
       route: 'dashboard',
       // title: 'Dashboard',
       icon: 'options'
     },
-    {
-      component: UserProfilesComponent,
-      route: 'user-profiles',
-      // title: 'Profile',
-      icon: 'bicycle'
-    },
+    // {
+    //   component: UserProfilesComponent,
+    //   route: 'user-profiles',
+    //   // title: 'Profile',
+    //   icon: 'contacts'
+    // },
     // {
     //   component: ContentsComponent,
     //   route: 'contents',
@@ -84,18 +84,18 @@ export class ShellComponent implements OnInit {
     //   // title: 'Transactions',
     //   icon: 'logo-usd'
     // },
-    {
-      component: AboutComponent,
-      route: 'about',
-      // title: 'About',
-      icon: 'logo-angular'
-    },
-    {
-      component: RegisterComponent,
-      route: 'register',
-      title: 'Register',
-      icon: 'contact'
-    },
+    // {
+    //   component: AboutComponent,
+    //   route: 'about',
+    //   // title: 'About',
+    //   icon: 'logo-angular'
+    // },
+    // {
+    //   component: RegisterComponent,
+    //   route: 'register',
+    //   title: 'Register',
+    //   icon: 'contact'
+    // },
     {
       component: SettingsComponent,
       route: 'settings',

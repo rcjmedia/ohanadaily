@@ -5,6 +5,14 @@ const cors = require('cors');
 const PORT = process.env.EXPRESS_CONTAINER_PORT || 8080;
 const Redis = require('connect-redis')(session);
 const routes = require('./routes/api/index');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const UserModels = require('./models/UserModels');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+
+app.use(express.static('./public'));
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(
@@ -16,6 +24,53 @@ app.use(
     secret: 'felixTheBat',
     resave: false,
     saveUninitialized: true
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((users, done) => {
+  return done(null, {
+    id: users.id,
+    email: users.email
+  });
+});
+
+passport.deserializeUser((users, done) => {
+  new UserModels({ id: users.id })
+    .fetch()
+    .then(users => {
+      if (!users) {
+        return;
+      }
+      users = users.toJSON();
+      return done(null, {
+        id: users.id,
+        email: users.email
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      return done(err);
+    });
+});
+
+passport.use(
+  new LocalStrategy(function(email, password, done) {
+    UserModels.findOne({ email: email }, function(err, users) {
+      if (err) {
+        console.log('!!!!!!!!!!!!', err);
+        return done(err);
+      }
+      if (!users) {
+        return done(null, false, { message: 'Incorrect email.' });
+      }
+      if (!users.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, users);
+    });
   })
 );
 

@@ -1,11 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>
+      <a routerLink="/">
+        <ion-icon name="home"></ion-icon>
+        <!-- <span translate>Register</span> -->
+      </a>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content no-bounce>
   <div class="register-background"></div>
   <ion-grid no-padding>
     <ion-row justify-content-center no-padding>
       <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
-        <div class="register-header" text-center>
-          <h1 translate>APP_NAME</h1>
-          <h6>v{{ version }}</h6>
+        <!-- <div class="register-header" text-center>
           <ion-list *ngIf="isWeb" color="primary" no-lines no-margin>
             <ion-item color="primary">
               <ion-label><span translate>Language</span></ion-label>
@@ -22,7 +32,7 @@
               </ion-select>
             </ion-item>
           </ion-list>
-        </div>
+        </div> -->
         <div class="register-container">
           <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
             <div

@@ -7,7 +7,7 @@
 <ion-content>
   <ion-card text-center>
     <ion-card-content>
-      <ion-card-title translate>APP_NAME</ion-card-title>
+      <!-- <ion-card-title translate>APP_NAME</ion-card-title> -->
       <!-- <div *ngFor="let dashboardContent of contentTable">
         <h3>
           Welcome {{ dashboardContent.user_id.first_name }}
@@ -15,10 +15,16 @@
         </h3>
       </div> -->
       <div *ngFor="let bidsContent of bidsTable">
-        Welcome {{ bidsContent.bidder.first_name }}
-        {{ bidsContent.bidder.last_name }}!<br />
-        Your Bids: {{ bidsContent.content_id.title }} -
-        {{ bidsContent.bid_amount }}<br /><br />
+        <span>
+          <strong>
+            Welcome {{ bidsContent.bidder.first_name }}
+            {{ bidsContent.bidder.last_name }}!<br />
+          </strong>
+        </span>
+        <span>
+          Your Bids: {{ bidsContent.content_id.title }} -
+          {{ bidsContent.bid_amount }}<br /><br />
+        </span>
       </div>
       <div *ngFor="let preferredContent of preferredTable">
         Your Preferred Seller(s): {{ preferredContent.seller_id.first_name }}

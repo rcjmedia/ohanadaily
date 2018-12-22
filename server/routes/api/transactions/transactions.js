@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
   TransactionsModels.fetchAll({
     withRelated: ['buyer_id', 'seller_id', 'content_id']
   })
+
     .then(transactionList => {
       res.json(transactionList.serialize());
       console.log('\nServer: List Of Users: \n', transactionList);
@@ -38,7 +39,7 @@ router.get('/:id', (req, res) => {
 });
 
 //post new
-router.post('/new_purchase', (req, res) => {
+router.post('/newpurchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
   TransactionsModels.forge({
     buyer_id: req.body.buyer_id,
