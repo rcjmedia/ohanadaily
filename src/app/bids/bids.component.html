@@ -11,7 +11,8 @@
       <div *ngFor="let bid of saleBids">
         Bidder: {{ bid.bidder.first_name }} {{ bid.bidder.last_name }}<br />
         Amount: {{ bid.bid_amount }}<br />
-        Content: {{ bid.content_id.title }} <br /><br /><br />
+        Content: {{ bid.content_id.title }} <br />
+        <button (click)="openCheckout()">Purchase</button> <br /><br /><br />
       </div>
     </ion-card-content>
   </ion-card>
