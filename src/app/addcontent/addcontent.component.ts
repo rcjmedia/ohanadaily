@@ -22,12 +22,13 @@ export class AddcontentComponent implements OnInit {
 
   formData: {
     type: string;
-    user_id: string;
+    user_id: number;
     title: string;
     description: string;
     location: string;
     bid: number;
-    status: string;
+    bid_time_duration: number;
+    status: boolean;
     category: string;
     file_size: number;
     resolution: string;
@@ -35,20 +36,19 @@ export class AddcontentComponent implements OnInit {
     download_link: string;
   } = {
     type: '',
-    user_id: '',
+    user_id: null,
     title: '',
     description: '',
     location: '',
     bid: null,
-    status: '',
+    bid_time_duration: null,
+    status: true,
     category: '',
     file_size: null,
     resolution: '',
     thumb_img: '',
     download_link: ''
   };
-
-  mediaContent: object;
 
   constructor(
     private router: Router,
@@ -67,6 +67,7 @@ export class AddcontentComponent implements OnInit {
   ngOnInit() {}
 
   submitForm() {
+    console.log(this.formData);
     this.addContentService
       .addContent(this.formData)
       .then(response => {
@@ -121,12 +122,13 @@ export class AddcontentComponent implements OnInit {
   private createForm() {
     this.contentForm = this.formBuilder.group({
       type: ['', Validators.required],
-      user_id: ['', Validators.required],
+      user_id: [null, Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
       location: ['', Validators.required],
       bid: [null, Validators.required],
-      status: ['', Validators.required],
+      bid_time_duration: [null, Validators.required],
+      status: [true, Validators.required],
       category: ['', Validators.required],
       file_size: [null, Validators.required],
       resolution: ['', Validators.required],

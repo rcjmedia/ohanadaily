@@ -27,7 +27,7 @@ export class ShellComponent implements OnInit {
     {
       component: HomeComponent,
       route: 'home',
-      // title: 'Home',
+      title: 'Home',
       icon: 'home'
     },
     // {
@@ -36,16 +36,16 @@ export class ShellComponent implements OnInit {
     //   // title: 'Details',
     //   icon: 'more'
     // },
-    {
-      component: DashboardsComponent,
-      route: 'dashboard',
-      // title: 'Dashboard',
-      icon: 'options'
-    },
+    // {
+    //   component: DashboardsComponent,
+    //   route: 'dashboard',
+    //   // title: 'Dashboard',
+    //   icon: 'options'
+    // },
     // {
     //   component: UserProfilesComponent,
     //   route: 'user-profiles',
-    //   // title: 'Profile',
+    //   title: 'Profiles',
     //   icon: 'contacts'
     // },
     // {
@@ -63,7 +63,7 @@ export class ShellComponent implements OnInit {
     {
       component: AddcontentComponent,
       route: 'addcontent',
-      // title: 'Add Content',
+      title: 'Add Content',
       icon: 'aperture'
     },
     // {
@@ -75,15 +75,15 @@ export class ShellComponent implements OnInit {
     {
       component: BidsComponent,
       route: 'bids',
-      // title: 'Bids',
+      title: 'Bids',
       icon: 'timer'
     },
-    // {
-    //   component: TransactionsComponent,
-    //   route: 'transactions',
-    //   // title: 'Transactions',
-    //   icon: 'logo-usd'
-    // },
+    {
+      component: TransactionsComponent,
+      route: 'transactions',
+      title: 'Transactions',
+      icon: 'logo-usd'
+    },
     // {
     //   component: AboutComponent,
     //   route: 'about',
@@ -99,7 +99,7 @@ export class ShellComponent implements OnInit {
     {
       component: SettingsComponent,
       route: 'settings',
-      // title: 'Settings',
+      title: 'Settings',
       icon: 'cog'
     }
   ];

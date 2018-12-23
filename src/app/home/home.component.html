@@ -36,20 +36,24 @@
             <span class="post-time">{{ content.created_at }}</span>
           </header>
           <div class="post-image-holder">
-            <img
-              class="post-pic"
-              src="/assets/{{ content.thumb_img }}"
-              alt=""
-            />
+            <a routerLink="/details">
+              <img
+                class="post-pic"
+                src="/assets/{{ content.thumb_img }}"
+                alt=""
+              />
+            </a>
           </div>
-          <div class="post-caption">
-            <p style="margin-bottom: 0px;">
-              <a class="bold pointer">{{ content.user_id.first_name }} </a
-              >{{ content.description }}
-            </p>
-          </div>
+          Description: {{ content.description }}<br />
+          Content Type: {{ content.type }}<br />
+          Location: {{ content.location }}<br />
+          Category: {{ content.category }}<br />
+          File size: {{ content.file_size }}<br />
+          Resolution: {{ content.resolution }}<br />
+          <a routerLink="transactions"> Buy: {{ content.bid }}<br /> </a>
         </article>
       </div>
     </ion-card-content>
   </ion-card>
+  <br /><br /><br /><br /><br /><br />
 </ion-content>

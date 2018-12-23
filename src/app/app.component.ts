@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService } from '@app/core';
+// import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 
 const log = new Logger('App');
 
@@ -30,7 +31,18 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private i18nService: I18nService
-  ) {}
+  ) // private oauthService: OAuthService
+  {
+    // this.oauthService.redirectUri = window.location.origin;
+    // this.oauthService.clientId = '{client-id}';
+    // this.oauthService.scope = 'openid profile email';
+    // this.oauthService.issuer = 'https://dev-{dev-id}.oktapreview.com';
+    // this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    // // Load Discovery Document and then try to login the user
+    // this.oauthService.loadDiscoveryDocument().then(() => {
+    //   this.oauthService.tryLogin();
+    // });
+  }
 
   ngOnInit() {
     // Setup logger

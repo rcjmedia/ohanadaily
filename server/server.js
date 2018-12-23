@@ -9,10 +9,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const UserModels = require('./models/UserModels');
 const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
+const bp = require('body-parser');
 
-app.use(express.static('./public'));
-app.use(bodyParser.json());
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 app.use(cors());
 app.use(
@@ -27,52 +27,88 @@ app.use(
   })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-passport.serializeUser((users, done) => {
-  return done(null, {
-    id: users.id,
-    email: users.email
-  });
-});
+// passport.serializeUser( (users, done) => {
+//   console.log('\n00 - Serializing users\n', users)
+//   done(null, {
+//     full_name: users.full_name,
+//     email: users.email,
+//     zomg: 'randomData'
+//   })
+// })
 
-passport.deserializeUser((users, done) => {
-  new UserModels({ id: users.id })
-    .fetch()
-    .then(users => {
-      if (!users) {
-        return;
-      }
-      users = users.toJSON();
-      return done(null, {
-        id: users.id,
-        email: users.email
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      return done(err);
-    });
-});
+// passport.deserializeUser( (users, done) => {
+//   console.log('\n01 - Deserializing User\n', users)
+//   UserModels
+//     .where({email: users.email})
+//     .fetch()
+//     .then( users => {
+//       users = users.toJSON();
+//       done(null, users)
+//     })
+//     .catch( err => {
+//       console.log('err', err)
+//     })
+// })
 
-passport.use(
-  new LocalStrategy(function(email, password, done) {
-    UserModels.findOne({ email: email }, function(err, users) {
-      if (err) {
-        console.log('!!!!!!!!!!!!', err);
-        return done(err);
-      }
-      if (!users) {
-        return done(null, false, { message: 'Incorrect email.' });
-      }
-      if (!users.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, users);
-    });
-  })
-);
+// passport.use(
+//   new LocalStrategy(function(email, password, done) {
+//     UserModels
+//     .where({ email: email }, function(err, users) {
+//       if (err) {
+//         console.log('!!!!!!!!!!!!', err);
+//         return done(err);
+//       }
+//       if (!users) {
+//         return done(null, false, { message: 'Incorrect email.' });
+//       }
+//       if (!users.validPassword(password)) {
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       return done(null, users);
+//     });
+//   })
+// );
+
+// app.post(
+//   '/login',
+//   passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/login',
+//     failureFlash: true
+//   })
+// );
+
+// app.post('/login', (req, res, next) => {
+//   // If user is logged in, then instruct the user to log out first:
+//   if (req.users) {
+//     res.status(400).json({ message: `${req.users.email} is already logged in` });
+//   } else {
+//     passport.authenticate('local', (err, users) => {
+//       if (err) {
+//         return res.status(400).json({ message: err.message });
+//       } else {
+//         req.login(users, err => {
+//           if (err) {
+//             return next(err);
+//           } else {
+//             res.json({
+//               email: users.email,
+//               id: req.users.id
+//             });
+//           }
+//         });
+//       }
+//     })(req, res, next);
+//   }
+// });
+
+// app.get('/logout', (req, res) => {
+//   req.logout();
+//   res.json({ success: true });
+// });
 
 app.use('/api', routes);
 

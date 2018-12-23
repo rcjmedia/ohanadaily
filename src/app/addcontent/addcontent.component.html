@@ -33,6 +33,7 @@
                 <ion-label floating>{{ 'Content Type' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="type"
                   formControlName="type"
                   autocomplete="type"
                 ></ion-input>
@@ -54,6 +55,7 @@
                 <ion-label floating>{{ 'Content By' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="user_id"
                   formControlName="user_id"
                   autocomplete="user_id"
                 ></ion-input>
@@ -75,6 +77,7 @@
                 <ion-label floating>{{ 'Title' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="title"
                   formControlName="title"
                   autocomplete="title"
                 ></ion-input>
@@ -96,6 +99,7 @@
                 <ion-label floating>{{ 'Description' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="description"
                   formControlName="description"
                   autocomplete="current-description"
                 ></ion-input>
@@ -117,6 +121,7 @@
                 <ion-label floating>{{ 'Location' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="location"
                   formControlName="location"
                   autocomplete="location"
                 ></ion-input>
@@ -138,6 +143,7 @@
                 <ion-label floating>{{ 'Bid' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="bid"
                   formControlName="bid"
                   autocomplete="bid"
                 ></ion-input>
@@ -154,11 +160,36 @@
               >
                 Bid is required
               </div>
+              <!-- Bid time duration  -->
+              <ion-item>
+                <ion-label floating>{{
+                  'Bid time duration' | translate
+                }}</ion-label>
+                <ion-input
+                  type="text"
+                  name="bid_time_duration"
+                  formControlName="bid_time_duration"
+                  autocomplete="bid_time_duration"
+                ></ion-input>
+              </ion-item>
+              <div
+                padding
+                [hidden]="
+                  contentForm.controls.bid_time_duration.valid ||
+                  contentForm.controls.bid_time_duration.untouched
+                "
+                ion-text
+                color="danger"
+                translate
+              >
+                Bid time duration is required
+              </div>
               <!-- Status -->
               <ion-item>
                 <ion-label floating>{{ 'Status' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="status"
                   formControlName="status"
                   autocomplete="status"
                 ></ion-input>
@@ -180,6 +211,7 @@
                 <ion-label floating>{{ 'Category' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="category"
                   formControlName="category"
                   autocomplete="category"
                 ></ion-input>
@@ -201,6 +233,7 @@
                 <ion-label floating>{{ 'File Size' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="file_size"
                   formControlName="file_size"
                   autocomplete="file_size"
                 ></ion-input>
@@ -222,6 +255,7 @@
                 <ion-label floating>{{ 'Resolution' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="resolution"
                   formControlName="resolution"
                   autocomplete="resolution"
                 ></ion-input>
@@ -243,6 +277,7 @@
                 <ion-label floating>{{ 'Thumb Image' | translate }}</ion-label>
                 <ion-input
                   type="text"
+                  name="thumb_img"
                   formControlName="thumb_img"
                   autocomplete="thumb_img"
                 ></ion-input>
@@ -266,6 +301,7 @@
                 }}</ion-label>
                 <ion-input
                   type="text"
+                  name="download_link"
                   formControlName="download_link"
                   autocomplete="download_link"
                 ></ion-input>

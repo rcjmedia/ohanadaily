@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 });
 
 //post new content
-router.post('/add', (req, res) => {
+router.post('/addcontent', (req, res) => {
   console.log('\nThis is the req.body for add content', req.body);
 
   ContentModels.forge({
@@ -46,6 +46,7 @@ router.post('/add', (req, res) => {
     description: req.body.description,
     location: req.body.location,
     bid: req.body.bid,
+    bid_time_duration: req.body.bid_time_duration,
     status: req.body.status,
     category: req.body.category,
     file_size: req.body.file_size,
@@ -81,6 +82,7 @@ router.put('/editstory/:id', (req, res) => {
     description: req.body.description,
     location: req.body.location,
     bid: req.body.bid,
+    bid_time_duration: req.body.bid_time_duration,
     status: req.body.status,
     category: req.body.category,
     file_size: req.body.file_size,

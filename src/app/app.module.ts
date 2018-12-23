@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+// import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@app/core';
@@ -29,9 +30,12 @@ import { SettingsModule } from './settings/settings.module';
 import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+// import { HomeComponent } from './home/home.component';
+// import { AuthGuard, OktaAuthWrapper } from './shared';
 
 @NgModule({
   imports: [
+    // OAuthModule.forRoot(),
     BrowserModule,
     ServiceWorkerModule.register('./ngsw-worker.js', {
       enabled: environment.production
@@ -59,8 +63,14 @@ import { AppRoutingModule } from './app-routing.module';
     TransactionsModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    RegisterComponent
+    // HomeComponent
+  ],
   providers: [
+    // AuthGuard,
+    // OktaAuthWrapper,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,
     SplashScreen
