@@ -42,30 +42,26 @@ router.get('/:id', (req, res) => {
 //post new
 router.post('/new_bid', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
-  BidsModels
-  .forge({
+
+  const inputBid = {
     bid_amount: req.body.bid_amount,  
     bidder: req.body.bidder,
     content_id: req.body.content_id
-  })
-    .save()
-    .then(() => {
-      return BidsModels
-      .fetchAll({
-        withRelated: ['bidder', 'content_id']
+  }
+
+    return new BidsModels()
+      .save(inputBid)
+      .then(response => {
+        return response.refresh();
       })
-        .then(newBid => {
-          res.json(newBid.serialize());
-        })
-        .catch(err => {
-          console.log('err', err);
-          res.json('err');
-        });
-    })
-    .catch(err => {
-      console.log('err', err);
-      res.json('res.json ERRROR');
-    });
+      .then(recipient => {
+        return res.json(recipient);
+      })
+      .catch(err => {
+        console.log(err.message);
+        return res.status(400).json({ error: err.message });
+      });
+
 });
 
 //put edit

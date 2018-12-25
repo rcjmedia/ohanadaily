@@ -43,29 +43,24 @@ router.get('/:id', (req, res) => {
 //post new
 router.post('/newpurchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
-  TransactionsModels
-  .forge({
+  
+  const inputTransaction = {
     buyer_id: req.body.buyer_id,
     seller_id: req.body.seller_id,
     content_id: req.body.content_id
-  })
-    .save()
-    .then(() => {
-      return TransactionsModels
-      .fetchAll({
-        withRelated: ['buyer_id', 'seller_id', 'content_id']
-      })
-        .then(newPurchase => {
-          res.json(newPurchase.serialize());
-        })
-        .catch(err => {
-          console.log('err', err);
-          res.json('err');
-        });
+  }
+    
+    return new TransactionsModels()
+    .save(inputTransaction)
+    .then(response => {
+      return response.refresh();
+    })
+    .then(recipient => {
+      return res.json(recipient);
     })
     .catch(err => {
-      console.log('err', err);
-      res.json('res.json ERRROR');
+      console.log(err.message);
+      return res.status(400).json({ error: err.message });
     });
 });
 

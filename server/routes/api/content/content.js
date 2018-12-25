@@ -38,10 +38,9 @@ router.get('/:id', (req, res) => {
 
 //post new content
 router.post('/add', (req, res) => {
-  console.log('\nThis is the req.body for add content', req.body);
+  console.log('\nThis is the req.body for add content\n', req.body);
 
-  ContentModels
-  .forge({
+  const contentInput = {
     content_type: req.body.content_type,
     user_id: req.body.user_id,
     title: req.body.title,
@@ -55,23 +54,19 @@ router.post('/add', (req, res) => {
     resolution: req.body.resolution,
     thumb_img: req.body.thumb_img,
     download_link: req.body.download_link
-  })
-  .save()
-  .then(() => {
-    return ContentModels
-    .fetchAll({withRelated: ["user_id"]})
-    .then(newStory => {
-      res.json(newStory.serialize());
-    })
-    .catch(err => {
-      console.log('err', err);
-      res.json('err');
-    })
-  })
-  .catch(err => {
-    console.log('err', err);
-    res.json('err');
-  })
+  };
+  return new ContentModels()
+      .save(contentInput)
+      .then(response => {
+        return response.refresh();
+      })
+      .then(recipient => {
+        return res.json(recipient);
+      })
+      .catch(err => {
+        console.log(err.message);
+        return res.status(400).json({ error: err.message });
+      });
 });
 
 

@@ -41,27 +41,24 @@ router.get('/:id', (req, res) => {
  router.post('/newpreferred', (req, res) => {
   console.log('\nNEW PREFERRED', req.body);
 
-  PreferredModels
-  .forge({
+  const inputPreferred = {
     buyer_id: req.body.buyer_id,
     seller_id: req.body.seller_id
+  }
+    
+  return new PreferredModels()
+  .save(inputPreferred)
+  .then(response => {
+    return response.refresh();
   })
-  .save()
-  .then(() => {
-    return PreferredModels
-    .fetchAll({withRelated: ["buyer_id", "seller_id"]}) 
-    .then(newPreferred => {
-    res.json(newPreferred.serialize());
-    })
-    .catch(err => {
-      console.log('err', err);
-      res.json('err');
-    })
+  .then(recipient => {
+    return res.json(recipient);
   })
-    .catch(err => {
-      console.log('err', err);
-      res.json('err');
-    })
+  .catch(err => {
+    console.log(err.message);
+    return res.status(400).json({ error: err.message });
+  });
+  
   });
 
   //delete preferred user by ID

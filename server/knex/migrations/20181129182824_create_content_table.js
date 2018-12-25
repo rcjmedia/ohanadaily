@@ -1,9 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('content', function(table) {
-    table.increments().notNullable();
-    table
-      .string('content_type', 50)
-      .notNullable();
+    table.increments();
+    table.string('content_type', 50).notNullable();
     table
       .integer('user_id')
       .references('id')
