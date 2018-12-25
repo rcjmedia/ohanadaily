@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   })
     .then(bidsList => {
         res.json(bidsList.serialize());
-        console.log('\nServer: List Of Users: \n', bidsList);
+        console.log('\nServer: List Of Bids: \n', bidsList);
     })
     .catch(err => {
         console.log('err', err);

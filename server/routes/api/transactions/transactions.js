@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
     .then(transactionList => {
       res.json(transactionList.serialize());
-      console.log('\nServer: List Of Users: \n', transactionList);
+      console.log('\nServer: List Of Transactions: \n', transactionList);
     })
     .catch(err => {
       console.log('err', err);
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
   .where('id', id)
     .fetchAll({ withRelated: ['buyer_id', 'seller_id', 'content_id'] })
     .then(transactionId => {
-      console.log('\nServer: Display By Transaction ID\n', transactionId);
+      console.log('\nServer: Display By Transaction by ID\n', transactionId);
       res.json(transactionId);
     })
     .catch(err => {

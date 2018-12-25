@@ -1,4 +1,3 @@
-// This route is reponsible for registration, login, and logout:
 const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
@@ -9,12 +8,7 @@ const UserModels = require('../../../models/UserModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-
-
-// Register new user:
 router.post('/register', (req, res) => {
-  // Extract relevant data from incoming request:
-  
   const {
     first_name,
     last_name,
@@ -58,11 +52,9 @@ router.post('/register', (req, res) => {
     })
 });
 
-// Log in with a username (i.e., email address) and password:
 router.post('/login', (req, res, next) => {
-  // If users is logged in, then instruct the users to log out first:
   if (req.users) {
-    res.status(400).json({ message: `${req.users.email} is already logged in` });
+    res.status(400).json({ message: `${req.users.email}` });
   } else {
     passport.authenticate('local', (err, users) => {
       if (err) {

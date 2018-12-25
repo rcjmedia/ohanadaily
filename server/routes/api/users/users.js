@@ -35,41 +35,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new
-router.post('/register', (req, res) => {
-  console.log('\nThis is the req.body for register', req.body);
-  // const { password } = req.body;
-  // bcrypt.hash(password, 10);
-
-  UserModels
-  .forge({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    birthdate: req.body.birthdate,
-    address: req.body.address,
-    rank: req.body.rank,
-    avatar: req.body.avatar
-  })
-  .save()
-  .then(() => {
-    return UserModels
-    .fetchAll()
-    .then(newUser => {
-      res.json(newUser.serialize());
-    })
-    .catch(err => {
-      console.log('err', err);
-      res.json('err', err);
-    })
-  })
-  .catch(err => {
-    console.log('err', err);
-    res.json('err', err);
-  })
-})
-
 //put edit
 router.put('/edituser/:id', (req, res) => {
   console.log('\nThis is the req.body edit user', req.body);

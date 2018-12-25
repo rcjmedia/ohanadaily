@@ -16,7 +16,7 @@ app.use(
       url: 'redis://redis-session-store:6379',
       logErrors: true
     }),
-    secret: 'felixTheBat',
+    secret: 'pusheenCat',
     resave: false,
     saveUninitialized: true
   })
@@ -35,13 +35,13 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((users, done) => {
-  console.log('deserializing User', users)
+  console.log('Deserializing Here: \n', users)
   UserModels
     .where({ email: users.email })
     .fetch()
     .then(users => {
       users = users.toJSON();
-      console.log('users in deserialize users', users)
+      console.log('List of deserialized users: \n', users)
       done(null, users)
     })
     .catch(err => {
@@ -50,39 +50,39 @@ passport.deserializeUser((users, done) => {
 })
 
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-  console.log('\nlocal is being called')
+  console.log('This is LocalStrategy')
   UserModels
     .where({ email })
     .fetch()
     .then(users => {
-      console.log('\nusers in local strategy', users)
+      console.log('LocalStrategy Users', users)
       users = users.toJSON();
       if (users.password === password) {
         done(null, users )
       } else {
         done(null, false)
       }
-      console.log('\nauthRoutes.js passport.use login users.ToJSON', users)
+      console.log('json LocalStrategy', users)
 
       bcrypt.compare(password, users.password)
         .then(response => {
-          console.log('\nauthRoutes.js passport.use login after bcrypt!!!\n', response)
+          console.log('bcrypt LocalStrategy', response)
 
           if (response) {
-            console.log('\nauthRoutes.js passport.use login after success!!!!\n')
+            console.log('LocalStrategy login success')
             done(null, response);
           } else {
-            console.log('\nauthRoutes.js passport.use login after failure!!!\n')
+            console.log('login LocalStrategy failed')
             done(null, false);
           }
         })
         .catch(err => {
-          console.log("1st error:", err);
+          console.log("err", err);
           done(err);
         })
     })
     .catch(err => {
-      console.log("2nd error:", err);
+      console.log("err", err);
       done(err);
     })
 }))

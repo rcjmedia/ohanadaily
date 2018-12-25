@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
     .then(contentList => {
       res.json(contentList.serialize());
-      console.log('\nServer: List Of Users: \n', contentList);
+      console.log('\nServer: List Of Contents: \n', contentList);
     })
     .catch(err => {
       console.log('err', err);
@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
   .where('id', id)
     .fetchAll({ withRelated: ['user_id'] })
     .then(contentId => {
-      console.log('\nServer: Display By User ID\n');
+      console.log('\nServer: Display By Content ID\n');
       res.json(contentId);
     })
     .catch(err => {
