@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('content').insert([
         {
-          type: 'photo',
+          content_type: 'photo',
           user_id: 2,
           title: 'School Report explained',
           description: 'School Report explained',
@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise) {
           download_link: 'newwhatisschoolreport.mp4'
         },
         {
-          type: 'video',
+          content_type: 'video',
           user_id: 1,
           title: 'Reporting sport masterclass video ',
           description: 'Reporting sport masterclass video',
@@ -36,7 +36,7 @@ exports.seed = function(knex, Promise) {
           download_link: 'sonalimasterclassfinal_fido.mp4'
         },
         {
-          type: 'photo',
+          content_type: 'photo',
           user_id: 2,
           title: 'What is news?',
           description: 'What is news?',
@@ -51,7 +51,7 @@ exports.seed = function(knex, Promise) {
           download_link: 'Video1whatisnews.mp4'
         },
         {
-          type: 'photo',
+          content_type: 'photo',
           user_id: 2,
           title: 'Broadcasting news',
           description: 'Broadcasting news',
@@ -66,7 +66,7 @@ exports.seed = function(knex, Promise) {
           download_link: 'VIDEO5broadcastingnews.mp4'
         },
         {
-          type: 'photo',
+          content_type: 'photo',
           user_id: 3,
           title: 'Ohana Background',
           description: 'Ohana Background',

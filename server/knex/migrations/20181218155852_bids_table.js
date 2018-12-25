@@ -2,7 +2,7 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('bids', function(table) {
       table.increments().notNullable();
       table
-        .string('bid_amount')
+        .string('bid_amount', 50)
         .notNullable();
       table
         .integer('bidder')

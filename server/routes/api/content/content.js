@@ -42,7 +42,7 @@ router.post('/add', (req, res) => {
 
   ContentModels
   .forge({
-    type: req.body.type,
+    content_type: req.body.content_type,
     user_id: req.body.user_id,
     title: req.body.title,
     description: req.body.description,
@@ -80,7 +80,7 @@ router.post('/add', (req, res) => {
     const { id } = req.params;
 
     const updatedStory = {
-      type: req.body.type,
+      content_type: req.body.content_type,
       user_id: req.body.user_id,
       title: req.body.title,
       description: req.body.description,
