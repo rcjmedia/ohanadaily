@@ -4,8 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { extract } from '@app/core';
 import { Shell } from '@app/shell/shell.service';
 import { AddcontentComponent } from './addcontent.component';
+import { HomeComponent } from '../home/home.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   Shell.childRoutes([
     {
       path: 'addcontent',

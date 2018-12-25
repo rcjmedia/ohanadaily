@@ -15,24 +15,6 @@
   <ion-grid no-padding>
     <ion-row justify-content-center no-padding>
       <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
-        <!-- <div class="register-header" text-center>
-          <ion-list *ngIf="isWeb" color="primary" no-lines no-margin>
-            <ion-item color="primary">
-              <ion-label><span translate>Language</span></ion-label>
-              <ion-select
-                [ngModel]="currentLanguage"
-                (ngModelChange)="setLanguage($event)"
-                interface="popover"
-              >
-                <ion-option
-                  *ngFor="let language of languages"
-                  [value]="language"
-                  >{{ language }}</ion-option
-                >
-              </ion-select>
-            </ion-item>
-          </ion-list>
-        </div> -->
         <div class="register-container">
           <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
             <div
@@ -51,6 +33,7 @@
                 <ion-input
                   type="text"
                   formControlName="first_name"
+                  [(ngModel)]="formData.first_name"
                   autocomplete="first_name"
                 ></ion-input>
               </ion-item>
@@ -72,6 +55,7 @@
                 <ion-input
                   type="text"
                   formControlName="last_name"
+                  [(ngModel)]="formData.last_name"
                   autocomplete="last_name"
                 ></ion-input>
               </ion-item>
@@ -93,6 +77,7 @@
                 <ion-input
                   type="text"
                   formControlName="email"
+                  [(ngModel)]="formData.email"
                   autocomplete="email"
                 ></ion-input>
               </ion-item>
@@ -114,6 +99,7 @@
                 <ion-input
                   type="password"
                   formControlName="password"
+                  [(ngModel)]="formData.password"
                   autocomplete="current-password"
                 ></ion-input>
               </ion-item>
@@ -135,6 +121,7 @@
                 <ion-input
                   type="text"
                   formControlName="birthdate"
+                  [(ngModel)]="formData.birthdate"
                   autocomplete="birthdate"
                 ></ion-input>
               </ion-item>
@@ -156,6 +143,7 @@
                 <ion-input
                   type="text"
                   formControlName="address"
+                  [(ngModel)]="formData.address"
                   autocomplete="address"
                 ></ion-input>
               </ion-item>
@@ -171,33 +159,13 @@
               >
                 Address is required
               </div>
-              <!-- User type -->
-              <ion-item>
-                <ion-label floating>{{ 'User Type' | translate }}</ion-label>
-                <ion-input
-                  type="text"
-                  formControlName="user_type"
-                  autocomplete="user_type"
-                ></ion-input>
-              </ion-item>
-              <div
-                padding
-                [hidden]="
-                  registerForm.controls.user_type.valid ||
-                  registerForm.controls.user_type.untouched
-                "
-                ion-text
-                color="danger"
-                translate
-              >
-                User Type is required
-              </div>
               <!-- Rank     -->
               <ion-item>
                 <ion-label floating>{{ 'Rank' | translate }}</ion-label>
                 <ion-input
                   type="text"
                   formControlName="rank"
+                  [(ngModel)]="formData.rank"
                   autocomplete="rank"
                 ></ion-input>
               </ion-item>
@@ -219,6 +187,7 @@
                 <ion-input
                   type="text"
                   formControlName="avatar"
+                  [(ngModel)]="formData.avatar"
                   autocomplete="avatar"
                 ></ion-input>
               </ion-item>

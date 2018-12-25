@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-// import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpModule } from '@angular/http';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@app/core';
@@ -24,14 +24,14 @@ import { BidsModule } from './bids/bids.module';
 import { UserProfilesModule } from './user-profiles/user-profiles.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { PreferredModule } from './preferred/preferred.module';
-// import { RegisterModule } from './register/register.module';
+import { RegisterModule } from './register/register.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { SettingsModule } from './settings/settings.module';
-import { RegisterComponent } from './register/register.component';
+// import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 // import { HomeComponent } from './home/home.component';
-// import { AuthGuard, OktaAuthWrapper } from './shared';
+import { RegisterService } from './register/register.service';
 
 @NgModule({
   imports: [
@@ -42,6 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
     }),
     FormsModule,
     HttpClientModule,
+    HttpModule,
     TranslateModule.forRoot(),
     IonicModule.forRoot(AppComponent, { locationStrategy: 'path' }),
     CoreModule,
@@ -59,13 +60,13 @@ import { AppRoutingModule } from './app-routing.module';
     UserProfilesModule,
     DashboardsModule,
     PreferredModule,
-    // RegisterModule,
+    RegisterModule,
     TransactionsModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [
-    AppComponent,
-    RegisterComponent
+    // RegisterComponent,
+    AppComponent
     // HomeComponent
   ],
   providers: [
@@ -73,6 +74,7 @@ import { AppRoutingModule } from './app-routing.module';
     // OktaAuthWrapper,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,
+    RegisterService,
     SplashScreen
   ],
   bootstrap: [IonicApp]

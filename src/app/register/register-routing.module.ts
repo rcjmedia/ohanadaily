@@ -6,9 +6,9 @@ import { RegisterComponent } from './register.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'register',
     component: RegisterComponent,
-    data: { title: extract('Login') }
+    data: { title: extract('Register') }
   }
 ];
 

@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
     table.string('description', 855).notNullable();
     table.string('location', 95).notNullable();
     table.integer('bid').notNullable();
-    table.time('bid_time_start');
+    table.time('bid_time_duration');
     table.boolean('status').notNullable(); // true or false; closes the bidding module if false
     table.string('category').notNullable();
     table.integer('file_size').notNullable();

@@ -5,31 +5,14 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AddcontentService {
-  baseUrl: string = 'http://localhost:8080/api/content/';
+  baseUrl: string = 'http://ohanadaily.com:8080/api/content/';
 
   constructor(private httpClient: HttpClient) {}
 
-  // register(data: any) {
-  //   const registerUrl = this.baseUrl + 'users';
-  //   const input = {
-  //     full_name: data.full_name,
-  //     last_name: data.last_name,
-  //     email: data.email,
-  //     password: data.password,
-  //     birthdate: data.birthdate,
-  //     address: data.address,
-  //     user_type: data.user_type,
-  //     rank: data.rank,
-  //     avatar: data.avatar
-  //   };
-
-  //   return this.httpClient.post(registerUrl, input).toPromise();
-  // }
-
   addContent(data: any) {
-    const addUrl = this.baseUrl + `addcontent`;
+    const addUrl = this.baseUrl + `add`;
     const input = {
-      type: data.type,
+      content_type: data.content_type,
       user_id: data.user_id,
       title: data.title,
       description: data.description,
@@ -43,6 +26,6 @@ export class AddcontentService {
       thumb_img: data.thumb_img,
       download_link: data.download_link
     };
-    return this.httpClient.post(addUrl, data).toPromise();
+    return this.httpClient.post(addUrl, input).toPromise();
   }
 }

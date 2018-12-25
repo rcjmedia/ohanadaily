@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoadingController, Platform, Form } from 'ionic-angular';
 import { finalize } from 'rxjs/operators';
+import { RegisterService } from './register.service';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
@@ -19,6 +20,26 @@ export class RegisterComponent implements OnInit {
   error: string;
   registerForm: FormGroup;
 
+  formData: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    birthdate: string;
+    address: string;
+    rank: number;
+    avatar: string;
+  } = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    birthdate: '',
+    address: '',
+    rank: null,
+    avatar: ''
+  };
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -26,33 +47,47 @@ export class RegisterComponent implements OnInit {
     private platform: Platform,
     private loadingController: LoadingController,
     private i18nService: I18nService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private registerService: RegisterService
   ) {
+    this.formData;
     this.createForm();
   }
 
   ngOnInit() {}
 
   register() {
+    // console.log(this.formData)
     const loading = this.loadingController.create();
     loading.present();
-    this.authenticationService
-      .login(this.registerForm.value)
-      .pipe(
-        finalize(() => {
-          this.registerForm.markAsPristine();
+    this.registerService
+      .register(this.formData)
+      // .then(response => {
+      //   console.log(response);
+
+      //   this.router.navigate(['/home']);
+      //   // window.location.href = "/home";
+      // })
+      // .then(res => {
+      //   console.log(res);
+      //   loading.dismiss();
+      // })
+      // .catch(err => {
+      //   console.log(err);
+      // });
+      .then(
+        response => {
+          console.log(response);
+          log.debug(`Content uploaded`);
           loading.dismiss();
-        })
-      )
-      .subscribe(
-        credentials => {
-          log.debug(`${credentials.email} successfully logged in`);
-          this.route.queryParams.subscribe(params =>
-            this.router.navigate([params.redirect || '/'], { replaceUrl: true })
-          );
+          this.router.navigate(['/home']);
+
+          // this.route.queryParams.subscribe(params =>
+          //   this.router.navigate([params.redirect || '/home'], { replaceUrl: true })
+          // );
         },
         error => {
-          log.debug(`Login error: ${error}`);
+          log.debug(`Upload error: ${error}`);
           this.error = error;
         }
       );

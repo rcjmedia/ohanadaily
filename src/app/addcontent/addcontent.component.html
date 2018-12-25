@@ -33,16 +33,16 @@
                 <ion-label floating>{{ 'Content Type' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="type"
-                  formControlName="type"
+                  formControlName="content_type"
+                  [(ngModel)]="formData.content_type"
                   autocomplete="type"
                 ></ion-input>
               </ion-item>
               <div
                 padding
                 [hidden]="
-                  contentForm.controls.type.valid ||
-                  contentForm.controls.type.untouched
+                  contentForm.controls.content_type.valid ||
+                  contentForm.controls.content_type.untouched
                 "
                 ion-text
                 color="danger"
@@ -54,9 +54,9 @@
               <ion-item>
                 <ion-label floating>{{ 'Content By' | translate }}</ion-label>
                 <ion-input
-                  type="text"
-                  name="user_id"
+                  type="number"
                   formControlName="user_id"
+                  [(ngModel)]="formData.user_id"
                   autocomplete="user_id"
                 ></ion-input>
               </ion-item>
@@ -77,8 +77,8 @@
                 <ion-label floating>{{ 'Title' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="title"
                   formControlName="title"
+                  [(ngModel)]="formData.title"
                   autocomplete="title"
                 ></ion-input>
               </ion-item>
@@ -99,8 +99,8 @@
                 <ion-label floating>{{ 'Description' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="description"
                   formControlName="description"
+                  [(ngModel)]="formData.description"
                   autocomplete="current-description"
                 ></ion-input>
               </ion-item>
@@ -121,8 +121,8 @@
                 <ion-label floating>{{ 'Location' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="location"
                   formControlName="location"
+                  [(ngModel)]="formData.location"
                   autocomplete="location"
                 ></ion-input>
               </ion-item>
@@ -142,9 +142,9 @@
               <ion-item>
                 <ion-label floating>{{ 'Bid' | translate }}</ion-label>
                 <ion-input
-                  type="text"
-                  name="bid"
+                  type="number"
                   formControlName="bid"
+                  [(ngModel)]="formData.bid"
                   autocomplete="bid"
                 ></ion-input>
               </ion-item>
@@ -167,8 +167,8 @@
                 }}</ion-label>
                 <ion-input
                   type="text"
-                  name="bid_time_duration"
                   formControlName="bid_time_duration"
+                  [(ngModel)]="formData.bid_time_duration"
                   autocomplete="bid_time_duration"
                 ></ion-input>
               </ion-item>
@@ -189,8 +189,8 @@
                 <ion-label floating>{{ 'Status' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="status"
                   formControlName="status"
+                  [(ngModel)]="formData.status"
                   autocomplete="status"
                 ></ion-input>
               </ion-item>
@@ -211,8 +211,8 @@
                 <ion-label floating>{{ 'Category' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="category"
                   formControlName="category"
+                  [(ngModel)]="formData.category"
                   autocomplete="category"
                 ></ion-input>
               </ion-item>
@@ -233,8 +233,8 @@
                 <ion-label floating>{{ 'File Size' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="file_size"
                   formControlName="file_size"
+                  [(ngModel)]="formData.file_size"
                   autocomplete="file_size"
                 ></ion-input>
               </ion-item>
@@ -255,8 +255,8 @@
                 <ion-label floating>{{ 'Resolution' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="resolution"
                   formControlName="resolution"
+                  [(ngModel)]="formData.resolution"
                   autocomplete="resolution"
                 ></ion-input>
               </ion-item>
@@ -277,8 +277,8 @@
                 <ion-label floating>{{ 'Thumb Image' | translate }}</ion-label>
                 <ion-input
                   type="text"
-                  name="thumb_img"
                   formControlName="thumb_img"
+                  [(ngModel)]="formData.thumb_img"
                   autocomplete="thumb_img"
                 ></ion-input>
               </ion-item>
@@ -301,8 +301,8 @@
                 }}</ion-label>
                 <ion-input
                   type="text"
-                  name="download_link"
                   formControlName="download_link"
+                  [(ngModel)]="formData.download_link"
                   autocomplete="download_link"
                 ></ion-input>
               </ion-item>
@@ -326,7 +326,6 @@
                 ion-button
                 color="primary"
                 block
-                (click)="submitForm()"
               >
                 <span translate>Add</span>
               </button>
