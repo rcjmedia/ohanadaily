@@ -64,10 +64,45 @@ router.post('/new_bid', (req, res) => {
 
 });
 
-//put edit
-//no need
-//put delete
-//no need
-//
+  //put edit bid by id 
+  router.put('/editbids/:id', (req, res) => {
+    const { id } = req.params;
+
+    const updateBid = {
+      bid_amount: req.body.bid_amount,  
+    bidder: req.body.bidder,
+    content_id: req.body.content_id
+    }
+
+    BidsModels
+    .where('id', id)
+    .fetch()
+    .then(newBid => {
+      console.log('newBid', newBid);
+      newBid.save(updateBid);
+      res.json(updateBid);
+      return null;
+    })
+    .catch(err => {
+      console.log("GIVE ME THE err", err);
+      res.json(err, 'sanity from put')
+    })
+  });
+
+  //DELETE BID BY ID
+  router.delete('/deletebid', (req, res) => {
+    const id = req.body.id
+
+    BidsModels
+    .where({ id })
+    .destroy()
+    .then(bidDetails => {
+      res.json(bidDetails.serialize())
+    })
+    .catch(err => {
+      console.log('err', err)
+      res.json('err')
+    })
+  })
 
 module.exports = router;

@@ -64,10 +64,45 @@ router.post('/newpurchase', (req, res) => {
     });
 });
 
-//put edit
-//no need
-//put delete
-//no need
-//
+  //put edit preferred by id 
+  router.put('/edittransaction/:id', (req, res) => {
+    const { id } = req.params;
+
+    const updateTransaction = {
+      buyer_id: req.body.buyer_id,
+    seller_id: req.body.seller_id,
+    content_id: req.body.content_id
+    }
+
+    TransactionsModels
+    .where('id', id)
+    .fetch()
+    .then(editedTransaction => {
+      console.log('editedTransaction', editedTransaction);
+      editedTransaction.save(updateTransaction);
+      res.json(updateTransaction);
+      return null;
+    })
+    .catch(err => {
+      console.log("GIVE ME THE err", err);
+      res.json(err, 'sanity from put')
+    })
+  });
+
+  //DELETE TRANSACTION BY ID
+  router.delete('/deletetransaction', (req, res) => {
+    const id = req.body.id
+
+    TransactionsModels
+    .where({ id })
+    .destroy()
+    .then(preferredDetails => {
+      res.json(preferredDetails.serialize())
+    })
+    .catch(err => {
+      console.log('err', err)
+      res.json('err')
+    })
+  })
 
 module.exports = router;

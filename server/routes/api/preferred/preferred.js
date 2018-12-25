@@ -61,7 +61,31 @@ router.get('/:id', (req, res) => {
   
   });
 
-  //delete preferred user by ID
+  //put edit preferred by id 
+  router.put('/editpreferred/:id', (req, res) => {
+    const { id } = req.params;
+
+    const updatePreferred = {
+      buyer_id: req.body.buyer_id,
+    seller_id: req.body.seller_id
+    }
+
+    PreferredModels
+    .where('id', id)
+    .fetch()
+    .then(newPreferred => {
+      console.log('newPreferred', newPreferred);
+      newPreferred.save(updatePreferred);
+      res.json(updatePreferred);
+      return null;
+    })
+    .catch(err => {
+      console.log("GIVE ME THE err", err);
+      res.json(err, 'sanity from put')
+    })
+  });
+
+  //DELETE PREFERRED BY ID
   router.delete('/deletepreferred', (req, res) => {
     const id = req.body.id
 
@@ -76,10 +100,5 @@ router.get('/:id', (req, res) => {
       res.json('err')
     })
   })
-
-
-
-
-
 
 module.exports = router;
