@@ -54,8 +54,8 @@ router.post('/new_bid', (req, res) => {
       .then(response => {
         return response.refresh();
       })
-      .then(recipient => {
-        return res.json(recipient);
+      .then(newData => {
+        return res.json(newData);
       })
       .catch(err => {
         console.log(err.message);

@@ -5,6 +5,9 @@ const cors = require('cors');
 const PORT = process.env.EXPRESS_CONTAINER_PORT || 8080;
 const Redis = require('connect-redis')(session);
 const routes = require('./routes/api/index');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const UserModels = require('./models/UserModels');
 
 app.use(cors());
 app.use(
@@ -20,6 +23,70 @@ app.use(
 );
 
 app.use('/api', routes);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  console.log('serializeUser', user)
+  done(null, {
+    email: user.email
+  })
+})
+
+passport.deserializeUser((users, done) => {
+  console.log('deserializing User', users)
+  UserModels
+    .where({ email: users.email })
+    .fetch()
+    .then(users => {
+      users = users.toJSON();
+      console.log('users in deserialize users', users)
+      done(null, users)
+    })
+    .catch(err => {
+      console.log('err', err)
+    })
+})
+
+passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  console.log('\nlocal is being called')
+  UserModels
+    .where({ email })
+    .fetch()
+    .then(users => {
+      console.log('\nusers in local strategy', users)
+      users = users.toJSON();
+      if (users.password === password) {
+        done(null, users )
+      } else {
+        done(null, false)
+      }
+      console.log('\nauthRoutes.js passport.use login users.ToJSON', users)
+
+      bcrypt.compare(password, users.password)
+        .then(response => {
+          console.log('\nauthRoutes.js passport.use login after bcrypt!!!\n', response)
+
+          if (response) {
+            console.log('\nauthRoutes.js passport.use login after success!!!!\n')
+            done(null, response);
+          } else {
+            console.log('\nauthRoutes.js passport.use login after failure!!!\n')
+            done(null, false);
+          }
+        })
+        .catch(err => {
+          console.log("1st error:", err);
+          done(err);
+        })
+    })
+    .catch(err => {
+      console.log("2nd error:", err);
+      done(err);
+    })
+}))
+
 
 app.get('/', (req, res) => {
   console.log('Sanity Check');
