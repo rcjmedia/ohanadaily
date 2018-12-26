@@ -6,7 +6,6 @@ const TransactionsModels = require('../../../models/TransactionsModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get all
 router.get('/', (req, res) => {
   TransactionsModels
   .fetchAll({
@@ -23,7 +22,6 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
@@ -40,7 +38,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new
 router.post('/newpurchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
   
@@ -64,7 +61,6 @@ router.post('/newpurchase', (req, res) => {
     });
 });
 
-  //put edit preferred by id 
   router.put('/edittransaction/:id', (req, res) => {
     const { id } = req.params;
 
@@ -89,7 +85,6 @@ router.post('/newpurchase', (req, res) => {
     })
   });
 
-  //DELETE TRANSACTION BY ID
   router.delete('/deletetransaction', (req, res) => {
     const id = req.body.id
 

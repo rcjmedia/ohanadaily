@@ -6,7 +6,6 @@ const PreferredModels = require('../../../models/PreferredModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get all
 router.get('/', (req, res) => {
   PreferredModels.fetchAll({ withRelated: ['buyer_id', 'seller_id'] })
 
@@ -20,7 +19,6 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
@@ -37,7 +35,6 @@ router.get('/:id', (req, res) => {
     });
   });
 
-//post new preferred seller/buyer
  router.post('/newpreferred', (req, res) => {
   console.log('\nNEW PREFERRED', req.body);
 
@@ -61,7 +58,6 @@ router.get('/:id', (req, res) => {
   
   });
 
-  //put edit preferred by id 
   router.put('/editpreferred/:id', (req, res) => {
     const { id } = req.params;
 
@@ -85,7 +81,6 @@ router.get('/:id', (req, res) => {
     })
   });
 
-  //DELETE PREFERRED BY ID
   router.delete('/deletepreferred', (req, res) => {
     const id = req.body.id
 

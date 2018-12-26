@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bp = require('body-parser');
 const UserModels = require('../../../models/UserModels');
-// const bcrypt = require('bcrypt');
 
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get
 router.get('/', (req, res) => {
   UserModels.fetchAll()
     .then(userList => {
@@ -20,7 +18,6 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   UserModels.where('id', id)
@@ -35,7 +32,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//put edit
 router.put('/edituser/:id', (req, res) => {
   console.log('\nThis is the req.body edit user', req.body);
   const { id } = req.params;

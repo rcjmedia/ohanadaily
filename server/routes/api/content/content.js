@@ -6,7 +6,6 @@ const ContentModels = require('../../../models/ContentModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get all
 router.get('/', (req, res) => {
   ContentModels.fetchAll({ withRelated: ['user_id'] })
 
@@ -20,7 +19,6 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   ContentModels
@@ -36,7 +34,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new content
 router.post('/add', (req, res) => {
   console.log('\nThis is the req.body for add content\n', req.body);
 
@@ -70,55 +67,53 @@ router.post('/add', (req, res) => {
 });
 
 
-  //put edit content by id 
-  router.put('/editstory/:id', (req, res) => {
-    const { id } = req.params;
+router.put('/editstory/:id', (req, res) => {
+  const { id } = req.params;
 
-    const updatedStory = {
-      content_type: req.body.content_type,
-      user_id: req.body.user_id,
-      title: req.body.title,
-      description: req.body.description,
-      location: req.body.location,
-      bid: req.body.bid,
-      bid_time_duration: req.body.bid_time_duration,
-      status: req.body.status,
-      category: req.body.category,
-      file_size: req.body.file_size,
-      resolution: req.body.resolution,
-      thumb_img: req.body.thumb_img,
-      download_link: req.body.download_link
-    }
+  const updatedStory = {
+    content_type: req.body.content_type,
+    user_id: req.body.user_id,
+    title: req.body.title,
+    description: req.body.description,
+    location: req.body.location,
+    bid: req.body.bid,
+    bid_time_duration: req.body.bid_time_duration,
+    status: req.body.status,
+    category: req.body.category,
+    file_size: req.body.file_size,
+    resolution: req.body.resolution,
+    thumb_img: req.body.thumb_img,
+    download_link: req.body.download_link
+  }
 
-    ContentModels
-    .where('id', id)
-    .fetch()
-    .then(storyUpdate => {
-      console.log('storyUpdate', storyUpdate);
-      storyUpdate.save(updatedStory);
-      res.json(updatedStory);
-      return null;
-    })
-    .catch(err => {
-      console.log("GIVE ME THE err", err);
-      res.json(err, 'sanity from put')
-    })
-  });
-
-  //DELETE CONTENT BY ID
-  router.delete('/deletestory', (req, res) => {
-    const id = req.body.id
-
-    ContentModels
-    .where({ id })
-    .destroy()
-    .then(contentDetails => {
-      res.json(contentDetails.serialize())
-    })
-    .catch(err => {
-      console.log('err', err)
-      res.json('err')
-    })
+  ContentModels
+  .where('id', id)
+  .fetch()
+  .then(storyUpdate => {
+    console.log('storyUpdate', storyUpdate);
+    storyUpdate.save(updatedStory);
+    res.json(updatedStory);
+    return null;
   })
+  .catch(err => {
+    console.log("GIVE ME THE err", err);
+    res.json(err, 'sanity from put')
+  })
+});
+
+router.delete('/deletestory', (req, res) => {
+  const id = req.body.id
+
+  ContentModels
+  .where({ id })
+  .destroy()
+  .then(contentDetails => {
+    res.json(contentDetails.serialize())
+  })
+  .catch(err => {
+    console.log('err', err)
+    res.json('err')
+  })
+})
 
 module.exports = router;

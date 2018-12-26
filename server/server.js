@@ -7,6 +7,7 @@ const Redis = require('connect-redis')(session);
 const routes = require('./routes/api/index');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const bcrypt = require('bcrypt');
 const UserModels = require('./models/UserModels');
 
 app.use(cors());
@@ -28,65 +29,55 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  console.log('serializeUser', user)
-  done(null, {
+  return done(null, {
+    id: user.id,
     email: user.email
-  })
-})
+  });
+});
 
-passport.deserializeUser((users, done) => {
-  console.log('Deserializing Here: \n', users)
-  UserModels
-    .where({ email: users.email })
+passport.deserializeUser((user, done) => {
+  new UserModels({ id: user.id })
     .fetch()
-    .then(users => {
-      users = users.toJSON();
-      console.log('List of deserialized users: \n', users)
-      done(null, users)
-    })
-    .catch(err => {
-      console.log('err', err)
-    })
-})
-
-passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-  console.log('This is LocalStrategy')
-  UserModels
-    .where({ email })
-    .fetch()
-    .then(users => {
-      console.log('LocalStrategy Users', users)
-      users = users.toJSON();
-      if (users.password === password) {
-        done(null, users )
-      } else {
-        done(null, false)
+    .then(user => {
+      if (!user) {
+        return;
       }
-      console.log('json LocalStrategy', users)
-
-      bcrypt.compare(password, users.password)
-        .then(response => {
-          console.log('bcrypt LocalStrategy', response)
-
-          if (response) {
-            console.log('LocalStrategy login success')
-            done(null, response);
-          } else {
-            console.log('login LocalStrategy failed')
-            done(null, false);
-          }
-        })
-        .catch(err => {
-          console.log("err", err);
-          done(err);
-        })
+      user = user.toJSON();
+      return done(user, null, { // Display data from the database:
+        id: user.id,
+        email: user.email
+      });
     })
     .catch(err => {
-      console.log("err", err);
-      done(err);
-    })
-}))
+      console.log(err);
+      return done(err);
+    });
+});
 
+passport.use(
+  new LocalStrategy(function(username, password, done) {
+    return new UserModels({ email: username })
+      .fetch()
+      .then(user => {
+        if (!user) {
+          return done({ message: 'Invalid Email' });
+        } else {
+          user = user.toJSON();
+          bcrypt.compare(password, user.password).then(samePassword => {
+            if (samePassword) {
+              return done(null, user);
+            } else {
+              return done({ message: 'Invalid Password' });
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.log('error: ', err);
+        return done(err);
+      });
+  })
+);
 
 app.get('/', (req, res) => {
   console.log('Sanity Check');
@@ -121,34 +112,9 @@ app.get('/', (req, res) => {
     `);
 });
 
-app.post('/login', (req, res, next) => {
-  if (req.users) {
-    res.status(400).json({ message: `${req.users.email}` });
-  } else {
-    passport.authenticate('local', (err, users) => {
-      if (err) {
-        return res.status(400).json({ message: err.message });
-      } else {
-        req.login(users, err => {
-          if (err) {
-            return next(err);
-          } else {
-            res.json({
-              email: users.email,
-              id: users.id
-            });
-          }
-        });
-      }
-    })(req, res, next);
-  }
-});
-
-// Log out users:
-app.get('/logout', (req, res) => {
-  req.logout();
-  res.json({ success: true });
-});
+app.get('/home', (req, res) => {
+  res.send(`For authenticated users only.`) // TODO
+})
 
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}...`);

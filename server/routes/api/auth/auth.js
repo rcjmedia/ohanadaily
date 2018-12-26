@@ -5,8 +5,13 @@ const router = express.Router();
 const bp = require('body-parser');
 const UserModels = require('../../../models/UserModels');
 
+
+const saltedRounds = 12;
+
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
+
+router.use(passport.initialize());
 
 router.post('/register', (req, res) => {
   const {
@@ -20,23 +25,22 @@ router.post('/register', (req, res) => {
     avatar
   } = req.body;
 
-  bcrypt.genSalt(12)
+  bcrypt.genSalt(saltedRounds)
   .then(salt => {
     console.log('salt', salt)
     return bcrypt.hash(password, salt)
   })
     .then(hash => {
         console.log('hash', hash)
-        return UserModels
-        .forge({
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            password: hash,
-            birthdate: birthdate,
-            address: address,
-            rank: rank,
-            avatar: avatar
+        return new UserModels({
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: hash,
+          birthdate: birthdate,
+          address: address,
+          rank: rank,
+          avatar: avatar
         })
         .save()
     })
@@ -75,7 +79,14 @@ router.post('/login', (req, res, next) => {
   }
 });
 
-// Log out users:
+router.get('/login', (req, res) => {
+  res.send(`Failed to login. Please log back in.`)
+})
+
+router.get('/home', (req, res) => {
+  res.send(`Home success!`)
+})
+
 router.get('/logout', (req, res) => {
   req.logout();
   res.json({ success: true });
