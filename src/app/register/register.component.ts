@@ -58,8 +58,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     // console.log(this.formData)
-    const loading = this.loadingController.create();
-    loading.present();
+    // const loading = this.loadingController.create();
+    // loading.present();
     this.registerService
       .register(this.formData)
       // .then(response => {
@@ -78,8 +78,8 @@ export class RegisterComponent implements OnInit {
       .then(
         response => {
           console.log(response);
-          log.debug(`Content uploaded`);
-          loading.dismiss();
+          log.debug(`User Created!`);
+          // loading.dismiss();
           this.router.navigate(['/home']);
 
           // this.route.queryParams.subscribe(params =>
@@ -87,7 +87,7 @@ export class RegisterComponent implements OnInit {
           // );
         },
         error => {
-          log.debug(`Upload error: ${error}`);
+          log.debug(`Register error: ${error}`);
           this.error = error;
         }
       );
@@ -114,13 +114,11 @@ export class RegisterComponent implements OnInit {
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       email: ['', Validators.required],
+      password: ['', Validators.required],
       birthdate: ['', Validators.required],
       address: ['', Validators.required],
-      user_type: ['', Validators.required],
-      rank: ['', Validators.required],
-      avatar: ['', Validators.required],
-      password: ['', Validators.required],
-      remember: true
+      rank: [null, Validators.required],
+      avatar: ['', Validators.required]
     });
   }
 }

@@ -6,13 +6,15 @@ const PreferredModels = require('../../../models/PreferredModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get all
 router.get('/', (req, res) => {
   PreferredModels.fetchAll({ withRelated: ['buyer_id', 'seller_id'] })
 
     .then(preferredList => {
       res.json(preferredList.serialize());
-      console.log('\nServer: List Of Users: \n', preferredList);
+      console.log(
+        '\nServer: List Of Preferred Users/Sellers: \n',
+        preferredList
+      );
     })
     .catch(err => {
       console.log('err', err);
@@ -20,14 +22,13 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
   PreferredModels.where('id', id)
     .fetchAll({ withRelated: ['buyer_id', 'seller_id'] })
     .then(preferredId => {
-      console.log('\nServer: Display By Transaction ID\n', preferredId);
+      console.log('\nServer: Display By Preferred by ID\n', preferredId);
       res.json(preferredId);
     })
     .catch(err => {
@@ -36,34 +37,50 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new preferred seller/buyer
 router.post('/newpreferred', (req, res) => {
   console.log('\nNEW PREFERRED', req.body);
 
-  PreferredModels.forge({
+  const inputPreferred = {
     buyer_id: req.body.buyer_id,
     seller_id: req.body.seller_id
-  })
-    .save()
-    .then(() => {
-      return PreferredModels.fetchAll({
-        withRelated: ['buyer_id', 'seller_id']
-      })
-        .then(newPreferred => {
-          res.json(newPreferred.serialize());
-        })
-        .catch(err => {
-          console.log('err', err);
-          res.json('err');
-        });
+  };
+
+  return new PreferredModels()
+    .save(inputPreferred)
+    .then(response => {
+      return response.refresh();
+    })
+    .then(newData => {
+      return res.json(newData);
     })
     .catch(err => {
-      console.log('err', err);
-      res.json('err');
+      console.log(err.message);
+      return res.status(400).json({ error: err.message });
     });
 });
 
-//delete preferred user by ID
+router.put('/editpreferred/:id', (req, res) => {
+  const { id } = req.params;
+
+  const updatePreferred = {
+    buyer_id: req.body.buyer_id,
+    seller_id: req.body.seller_id
+  };
+
+  PreferredModels.where('id', id)
+    .fetch()
+    .then(newPreferred => {
+      console.log('newPreferred', newPreferred);
+      newPreferred.save(updatePreferred);
+      res.json(updatePreferred);
+      return null;
+    })
+    .catch(err => {
+      console.log('GIVE ME THE err', err);
+      res.json(err, 'sanity from put');
+    });
+});
+
 router.delete('/deletepreferred', (req, res) => {
   const id = req.body.id;
 

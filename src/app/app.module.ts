@@ -32,6 +32,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 // import { HomeComponent } from './home/home.component';
 import { RegisterService } from './register/register.service';
+import { SessionsService } from './services/sessions.service';
+
 
 @NgModule({
   imports: [
@@ -75,6 +77,7 @@ import { RegisterService } from './register/register.service';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,
     RegisterService,
+    SessionsService,
     SplashScreen
   ],
   bootstrap: [IonicApp]

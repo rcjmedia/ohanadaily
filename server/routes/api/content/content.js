@@ -6,13 +6,12 @@ const ContentModels = require('../../../models/ContentModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get all
 router.get('/', (req, res) => {
   ContentModels.fetchAll({ withRelated: ['user_id'] })
 
     .then(contentList => {
       res.json(contentList.serialize());
-      console.log('\nServer: List Of Users: \n', contentList);
+      console.log('\nServer: List Of Contents: \n', contentList);
     })
     .catch(err => {
       console.log('err', err);
@@ -20,13 +19,12 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   ContentModels.where('id', id)
     .fetchAll({ withRelated: ['user_id'] })
     .then(contentId => {
-      console.log('\nServer: Display By User ID\n');
+      console.log('\nServer: Display By Content ID\n');
       res.json(contentId);
     })
     .catch(err => {
@@ -35,12 +33,11 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new content
-router.post('/addcontent', (req, res) => {
-  console.log('\nThis is the req.body for add content', req.body);
+router.post('/add', (req, res) => {
+  console.log('\nThis is the req.body for add content\n', req.body);
 
-  ContentModels.forge({
-    type: req.body.type,
+  const contentInput = {
+    content_type: req.body.content_type,
     user_id: req.body.user_id,
     title: req.body.title,
     description: req.body.description,
@@ -53,30 +50,26 @@ router.post('/addcontent', (req, res) => {
     resolution: req.body.resolution,
     thumb_img: req.body.thumb_img,
     download_link: req.body.download_link
-  })
-    .save()
-    .then(() => {
-      return ContentModels.fetchAll({ withRelated: ['user_id'] })
-        .then(newStory => {
-          res.json(newStory.serialize());
-        })
-        .catch(err => {
-          console.log('err', err);
-          res.json('err');
-        });
+  };
+  return new ContentModels()
+    .save(contentInput)
+    .then(response => {
+      return response.refresh();
+    })
+    .then(newData => {
+      return res.json(newData);
     })
     .catch(err => {
-      console.log('err', err);
-      res.json('err');
+      console.log(err.message);
+      return res.status(400).json({ error: err.message });
     });
 });
 
-//put edit content by id
 router.put('/editstory/:id', (req, res) => {
   const { id } = req.params;
 
   const updatedStory = {
-    type: req.body.type,
+    content_type: req.body.content_type,
     user_id: req.body.user_id,
     title: req.body.title,
     description: req.body.description,
@@ -105,7 +98,6 @@ router.put('/editstory/:id', (req, res) => {
     });
 });
 
-//DELETE CONTENT BY ID
 router.delete('/deletestory', (req, res) => {
   const id = req.body.id;
 

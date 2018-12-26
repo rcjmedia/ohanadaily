@@ -1,10 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('bids', function(table) {
-    table
-      .increments('id')
-      .primary()
-      .notNullable();
-    table.string('bid_amount').notNullable();
+    table.increments();
+    table.string('bid_amount', 50).notNullable();
     table
       .integer('bidder')
       .references('id')

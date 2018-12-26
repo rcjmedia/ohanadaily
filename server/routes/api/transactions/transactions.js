@@ -6,7 +6,6 @@ const TransactionsModels = require('../../../models/TransactionsModels');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get all
 router.get('/', (req, res) => {
   TransactionsModels.fetchAll({
     withRelated: ['buyer_id', 'seller_id', 'content_id']
@@ -14,7 +13,7 @@ router.get('/', (req, res) => {
 
     .then(transactionList => {
       res.json(transactionList.serialize());
-      console.log('\nServer: List Of Users: \n', transactionList);
+      console.log('\nServer: List Of Transactions: \n', transactionList);
     })
     .catch(err => {
       console.log('err', err);
@@ -22,14 +21,13 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
   TransactionsModels.where('id', id)
     .fetchAll({ withRelated: ['buyer_id', 'seller_id', 'content_id'] })
     .then(transactionId => {
-      console.log('\nServer: Display By Transaction ID\n', transactionId);
+      console.log('\nServer: Display By Transaction by ID\n', transactionId);
       res.json(transactionId);
     })
     .catch(err => {
@@ -38,37 +36,64 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new
 router.post('/newpurchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
-  TransactionsModels.forge({
+
+  const inputTransaction = {
     buyer_id: req.body.buyer_id,
     seller_id: req.body.seller_id,
     content_id: req.body.content_id
-  })
-    .save()
-    .then(() => {
-      return TransactionsModels.fetchAll({
-        withRelated: ['buyer_id', 'seller_id', 'content_id']
-      })
-        .then(newPurchase => {
-          res.json(newPurchase.serialize());
-        })
-        .catch(err => {
-          console.log('err', err);
-          res.json('err');
-        });
+  };
+
+  return new TransactionsModels()
+    .save(inputTransaction)
+    .then(response => {
+      return response.refresh();
+    })
+    .then(newData => {
+      return res.json(newData);
     })
     .catch(err => {
-      console.log('err', err);
-      res.json('res.json ERRROR');
+      console.log(err.message);
+      return res.status(400).json({ error: err.message });
     });
 });
 
-//put edit
-//no need
-//put delete
-//no need
-//
+router.put('/edittransaction/:id', (req, res) => {
+  const { id } = req.params;
+
+  const updateTransaction = {
+    buyer_id: req.body.buyer_id,
+    seller_id: req.body.seller_id,
+    content_id: req.body.content_id
+  };
+
+  TransactionsModels.where('id', id)
+    .fetch()
+    .then(editedTransaction => {
+      console.log('editedTransaction', editedTransaction);
+      editedTransaction.save(updateTransaction);
+      res.json(updateTransaction);
+      return null;
+    })
+    .catch(err => {
+      console.log('GIVE ME THE err', err);
+      res.json(err, 'sanity from put');
+    });
+});
+
+router.delete('/deletetransaction', (req, res) => {
+  const id = req.body.id;
+
+  TransactionsModels.where({ id })
+    .destroy()
+    .then(preferredDetails => {
+      res.json(preferredDetails.serialize());
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err');
+    });
+});
 
 module.exports = router;

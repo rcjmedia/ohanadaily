@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bp = require('body-parser');
 const UserModels = require('../../../models/UserModels');
-// const bcrypt = require('bcrypt');
 
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
-//get
 router.get('/', (req, res) => {
   UserModels.fetchAll()
     .then(userList => {
@@ -20,7 +18,6 @@ router.get('/', (req, res) => {
     });
 });
 
-//get by id
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   UserModels.where('id', id)
@@ -35,38 +32,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post new
-router.post('/register', (req, res) => {
-  console.log('\nThis is the req.body for register', req.body);
-
-  UserModels.forge({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    birthdate: req.body.birthdate,
-    address: req.body.address,
-    rank: req.body.rank,
-    avatar: req.body.avatar
-  })
-    .save()
-    .then(() => {
-      return UserModels.fetch()
-        .then(newUser => {
-          res.json(newUser.serialize());
-        })
-        .catch(err => {
-          console.log('err', err);
-          res.json('err', err);
-        });
-    })
-    .catch(err => {
-      console.log('err', err);
-      res.json('err', err);
-    });
-});
-
-//put edit
 router.put('/edituser/:id', (req, res) => {
   console.log('\nThis is the req.body edit user', req.body);
   const { id } = req.params;

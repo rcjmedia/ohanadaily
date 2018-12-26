@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('content', function(table) {
-    table.increments('id').primary();
-    table.string('type').notNullable();
+    table.increments();
+    table.string('content_type', 50).notNullable();
     table
       .integer('user_id')
       .references('id')
@@ -12,11 +12,11 @@ exports.up = function(knex, Promise) {
     table.string('description', 855).notNullable();
     table.string('location', 95).notNullable();
     table.integer('bid').notNullable();
-    table.time('bid_time_duration');
+    table.string('bid_time_duration', 50);
     table.boolean('status').notNullable(); // true or false; closes the bidding module if false
-    table.string('category').notNullable();
-    table.integer('file_size').notNullable();
-    table.string('resolution').notNullable();
+    table.string('category', 50).notNullable();
+    table.string('file_size', 50).notNullable();
+    table.string('resolution', 50).notNullable();
     table
       .string('thumb_img', 1000)
       .notNullable()

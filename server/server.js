@@ -1,14 +1,14 @@
 const express = require('express');
-const app = express();
-const session = require('express-session');
-const cors = require('cors');
-const PORT = process.env.EXPRESS_CONTAINER_PORT || 8080;
-const Redis = require('connect-redis')(session);
 const routes = require('./routes/api/index');
-const bp = require('body-parser');
-
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
+const app = express();
+const cors = require('cors');
+const session = require('express-session');
+const Redis = require('connect-redis')(session);
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const bcrypt = require('bcrypt');
+const UserModels = require('./models/UserModels');
+const PORT = process.env.EXPRESS_CONTAINER_PORT || 8080;
 
 app.use(cors());
 app.use(
@@ -17,13 +17,68 @@ app.use(
       url: 'redis://redis-session-store:6379',
       logErrors: true
     }),
-    secret: 'felixTheBat',
+    secret: 'pusheenCat',
     resave: false,
     saveUninitialized: true
   })
 );
 
 app.use('/api', routes);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  return done(null, {
+    id: user.id,
+    email: user.email
+  });
+});
+
+passport.deserializeUser((user, done) => {
+  new UserModels({ id: user.id })
+    .fetch()
+    .then(user => {
+      if (!user) {
+        return;
+      }
+      user = user.toJSON();
+      return done(user, null, {
+        // Display data from the database:
+        id: user.id,
+        email: user.email
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      return done(err);
+    });
+});
+
+passport.use(
+  new LocalStrategy(function(username, password, done) {
+    return new UserModels({ email: username })
+      .fetch()
+      .then(user => {
+        if (!user) {
+          return done({ message: 'Invalid Email' });
+        } else {
+          user = user.toJSON();
+          bcrypt.compare(password, user.password).then(samePassword => {
+            if (samePassword) {
+              return done(null, user);
+            } else {
+              return done({ message: 'Invalid Password' });
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.log('error: ', err);
+        return done(err);
+      });
+  })
+);
 
 app.get('/', (req, res) => {
   console.log('Sanity Check');
@@ -56,6 +111,14 @@ app.get('/', (req, res) => {
           </tbody>
           </table>
     `);
+});
+
+app.get('/home', (req, res) => {
+  res.send(`For authenticated users only.`); // TODO
+});
+
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.listen(PORT, () => {

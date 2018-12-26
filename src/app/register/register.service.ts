@@ -32,7 +32,7 @@ export class RegisterService {
   register(data: any) {
     const addUrl = this.baseUrl + `register`;
     const input = {
-      full_name: data.full_name,
+      first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
       password: data.password,

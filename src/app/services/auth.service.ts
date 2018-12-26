@@ -1,0 +1,62 @@
+import { Injectable } from '@angular/core';
+import { UserProfilesService } from '../user-profiles/user-profiles.service';
+import { SessionsService } from './sessions.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  user: {
+    loggedIn: boolean;
+    email: string;
+    userId: number;
+  };
+
+  constructor(
+    private userProfilesService: UserProfilesService,
+    private session: SessionsService
+  ) {
+    this.user = this.session.getSession();
+  }
+
+  login(data: {data: any} ) {
+    return this.userProfilesService.login(data).then(response => {
+      this.session.setSession(response['email'], response['id']);
+
+      return response;
+    });
+  }
+
+  logout() {
+    return this.userProfilesService.logout().then(response => {
+      this.session.clearSession();
+
+      return response;
+    });
+  }
+
+  fetchProfile() {
+    const userId = this.user.userId;
+
+    return this.userProfilesService.fetchProfile(userId).then(response => {
+      return response;
+    });
+  }
+
+  editProfile(formData: any) {
+    const userId = this.user.userId;
+
+    return this.userProfilesService.editProfile(userId, formData).then(response => {
+      return response;
+    });
+  }
+
+//   addRecipient(formData) {
+//     const userId = this.user.userId;
+
+//     return this.backend.addRecipient(userId, formData).then(response => {
+//       return response;
+//     });
+//   }
+
+}
