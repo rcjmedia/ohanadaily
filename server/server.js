@@ -135,7 +135,7 @@ app.post('/login', (req, res, next) => {
           } else {
             res.json({
               email: users.email,
-              id: req.users.id
+              id: users.id
             });
           }
         });
