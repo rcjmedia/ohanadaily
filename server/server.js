@@ -121,6 +121,35 @@ app.get('/', (req, res) => {
     `);
 });
 
+app.post('/login', (req, res, next) => {
+  if (req.users) {
+    res.status(400).json({ message: `${req.users.email}` });
+  } else {
+    passport.authenticate('local', (err, users) => {
+      if (err) {
+        return res.status(400).json({ message: err.message });
+      } else {
+        req.login(users, err => {
+          if (err) {
+            return next(err);
+          } else {
+            res.json({
+              email: users.email,
+              id: req.users.id
+            });
+          }
+        });
+      }
+    })(req, res, next);
+  }
+});
+
+// Log out users:
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.json({ success: true });
+});
+
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}...`);
 });
