@@ -12,8 +12,7 @@ router.use(passport.initialize());
 
 router.post('/register', (req, res) => {
   const { first_name, last_name,
-          email, password, birthdate,
-          address, rank, avatar
+          email, password
         } = req.body;
 
   bcrypt.genSalt(saltedRounds)
@@ -24,11 +23,7 @@ router.post('/register', (req, res) => {
           first_name: first_name,
           last_name: last_name,
           email: email,
-          password: hash,
-          birthdate: birthdate,
-          address: address,
-          rank: rank,
-          avatar: avatar
+          password: hash
         })
         .save()
     })
@@ -44,18 +39,23 @@ router.post('/register', (req, res) => {
     })
 });
 
-router.post('/login', (req, res, next) => {
-  if (req.users) { res.status(400).json({ message: `${req.users.email}` }); } 
-    else { passport.authenticate('local', (err, users) => {
-      if (err) { return res.status(400).json({ message: err.message }); } 
-        else { req.login(users, err => {
-          if (err) { return next(err); } 
-            else { res.json({ email: users.email, id: users.id }); }
-        });
-      }
-    })(req, res, next);
-  }
-});
+// router.post('/login', (req, res, next) => {
+//   if (req.users) { res.status(400).json({ message: `${req.users.email}` }); } 
+//     else { passport.authenticate('local', (err, users) => {
+//       if (err) { return res.status(400).json({ message: err.message }); } 
+//         else { req.login(users, err => {
+//           if (err) { return next(err); } 
+//             else { res.json({ email: users.email, id: users.id }); }
+//         });
+//       }
+//     })(req, res, next);
+//   }
+// });
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}))
 
 router.get('/login', (req, res) => {
   res.send(`Failed to login. Please log back in.`)

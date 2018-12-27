@@ -31,17 +31,12 @@ router.post('/add', (req, res) => {
   const contentInput = {
     content_type: req.body.content_type,
     user_id: req.body.user_id,
-    title: req.body.title,
+    name: req.body.name,
     description: req.body.description,
-    location: req.body.location,
-    bid: req.body.bid,
-    bid_time_duration: req.body.bid_time_duration,
-    status: req.body.status,
+    price: req.body.price,
     category: req.body.category,
-    file_size: req.body.file_size,
-    resolution: req.body.resolution,
     thumb_img: req.body.thumb_img,
-    download_link: req.body.download_link };
+    media_file: req.body.media_file };
   return new ContentModels()
       .save(contentInput)
       .then(response => { return response.refresh(); })
@@ -55,17 +50,12 @@ router.put('/editstory/:id', (req, res) => {
   const updatedStory = {
     content_type: req.body.content_type,
     user_id: req.body.user_id,
-    title: req.body.title,
+    name: req.body.name,
     description: req.body.description,
-    location: req.body.location,
-    bid: req.body.bid,
-    bid_time_duration: req.body.bid_time_duration,
-    status: req.body.status,
+    price: req.body.price,
     category: req.body.category,
-    file_size: req.body.file_size,
-    resolution: req.body.resolution,
     thumb_img: req.body.thumb_img,
-    download_link: req.body.download_link }
+    media_file: req.body.media_file }
   ContentModels
   .where('id', id)
   .fetch()

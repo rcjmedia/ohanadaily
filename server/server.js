@@ -6,7 +6,7 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT || 8080;
 const Redis = require('connect-redis')(session);
 const routes = require('./routes/api/index');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const UserModels = require('./models/UserModels');
 
@@ -29,6 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
+  console.log('\nSerialize users\n', user)
   return done(null, {
     id: user.id,
     email: user.email
@@ -36,7 +37,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-  new UserModels({ id: user.id })
+  console.log('\nDeserialize users\n', user)
+  new UserModels({email: user.email})
+    .where({ email: user.email })
     .fetch()
     .then(user => {
       if (!user) {
@@ -63,8 +66,8 @@ passport.use(
           return done({ message: 'Invalid Email' });
         } else {
           user = user.toJSON();
-          bcrypt.compare(password, user.password).then(samePassword => {
-            if (samePassword) {
+          bcrypt.compare(password, user.password).then(thePassword => {
+            if (thePassword) {
               return done(null, user);
             } else {
               return done({ message: 'Invalid Password' });
@@ -111,6 +114,25 @@ app.get('/', (req, res) => {
           </table>
     `);
 });
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}))
+
+app.get('/login', (req, res) => {
+res.send(`Failed to login. Please log back in.`)
+})
+
+app.get('/home', (req, res) => {
+res.send(`Home success!`)
+})
+
+app.get('/logout', (req, res) => {
+req.logout();
+res.json({ success: true });
+});
+
 
 app.get('/home', (req, res) => {
   res.send(`For authenticated users only.`) // TODO

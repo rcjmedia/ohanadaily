@@ -39,11 +39,7 @@ router.put('/edituser/:id', (req, res) => {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
-    password: req.body.password,
-    birthdate: req.body.birthdate,
-    address: req.body.address,
-    rank: req.body.rank,
-    avatar: req.body.avatar
+    password: req.body.password
   };
 
   UserModels

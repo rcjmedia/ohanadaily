@@ -8,77 +8,52 @@ exports.seed = function(knex, Promise) {
         {
           content_type: 'photo',
           user_id: 2,
-          title: 'School Report explained',
+          name: 'School Report explained',
           description: 'School Report explained',
-          location: 'North Shore, Waimea Bay.',
-          bid: '50',
-          bid_time_duration: '05:00:00',
-          status: 'true',
+          price: '50',
           category: 'school',
-          file_size: '845',
-          resolution: '1280x720',
           thumb_img: 'maia-2-1436576.jpg',
-          download_link: 'newwhatisschoolreport.mp4'
+          media_file: 'newwhatisschoolreport.mp4'
         },
         {
           content_type: 'video',
           user_id: 1,
-          title: 'Reporting sport masterclass video ',
+          name: 'Reporting sport masterclass video ',
           description: 'Reporting sport masterclass video',
-          location: 'Central, Mililani Mauka',
-          bid: '100',
-          bid_time_duration: '05:00:00',
-          status: 'true',
+          price: '100',
           category: 'sports',
-          file_size: '2793',
-          resolution: '1280x720',
           thumb_img: 'large-pumpkin-1387927.jpg',
-          download_link: 'sonalimasterclassfinal_fido.mp4'
+          media_file: 'sonalimasterclassfinal_fido.mp4'
         },
         {
           content_type: 'photo',
           user_id: 2,
-          title: 'What is news?',
+          name: 'What is news?',
           description: 'What is news?',
-          location: 'West Oahu, Ewa Beach',
-          bid: '75',
-          bid_time_duration: '05:00:00',
-          status: 'false',
+          price: '75',
           category: 'info',
-          file_size: '643',
-          resolution: '1474x874',
           thumb_img: 'lrt-interior-1626389.jpg',
-          download_link: 'Video1whatisnews.mp4'
+          media_file: 'Video1whatisnews.mp4'
         },
         {
           content_type: 'photo',
           user_id: 2,
-          title: 'Broadcasting news',
+          name: 'Broadcasting news',
           description: 'Broadcasting news',
-          location: 'Oahu ft. shafter',
-          bid: '55',
-          bid_time_duration: '05:00:00',
-          status: 'true',
+          price: '55',
           category: 'broadcast',
-          file_size: '587',
-          resolution: '1244x766',
           thumb_img: 'cow-1380252.jpg',
-          download_link: 'VIDEO5broadcastingnews.mp4'
+          media_file: 'VIDEO5broadcastingnews.mp4'
         },
         {
           content_type: 'photo',
           user_id: 3,
-          title: 'Ohana Background',
+          name: 'Ohana Background',
           description: 'Ohana Background',
-          location: 'Oahu ft. shafter',
-          bid: '55',
-          bid_time_duration: '05:00:00',
-          status: 'true',
+          price: '55',
           category: 'broadcast',
-          file_size: '587',
-          resolution: '1244x766',
           thumb_img: 'ohanadaily2.jpg',
-          download_link: 'VIDEO5broadcastingnews.mp4'
+          media_file: 'VIDEO5broadcastingnews.mp4'
         }
       ]);
     });
