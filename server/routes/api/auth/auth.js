@@ -13,21 +13,11 @@ router.use(bp.urlencoded({ extended: true }));
 router.use(passport.initialize());
 
 router.post('/register', (req, res) => {
-  const {
-    first_name,
-    last_name,
-    email,
-    password,
-    birthdate,
-    address,
-    rank,
-    avatar
-  } = req.body;
+  const { first_name, last_name, email, password } = req.body;
 
   bcrypt
     .genSalt(saltedRounds)
     .then(salt => {
-      console.log('salt', salt);
       return bcrypt.hash(password, salt);
     })
     .then(hash => {
@@ -36,11 +26,7 @@ router.post('/register', (req, res) => {
         first_name: first_name,
         last_name: last_name,
         email: email,
-        password: hash,
-        birthdate: birthdate,
-        address: address,
-        rank: rank,
-        avatar: avatar
+        password: hash
       }).save();
     })
     .then(response => {

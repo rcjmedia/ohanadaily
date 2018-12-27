@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoadingController, Platform, Form } from 'ionic-angular';
+import {
+  LoadingController,
+  AlertController,
+  Platform,
+  Form
+} from 'ionic-angular';
 import { finalize } from 'rxjs/operators';
 import { RegisterService } from './register.service';
+import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
@@ -25,19 +31,11 @@ export class RegisterComponent implements OnInit {
     last_name: string;
     email: string;
     password: string;
-    birthdate: string;
-    address: string;
-    rank: number;
-    avatar: string;
   } = {
     first_name: '',
     last_name: '',
     email: '',
-    password: '',
-    birthdate: '',
-    address: '',
-    rank: null,
-    avatar: ''
+    password: ''
   };
 
   constructor(
@@ -48,7 +46,9 @@ export class RegisterComponent implements OnInit {
     private loadingController: LoadingController,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private alertController: AlertController,
+    private translateService: TranslateService
   ) {
     this.formData;
     this.createForm();
@@ -80,7 +80,21 @@ export class RegisterComponent implements OnInit {
           console.log(response);
           log.debug(`User Created!`);
           // loading.dismiss();
-          this.router.navigate(['/home']);
+          this.alertController
+            .create({
+              title: this.translateService.instant('Wrong Email or Password!'),
+              message: this.translateService.instant(`Please log back in.`),
+              buttons: [
+                {
+                  text: this.translateService.instant('Ok'),
+                  handler: language => {
+                    this.i18nService.language = language;
+                  }
+                }
+              ]
+            })
+            .present();
+          this.router.navigate(['/login']);
 
           // this.route.queryParams.subscribe(params =>
           //   this.router.navigate([params.redirect || '/home'], { replaceUrl: true })
@@ -114,11 +128,7 @@ export class RegisterComponent implements OnInit {
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
-      birthdate: ['', Validators.required],
-      address: ['', Validators.required],
-      rank: [null, Validators.required],
-      avatar: ['', Validators.required]
+      password: ['', Validators.required]
     });
   }
 }

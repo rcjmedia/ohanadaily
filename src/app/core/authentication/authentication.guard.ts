@@ -6,10 +6,11 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
-import { Logger } from '../logger.service';
+// import { Logger } from '../logger.service';
 import { AuthenticationService } from './authentication.service';
-
-const log = new Logger('AuthenticationGuard');
+// import { AuthService } from '../../services/auth.service';
+//
+// const log = new Logger('AuthenticationGuard');
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
@@ -26,8 +27,8 @@ export class AuthenticationGuard implements CanActivate {
       return true;
     }
 
-    log.debug('Not authenticated, redirecting and adding redirect url...');
-    this.router.navigate(['/login'], {
+    // log.debug('Not authenticated, redirecting and adding redirect url...');
+    this.router.navigate(['/home'], {
       queryParams: { redirect: state.url },
       replaceUrl: true
     });

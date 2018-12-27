@@ -8,10 +8,9 @@ router.use(bp.urlencoded({ extended: true }));
 
 router.get('/', (req, res) => {
   ContentModels.fetchAll({ withRelated: ['user_id'] })
-
     .then(contentList => {
       res.json(contentList.serialize());
-      console.log('\nServer: List Of Contents: \n', contentList);
+      console.log('\ncontentList: \n', contentList);
     })
     .catch(err => {
       console.log('err', err);
@@ -24,7 +23,7 @@ router.get('/:id', (req, res) => {
   ContentModels.where('id', id)
     .fetchAll({ withRelated: ['user_id'] })
     .then(contentId => {
-      console.log('\nServer: Display By Content ID\n');
+      console.log('\ncontentId\n');
       res.json(contentId);
     })
     .catch(err => {
@@ -34,22 +33,16 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-  console.log('\nThis is the req.body for add content\n', req.body);
-
+  console.log('\nreq.body\n', req.body);
   const contentInput = {
     content_type: req.body.content_type,
     user_id: req.body.user_id,
-    title: req.body.title,
+    name: req.body.name,
     description: req.body.description,
-    location: req.body.location,
-    bid: req.body.bid,
-    bid_time_duration: req.body.bid_time_duration,
-    status: req.body.status,
+    price: req.body.price,
     category: req.body.category,
-    file_size: req.body.file_size,
-    resolution: req.body.resolution,
     thumb_img: req.body.thumb_img,
-    download_link: req.body.download_link
+    media_file: req.body.media_file
   };
   return new ContentModels()
     .save(contentInput)
@@ -67,23 +60,16 @@ router.post('/add', (req, res) => {
 
 router.put('/editstory/:id', (req, res) => {
   const { id } = req.params;
-
   const updatedStory = {
     content_type: req.body.content_type,
     user_id: req.body.user_id,
-    title: req.body.title,
+    name: req.body.name,
     description: req.body.description,
-    location: req.body.location,
-    bid: req.body.bid,
-    bid_time_duration: req.body.bid_time_duration,
-    status: req.body.status,
+    price: req.body.price,
     category: req.body.category,
-    file_size: req.body.file_size,
-    resolution: req.body.resolution,
     thumb_img: req.body.thumb_img,
-    download_link: req.body.download_link
+    media_file: req.body.media_file
   };
-
   ContentModels.where('id', id)
     .fetch()
     .then(storyUpdate => {
@@ -93,14 +79,13 @@ router.put('/editstory/:id', (req, res) => {
       return null;
     })
     .catch(err => {
-      console.log('GIVE ME THE err', err);
-      res.json(err, 'sanity from put');
+      console.log('err', err);
+      res.json('err', err);
     });
 });
 
 router.delete('/deletestory', (req, res) => {
   const id = req.body.id;
-
   ContentModels.where({ id })
     .destroy()
     .then(contentDetails => {
@@ -108,7 +93,7 @@ router.delete('/deletestory', (req, res) => {
     })
     .catch(err => {
       console.log('err', err);
-      res.json('err');
+      res.json('err', err);
     });
 });
 

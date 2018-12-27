@@ -31,7 +31,7 @@
     "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js seed:run",
     "flushdb": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js migrate:rollback ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js migrate:latest ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex --knexfile ./server/knexfile.js seed:run"
   },
-  "proxy": "http://ohanadaily.com:8080",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@angular/animations": "^7.0.0",
     "@angular/common": "^7.0.0",

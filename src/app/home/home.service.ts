@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class HomeService {
-  baseUrl: string = 'http://ohanadaily.com:8080/api/';
+  baseUrl: string = 'http://localhost:8080/api/';
 
   ohana: any[] = [];
 

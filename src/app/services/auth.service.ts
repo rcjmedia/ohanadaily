@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { UserProfilesService } from '../user-profiles/user-profiles.service';
 import { SessionsService } from './sessions.service';
 
+export interface Credentials {
+  // Customize received credentials here
+  email: string;
+  token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +25,11 @@ export class AuthService {
     this.user = this.session.getSession();
   }
 
-  login(data: {data: any} ) {
+  // isAuthenticated(): boolean {
+  //   return !!this.credentials;
+  // }
+
+  login(data: { data: any }) {
     return this.userProfilesService.login(data).then(response => {
       this.session.setSession(response['email'], response['id']);
 
@@ -46,17 +56,18 @@ export class AuthService {
   editProfile(formData: any) {
     const userId = this.user.userId;
 
-    return this.userProfilesService.editProfile(userId, formData).then(response => {
-      return response;
-    });
+    return this.userProfilesService
+      .editProfile(userId, formData)
+      .then(response => {
+        return response;
+      });
   }
 
-//   addRecipient(formData) {
-//     const userId = this.user.userId;
+  //   addRecipient(formData) {
+  //     const userId = this.user.userId;
 
-//     return this.backend.addRecipient(userId, formData).then(response => {
-//       return response;
-//     });
-//   }
-
+  //     return this.backend.addRecipient(userId, formData).then(response => {
+  //       return response;
+  //     });
+  //   }
 }

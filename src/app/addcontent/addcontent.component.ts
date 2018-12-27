@@ -29,31 +29,21 @@ export class AddcontentComponent implements OnInit {
   formData: {
     content_type: string;
     user_id: number;
-    title: string;
+    name: string;
     description: string;
-    location: string;
-    bid: number;
-    bid_time_duration: number;
-    status: boolean;
+    price: number;
     category: string;
-    file_size: string;
-    resolution: string;
     thumb_img: string;
-    download_link: string;
+    media_file: string;
   } = {
     content_type: '',
     user_id: null,
-    title: '',
+    name: '',
     description: '',
-    location: '',
-    bid: null,
-    bid_time_duration: null,
-    status: true,
+    price: null,
     category: '',
-    file_size: null,
-    resolution: '',
     thumb_img: '',
-    download_link: ''
+    media_file: ''
   };
 
   constructor(
@@ -75,40 +65,24 @@ export class AddcontentComponent implements OnInit {
   ngOnInit() {}
 
   submitForm() {
-    // console.log(this.formData)
-    const loading = this.loadingController.create();
-    loading.present();
-    this.addContentService
-      .addContent(this.formData)
-      // .then(response => {
-      //   console.log(response);
-
-      //   this.router.navigate(['/home']);
-      //   // window.location.href = "/home";
-      // })
-      // .then(res => {
-      //   console.log(res);
-      //   loading.dismiss();
-      // })
-      // .catch(err => {
-      //   console.log(err);
-      // });
-      .then(
-        response => {
-          console.log(response);
-          log.debug(`Content uploaded`);
-          loading.dismiss();
-          this.router.navigate(['/home']);
-
-          // this.route.queryParams.subscribe(params =>
-          //   this.router.navigate([params.redirect || '/home'], { replaceUrl: true })
-          // );
-        },
-        error => {
-          log.debug(`Upload error: ${error}`);
-          this.error = error;
-        }
-      );
+    console.log(this.formData);
+    this.addContentService.addContent(this.formData).then(
+      response => {
+        console.log(response);
+        log.debug(`Content uploaded`);
+        this.router.navigate(['/home']);
+        window.location.href = '/home';
+        this.route.queryParams.subscribe(params =>
+          this.router.navigate([params.redirect || '/home'], {
+            replaceUrl: true
+          })
+        );
+      },
+      error => {
+        log.debug(`Upload error: ${error}`);
+        this.error = error;
+      }
+    );
   }
 
   setLanguage(language: string) {
@@ -131,17 +105,12 @@ export class AddcontentComponent implements OnInit {
     this.contentForm = this.formBuilder.group({
       content_type: ['', Validators.required],
       user_id: [null, Validators.required],
-      title: ['', Validators.required],
+      name: ['', Validators.required],
       description: ['', Validators.required],
-      location: ['', Validators.required],
-      bid: [null, Validators.required],
-      bid_time_duration: ['', Validators.required],
-      status: [null, Validators.required],
+      price: [null, Validators.required],
       category: ['', Validators.required],
-      file_size: ['', Validators.required],
-      resolution: ['', Validators.required],
       thumb_img: ['', Validators.required],
-      download_link: ['', Validators.required]
+      media_file: ['', Validators.required]
     });
   }
 }

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class RegisterService {
-  baseUrl: string = 'http://ohanadaily.com:8080/api/auth/';
+  baseUrl: string = 'http://localhost:8080/api/auth/';
 
   //   constructor(private httpClient: HttpClient) {}
 
@@ -25,7 +25,7 @@ export class RegisterService {
   //   }
   // }
 
-  // baseUrl: string = 'http://ohanadaily.com:8080/api/content/';
+  // baseUrl: string = 'http://localhost:8080/api/content/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -35,11 +35,7 @@ export class RegisterService {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      password: data.password,
-      birthdate: data.birthdate,
-      address: data.address,
-      rank: data.rank,
-      avatar: data.avatar
+      password: data.password
     };
     return this.httpClient.post(addUrl, input).toPromise();
   }

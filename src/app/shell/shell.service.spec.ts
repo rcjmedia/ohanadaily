@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import {
-  AuthenticationGuard,
+  // AuthenticationGuard,
   AuthenticationService,
   MockAuthenticationService
 } from '@app/core';
@@ -13,7 +13,7 @@ describe('Shell', () => {
     TestBed.configureTestingModule({
       declarations: [ShellComponent],
       providers: [
-        AuthenticationGuard,
+        // AuthenticationGuard,
         { provide: AuthenticationService, useClass: MockAuthenticationService }
       ]
     });

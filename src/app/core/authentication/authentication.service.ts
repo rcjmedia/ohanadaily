@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 export interface Credentials {
   // Customize received credentials here
   email: string;
-  token: string;
+  // token: string;
 }
 
 export interface LoginContext {

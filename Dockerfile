@@ -21,4 +21,4 @@ EXPOSE 4200
 COPY . .
 
 # Start the node application as you normally would
-CMD ["ng serve"]
+CMD ["ng serve", "node", "./server/server.js"]

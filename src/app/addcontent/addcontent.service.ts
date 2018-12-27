@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AddcontentService {
-  baseUrl: string = 'http://ohanadaily.com:8080/api/content/';
+  baseUrl: string = 'http://localhost:8080/api/content/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -14,17 +14,12 @@ export class AddcontentService {
     const input = {
       content_type: data.content_type,
       user_id: data.user_id,
-      title: data.title,
+      name: data.name,
       description: data.description,
-      location: data.location,
-      bid: data.bid,
-      bid_time_duration: data.bid_time_duration,
-      status: data.status,
+      price: data.price,
       category: data.category,
-      file_size: data.file_size,
-      resolution: data.resolution,
       thumb_img: data.thumb_img,
-      download_link: data.download_link
+      media_file: data.media_file
     };
     return this.httpClient.post(addUrl, input).toPromise();
   }

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserProfilesService {
-  baseUrl: string = 'http://ohanadaily.com:8080/api/';
+  baseUrl: string = 'http://localhost:8080/';
 
   userProfiles: any[] = [];
 
@@ -31,7 +31,6 @@ export class UserProfilesService {
     const logoutUrl = this.baseUrl + 'logout';
     return this.httpClient.get(logoutUrl).toPromise();
   }
-
 
   fetchProfile(userId: any) {
     const profileUrl = this.baseUrl + `user/${userId}`;

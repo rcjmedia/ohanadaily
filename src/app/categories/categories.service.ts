@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CategoriesService {
-  baseUrl: string = 'http://ohanadaily.com:8080/api/';
+  baseUrl: string = 'http://localhost:8080/api/';
 
   categoryList: any[] = [];
 
