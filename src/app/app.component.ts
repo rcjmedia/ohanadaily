@@ -30,9 +30,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private i18nService: I18nService
-  ) // private oauthService: OAuthService
-  {
+    private i18nService: I18nService // private oauthService: OAuthService
+  ) {
     // this.oauthService.redirectUri = window.location.origin;
     // this.oauthService.clientId = '{client-id}';
     // this.oauthService.scope = 'openid profile email';

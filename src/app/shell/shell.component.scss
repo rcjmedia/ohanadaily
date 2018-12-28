@@ -16,6 +16,7 @@ $tabs-height: 8.2rem;
       justify-content: flex-start;
 
       .tab-button {
+        margin: auto;
         width: 100%;
         height: $tabs-height;
         flex: 0 1 auto;

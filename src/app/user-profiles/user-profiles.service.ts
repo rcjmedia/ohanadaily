@@ -12,7 +12,7 @@ export class UserProfilesService {
   constructor(private httpClient: HttpClient) {}
 
   getProfiles() {
-    const url = this.baseUrl + 'users/';
+    const url = this.baseUrl + 'api/users/';
     return this.httpClient.get(url).toPromise();
   }
 
@@ -23,7 +23,7 @@ export class UserProfilesService {
       username: data.email,
       password: data.password
     };
-
+    console.log(input);
     return this.httpClient.post(loginUrl, input).toPromise();
   }
 
@@ -33,7 +33,7 @@ export class UserProfilesService {
   }
 
   fetchProfile(userId: any) {
-    const profileUrl = this.baseUrl + `user/${userId}`;
+    const profileUrl = this.baseUrl + `api/users/${userId}`;
     return this.httpClient.get(profileUrl).toPromise();
   }
 

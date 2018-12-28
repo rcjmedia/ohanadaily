@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
 
-@Injectable ({
+@Injectable({
   providedIn: 'root'
 })
 export class SessionsService {
   user: {
-    loggedIn: boolean,
-    email: string,
-    userId: number,
+    loggedIn: boolean;
+    email: string;
+    userId: number;
   } = {
     loggedIn: false,
     email: '',
-    userId: null,
-  }
+    userId: null
+  };
 
   constructor() {
     let userString = window.localStorage.getItem('user');
 
     try {
-      if (userString) { this.user = JSON.parse(userString); }
-      else { console.log('user was not found'); }
-    }
-    catch(err) {
+      if (userString) {
+        this.user = JSON.parse(userString);
+      } else {
+        console.log('user was not found');
+      }
+    } catch (err) {
       console.log('could not parse user');
     }
   }

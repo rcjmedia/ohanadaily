@@ -159,10 +159,6 @@ app.get('/home', (req, res) => {
   res.send(`For authenticated users only.`); // TODO
 });
 
-app.get('/*', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}...`);
 });

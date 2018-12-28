@@ -34,7 +34,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterService } from './register/register.service';
 import { SessionsService } from './services/sessions.service';
 
-
 @NgModule({
   imports: [
     // OAuthModule.forRoot(),

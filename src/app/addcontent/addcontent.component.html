@@ -50,27 +50,29 @@
               >
                 Content Type is required
               </div>
-              <!-- Content By -->
-              <ion-item>
-                <ion-label floating>{{ 'Content By' | translate }}</ion-label>
-                <ion-input
-                  type="number"
-                  formControlName="user_id"
-                  [(ngModel)]="formData.user_id"
-                  autocomplete="user_id"
-                ></ion-input>
-              </ion-item>
-              <div
-                padding
-                [hidden]="
-                  contentForm.controls.user_id.valid ||
-                  contentForm.controls.user_id.untouched
-                "
-                ion-text
-                color="danger"
-                translate
-              >
-                Content By is required
+              <div>
+                <!-- Content By THIS IS TODO!!!!! -->
+                <ion-item>
+                  <ion-label floating>{{ 'Content By' | translate }}</ion-label>
+                  <ion-input
+                    type="text"
+                    formControlName="user_id"
+                    [(ngModel)]="formData.user_id"
+                    autocomplete="user_id"
+                  ></ion-input>
+                </ion-item>
+                <div
+                  padding
+                  [hidden]="
+                    contentForm.controls.user_id.valid ||
+                    contentForm.controls.user_id.untouched
+                  "
+                  ion-text
+                  color="danger"
+                  translate
+                >
+                  Content By is required
+                </div>
               </div>
               <!-- Name -->
               <ion-item>

@@ -84,16 +84,35 @@ router.put('/editstory/:id', (req, res) => {
     });
 });
 
-router.delete('/deletestory', (req, res) => {
-  const id = req.body.id;
-  ContentModels.where({ id })
-    .destroy()
-    .then(contentDetails => {
-      res.json(contentDetails.serialize());
-    })
-    .catch(err => {
-      console.log('err', err);
-      res.json('err', err);
+// delete content from the body
+// router.delete('/deletestory', (req, res) => {
+//   const id = req.body.id;
+//   ContentModels.where({ id })
+//     .destroy()
+//     .then(contentDetails => {
+//       res.json(contentDetails.serialize());
+//     })
+//     .catch(err => {
+//       console.log('err', err);
+//       res.json('err', err);
+//     });
+// });
+
+// delete content by ID
+router.delete('/deletestory/:id', (req, res) => {
+  const id = req.params.id;
+  return ContentModels.where({ id })
+    .fetch()
+    .then(data => {
+      console.log('data message: ', data);
+      return ContentModels.where({ id })
+        .destroy()
+        .then(() => {
+          res.json({ success: 'true' });
+        })
+        .catch(err => {
+          console.log('err.message', err.message);
+        });
     });
 });
 

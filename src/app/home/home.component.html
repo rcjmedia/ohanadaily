@@ -33,7 +33,9 @@
                 content.user_id.first_name
               }}</a>
             </a>
-            <span class="post-time">{{ content.created_at }}</span>
+            <span class="post-time">{{
+              content.created_at | date: 'shortDate'
+            }}</span>
           </header>
           <div class="post-image-holder">
             <img
@@ -42,10 +44,15 @@
               alt=""
             />
           </div>
-          Name: {{ content.name }}<br />
-          Description: {{ content.description }}<br />
-          Category: {{ content.category }}<br />
-          Price: {{ content.price }}<br />
+          <div class="flexed relative padding4">
+            <div id="idContent">{{ content.id }}</div>
+            Name: {{ content.name }}<br />
+            Description: {{ content.description }}<br />
+            Category: {{ content.category }}<br />
+            Price: {{ content.price }}<br /><br />
+            <button type="submit" (click)="deleteContentById()">Delete</button>
+            <!-- <a href="/api/content/deletestory/{{content.id}}" (click)="deleteContentById()">Delete</a> -->
+          </div>
         </article>
       </div>
     </ion-card-content>

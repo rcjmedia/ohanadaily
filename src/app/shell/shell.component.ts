@@ -72,18 +72,18 @@ export class ShellComponent implements OnInit {
     //   title: 'Categories',
     //   icon: 'list-box'
     // },
-    {
-      component: BidsComponent,
-      route: 'bids',
-      title: 'Bids',
-      icon: 'timer'
-    },
-    {
-      component: TransactionsComponent,
-      route: 'transactions',
-      title: 'Transactions',
-      icon: 'logo-usd'
-    },
+    // {
+    //   component: BidsComponent,
+    //   route: 'bids',
+    //   title: 'Bids',
+    //   icon: 'timer'
+    // },
+    // {
+    //   component: TransactionsComponent,
+    //   route: 'transactions',
+    //   title: 'Transactions',
+    //   icon: 'logo-usd'
+    // },
     // {
     //   component: AboutComponent,
     //   route: 'about',

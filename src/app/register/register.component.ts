@@ -57,54 +57,31 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   register() {
-    // console.log(this.formData)
-    // const loading = this.loadingController.create();
-    // loading.present();
-    this.registerService
-      .register(this.formData)
-      // .then(response => {
-      //   console.log(response);
-
-      //   this.router.navigate(['/home']);
-      //   // window.location.href = "/home";
-      // })
-      // .then(res => {
-      //   console.log(res);
-      //   loading.dismiss();
-      // })
-      // .catch(err => {
-      //   console.log(err);
-      // });
-      .then(
-        response => {
-          console.log(response);
-          log.debug(`User Created!`);
-          // loading.dismiss();
-          this.alertController
-            .create({
-              title: this.translateService.instant('Wrong Email or Password!'),
-              message: this.translateService.instant(`Please log back in.`),
-              buttons: [
-                {
-                  text: this.translateService.instant('Ok'),
-                  handler: language => {
-                    this.i18nService.language = language;
-                  }
+    this.registerService.register(this.formData).then(
+      response => {
+        console.log(response);
+        log.debug(`User Created!`);
+        this.alertController
+          .create({
+            title: this.translateService.instant('Wrong Email or Password!'),
+            message: this.translateService.instant(`Please log back in.`),
+            buttons: [
+              {
+                text: this.translateService.instant('Ok'),
+                handler: language => {
+                  this.i18nService.language = language;
                 }
-              ]
-            })
-            .present();
-          this.router.navigate(['/login']);
-
-          // this.route.queryParams.subscribe(params =>
-          //   this.router.navigate([params.redirect || '/home'], { replaceUrl: true })
-          // );
-        },
-        error => {
-          log.debug(`Register error: ${error}`);
-          this.error = error;
-        }
-      );
+              }
+            ]
+          })
+          .present();
+        this.router.navigate(['/login']);
+      },
+      error => {
+        log.debug(`Register error: ${error}`);
+        this.error = error;
+      }
+    );
   }
 
   setLanguage(language: string) {

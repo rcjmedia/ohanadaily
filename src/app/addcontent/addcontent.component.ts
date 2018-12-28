@@ -10,7 +10,9 @@ import {
 import { finalize } from 'rxjs/operators';
 import { AddcontentService } from './addcontent.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { AuthService } from '../services/auth.service';
+import { UserProfilesService } from '../user-profiles/user-profiles.service';
+import { SessionsService } from '../services/sessions.service';
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 
@@ -25,10 +27,15 @@ export class AddcontentComponent implements OnInit {
   version: string = environment.version;
   error: string;
   contentForm: FormGroup;
+  user = this.session.getSession();
+
+  userData: object = {
+    userId: 0
+  };
 
   formData: {
     content_type: string;
-    user_id: number;
+    user_id: any;
     name: string;
     description: string;
     price: number;
@@ -37,7 +44,7 @@ export class AddcontentComponent implements OnInit {
     media_file: string;
   } = {
     content_type: '',
-    user_id: null,
+    user_id: this.user.userId,
     name: '',
     description: '',
     price: null,
@@ -56,13 +63,21 @@ export class AddcontentComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private addContentService: AddcontentService,
     private alertController: AlertController,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private auth: AuthService,
+    private userProfilesService: UserProfilesService,
+    private session: SessionsService
   ) {
     this.formData;
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.auth.fetchProfile().then((response: object) => {
+      this.userData = response;
+    });
+    console.log(this.user.userId);
+  }
 
   submitForm() {
     console.log(this.formData);
@@ -100,7 +115,6 @@ export class AddcontentComponent implements OnInit {
   get isWeb(): boolean {
     return !this.platform.is('cordova');
   }
-
   private createForm() {
     this.contentForm = this.formBuilder.group({
       content_type: ['', Validators.required],

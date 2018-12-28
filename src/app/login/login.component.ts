@@ -104,20 +104,20 @@ export class LoginComponent implements OnInit {
         error => {
           log.debug(`Login error: ${error}`);
           this.error = error;
-          this.alertController
-            .create({
-              title: this.translateService.instant('Wrong Email or Password!'),
-              message: this.translateService.instant(`Please log back in.`),
-              buttons: [
-                {
-                  text: this.translateService.instant('Ok'),
-                  handler: language => {
-                    this.i18nService.language = language;
-                  }
-                }
-              ]
-            })
-            .present();
+          // this.alertController
+          //   .create({
+          //     title: this.translateService.instant('Wrong Email or Password!'),
+          //     message: this.translateService.instant(`Please log back in.`),
+          //     buttons: [
+          //       {
+          //         text: this.translateService.instant('Ok'),
+          //         handler: language => {
+          //           this.i18nService.language = language;
+          //         }
+          //       }
+          //     ]
+          //   })
+          //   .present();
         }
       );
   }
