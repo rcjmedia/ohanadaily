@@ -46,9 +46,12 @@ passport.deserializeUser((user, done) => {
         return;
       }
       user = user.toJSON();
+      console.log('Sessions here: ', user)
       return done(user, null, { // Display data from the database:
         id: user.id,
-        email: user.email
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name
       });
     })
     .catch(err => {
@@ -121,16 +124,16 @@ app.post('/login', passport.authenticate('local', {
 }))
 
 app.get('/login', (req, res) => {
-res.send(`Failed to login. Please log back in.`)
+  res.send(`Failed to login. Please log back in.`)
 })
 
 app.get('/home', (req, res) => {
-res.send(`Home success!`)
+  res.send(`Home success!`)
 })
 
 app.get('/logout', (req, res) => {
-req.logout();
-res.json({ success: true });
+  req.logout();
+  res.json({ success: true });
 });
 
 
@@ -138,9 +141,17 @@ app.get('/home', (req, res) => {
   res.send(`For authenticated users only.`) // TODO
 })
 
-app.get('/*', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
+//// !important
+//// To properly implement SPA, turn this route on only 
+//// when the Angular app is built and deployed.
+//// Comment this route out if in development mode.
+//// If not commented while in dev mode,
+//// Angular app will throw warnings and errors.
+// app.get('/*', function(req, res) {
+//   res.sendFile(__dirname + '/index.html');
+// });
+///////////////////////////////////////////
+///////////////////////////////////////////
 
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}...`);
