@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
         () => {
           log.debug(`successfully logged in`);
           // this.route.queryParams.subscribe(params =>
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
         },
         error => {
           log.debug(`Login error: ${error}`);
