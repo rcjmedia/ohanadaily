@@ -42,8 +42,7 @@ router.put('/edituser/:id', (req, res) => {
     password: req.body.password
   };
 
-  UserModels
-  .where('id', id)
+  UserModels.where('id', id)
     .fetch()
     .then(userUpate => {
       userUpate.save(updateUser);
@@ -58,18 +57,17 @@ router.put('/edituser/:id', (req, res) => {
 
 //put delete
 router.delete('/deleteuser', (req, res) => {
-  const id = req.body.id
+  const id = req.body.id;
 
-  UserModels
-  .where({ id })
-  .destroy()
-  .then(userDetails => {
-    res.json(userDetails.serialize())
-  })
-  .catch(err => {
-    console.log('err', err)
-    res.json('err')
-  })
-})
+  UserModels.where({ id })
+    .destroy()
+    .then(userDetails => {
+      res.json(userDetails.serialize());
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err');
+    });
+});
 
 module.exports = router;

@@ -23,7 +23,6 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
-
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
@@ -31,20 +30,26 @@ router.get('/', (req, res) => {
   ContentModels.fetchAll({ withRelated: ['user_id'] })
     .then(contentList => {
       res.json(contentList.serialize());
-      console.log('\ncontentList: \n', contentList); })
-    .catch(err => { console.log('err', err);
-      res.json('err'); });
+      console.log('\ncontentList: \n', contentList);
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err');
+    });
 });
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  ContentModels
-    .where('id', id)
+  ContentModels.where('id', id)
     .fetchAll({ withRelated: ['user_id'] })
-    .then(contentId => { console.log('\ncontentId\n');
-      res.json(contentId); })
-    .catch(err => { console.log('err', err);
-      res.json('err'); });
+    .then(contentId => {
+      console.log('\ncontentId\n');
+      res.json(contentId);
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err');
+    });
 });
 
 router.post('/add', (req, res) => {
@@ -57,13 +62,20 @@ router.post('/add', (req, res) => {
     price: req.body.price,
     category: req.body.category,
     thumb_img: req.body.thumb_img,
-    media_file: req.body.media_file };
+    media_file: req.body.media_file
+  };
   return new ContentModels()
-      .save(contentInput)
-      .then(response => { return response.refresh(); })
-      .then(newData => { return res.json(newData); })
-      .catch(err => { console.log(err.message);
-        return res.status(400).json({ error: err.message }); });
+    .save(contentInput)
+    .then(response => {
+      return response.refresh();
+    })
+    .then(newData => {
+      return res.json(newData);
+    })
+    .catch(err => {
+      console.log(err.message);
+      return res.status(400).json({ error: err.message });
+    });
 });
 
 router.put('/editstory/:id', (req, res) => {
@@ -76,40 +88,43 @@ router.put('/editstory/:id', (req, res) => {
     price: req.body.price,
     category: req.body.category,
     thumb_img: req.body.thumb_img,
-    media_file: req.body.media_file }
-  ContentModels
-  .where('id', id)
-  .fetch((err) => {
-// Validation: Make sure this is user specific operation 
-// Only the owner can update records.    
-    if (passport.deserializeUser.id !== req.body.user_id) {
-      console.log('You are not authorized to update this record! ', err)
-      return null
-    } else {
-      return true
-    }
-  })
-  .then(storyUpdate => { console.log('storyUpdate', storyUpdate);
-    storyUpdate.save(updatedStory);
-    res.json(updatedStory);
-    return null;})
-  .catch(err => { console.log("err", err);
-    res.json('err', err) })
+    media_file: req.body.media_file
+  };
+  ContentModels.where('id', id)
+    .fetch(err => {
+      // Validation: Make sure this is user specific operation
+      // Only the owner can update records.
+      if (passport.deserializeUser.id !== req.body.user_id) {
+        console.log('You are not authorized to update this record! ', err);
+        return null;
+      } else {
+        return true;
+      }
+    })
+    .then(storyUpdate => {
+      console.log('storyUpdate', storyUpdate);
+      storyUpdate.save(updatedStory);
+      res.json(updatedStory);
+      return null;
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.json('err', err);
+    });
 });
 
 // delete content by from params
 router.delete('/deletestory/:id', (req, res) => {
   const id = req.params.id;
-  return ContentModels
-    .where({ id })
-    .fetch((err) => {
-// Validation: Make sure this is user specific operation 
-// Only the owner can update records.    
+  return ContentModels.where({ id })
+    .fetch(err => {
+      // Validation: Make sure this is user specific operation
+      // Only the owner can update records.
       if (passport.deserializeUser.id !== 'user_id') {
-        console.log('You are not authorized to update this record! ', err)
-        return null
+        console.log('You are not authorized to update this record! ', err);
+        return null;
       } else {
-        return true
+        return true;
       }
     })
     .then(data => {

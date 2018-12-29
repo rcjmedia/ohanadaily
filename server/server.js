@@ -8,7 +8,13 @@ const routes = require('./routes/api/index');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const bp = require('body-parser');
 const UserModels = require('./models/UserModels');
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 app.use(cors());
 app.use(
@@ -23,22 +29,19 @@ app.use(
   })
 );
 
-app.use('/api', routes);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 passport.serializeUser((user, done) => {
-  console.log('\nSerialize users\n', user)
+  console.log('\nSerialize users\n', user);
   return done(null, {
     id: user.id,
-    email: user.email
+    email: user.email,
+    first_name: user.first_name,
+    last_name: user.last_name
   });
 });
 
 passport.deserializeUser((user, done) => {
-  console.log('\nDeserialize users\n', user)
-  new UserModels({email: user.email})
+  console.log('\nDeserialize users\n', user);
+  new UserModels({ email: user.email })
     .where({ email: user.email })
     .fetch()
     .then(user => {
@@ -46,8 +49,9 @@ passport.deserializeUser((user, done) => {
         return;
       }
       user = user.toJSON();
-      console.log('Sessions here: ', user)
-      return done(user, null, { // Display data from the database:
+      console.log('Sessions here: ', user);
+      return done(user, null, {
+        // Display data from the database:
         id: user.id,
         email: user.email,
         first_name: user.first_name,
@@ -85,6 +89,8 @@ passport.use(
   })
 );
 
+app.use('/api', routes);
+
 app.get('/', (req, res) => {
   console.log('Sanity Check');
   res.send(`
@@ -118,35 +124,51 @@ app.get('/', (req, res) => {
     `);
 });
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}))
+app.post('/login', (req, res, next) => {
+  if (req.users) {
+    res.status(400).json({ message: `${req.users.email}` });
+  } else {
+    passport.authenticate('local', (err, users) => {
+      if (err) {
+        return res.status(400).json({ message: err.message });
+      } else {
+        req.login(users, err => {
+          if (err) {
+            return next(err);
+          } else {
+            res.json({
+              email: users.email,
+              id: users.id,
+              first_name: users.first_name,
+              last_name: users.last_name
+            });
+          }
+        });
+      }
+    })(req, res, next);
+  }
+});
 
 app.get('/login', (req, res) => {
-  res.send(`Failed to login. Please log back in.`)
-})
+  res.send(`Failed to login. Please log back in.`);
+});
 
 app.get('/home', (req, res) => {
-  res.send(`Home success!`)
-})
+  res.send(`Home success!`);
+});
 
 app.get('/logout', (req, res) => {
   req.logout();
   res.json({ success: true });
 });
 
-
-app.get('/home', (req, res) => {
-  res.send(`For authenticated users only.`) // TODO
-})
-
 //// !important
-//// To properly implement SPA, turn this route on only 
+//// To properly implement SPA, turn this route on only
 //// when the Angular app is built and deployed.
 //// Comment this route out if in development mode.
 //// If not commented while in dev mode,
 //// Angular app will throw warnings and errors.
+///////////////////////////////////////////
 // app.get('/*', function(req, res) {
 //   res.sendFile(__dirname + '/index.html');
 // });

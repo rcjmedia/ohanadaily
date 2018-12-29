@@ -7,8 +7,7 @@ router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 
 router.get('/', (req, res) => {
-  TransactionsModels
-  .fetchAll({
+  TransactionsModels.fetchAll({
     withRelated: ['buyer_id', 'seller_id', 'content_id']
   })
 
@@ -25,8 +24,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
-  TransactionsModels
-  .where('id', id)
+  TransactionsModels.where('id', id)
     .fetchAll({ withRelated: ['buyer_id', 'seller_id', 'content_id'] })
     .then(transactionId => {
       console.log('\nServer: Display By Transaction by ID\n', transactionId);
@@ -40,14 +38,14 @@ router.get('/:id', (req, res) => {
 
 router.post('/newpurchase', (req, res) => {
   console.log('\nThis is the req.body: \n', req.body);
-  
+
   const inputTransaction = {
     buyer_id: req.body.buyer_id,
     seller_id: req.body.seller_id,
     content_id: req.body.content_id
-  }
-    
-    return new TransactionsModels()
+  };
+
+  return new TransactionsModels()
     .save(inputTransaction)
     .then(response => {
       return response.refresh();
@@ -61,17 +59,16 @@ router.post('/newpurchase', (req, res) => {
     });
 });
 
-  router.put('/edittransaction/:id', (req, res) => {
-    const { id } = req.params;
+router.put('/edittransaction/:id', (req, res) => {
+  const { id } = req.params;
 
-    const updateTransaction = {
-      buyer_id: req.body.buyer_id,
+  const updateTransaction = {
+    buyer_id: req.body.buyer_id,
     seller_id: req.body.seller_id,
     content_id: req.body.content_id
-    }
+  };
 
-    TransactionsModels
-    .where('id', id)
+  TransactionsModels.where('id', id)
     .fetch()
     .then(editedTransaction => {
       console.log('editedTransaction', editedTransaction);
@@ -80,24 +77,23 @@ router.post('/newpurchase', (req, res) => {
       return null;
     })
     .catch(err => {
-      console.log("GIVE ME THE err", err);
-      res.json(err, 'sanity from put')
-    })
-  });
+      console.log('GIVE ME THE err', err);
+      res.json(err, 'sanity from put');
+    });
+});
 
-  router.delete('/deletetransaction', (req, res) => {
-    const id = req.body.id
+router.delete('/deletetransaction', (req, res) => {
+  const id = req.body.id;
 
-    TransactionsModels
-    .where({ id })
+  TransactionsModels.where({ id })
     .destroy()
     .then(preferredDetails => {
-      res.json(preferredDetails.serialize())
+      res.json(preferredDetails.serialize());
     })
     .catch(err => {
-      console.log('err', err)
-      res.json('err')
-    })
-  })
+      console.log('err', err);
+      res.json('err');
+    });
+});
 
 module.exports = router;
