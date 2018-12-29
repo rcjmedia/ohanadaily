@@ -14,6 +14,7 @@
   },
   "proxy": "http://ohanadaily.com:8080",
   "dependencies": {
+    "adaro": "^1.0.4",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "bookshelf": "^0.13.3",
