@@ -169,9 +169,9 @@ app.get('/logout', (req, res) => {
 //// If not commented while in dev mode,
 //// Angular app will throw warnings and errors.
 ///////////////////////////////////////////
-// app.get('/*', function(req, res) {
-//   res.sendFile(__dirname + '/index.html');
-// });
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 
