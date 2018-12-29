@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoadingController, AlertController, Platform } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-
+import { SessionsService } from '../services/sessions.service';
+import { AuthService } from '../services/auth.service';
+import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { HomeService } from './home.service';
+import { TranslateService } from '@ngx-translate/core';
 import { identifier, numberTypeAnnotation } from 'babel-types';
 
 @Component({
@@ -13,15 +17,23 @@ import { identifier, numberTypeAnnotation } from 'babel-types';
 })
 export class HomeComponent implements OnInit {
   uri = 'http://localhost:8080';
-
+  show: boolean = true;
   quote: string;
   isLoading: boolean;
   ohana: any;
-
+  user = this.session.getSession();
+  userData: object = {
+    userId: 0
+  };
   constructor(
     private homeService: HomeService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private session: SessionsService,
+    private auth: AuthService,
+    private alertController: AlertController,
+    private translateService: TranslateService,
+    private i18nService: I18nService
   ) {
     this.ohana = [];
   }
@@ -41,38 +53,48 @@ export class HomeComponent implements OnInit {
   deleteContentById() {
     let gettingID = document.getElementById('idContent').innerText;
     console.log('delete click function', gettingID);
+    console.log(!this.user.userId);
     this.homeService
       .contDelete(gettingID)
-      .subscribe(
-        () => console.log(`Content with id = ${this.ohana} deleted`),
-        err => console.log(err)
-      );
+      .toPromise()
+      .then(loaded => {
+        console.log(loaded);
+        location.reload();
+      })
+      .then(response => {
+        console.log(response);
+        this.router.navigate(['/home']);
+      })
+      .then(result => {
+        console.log(result);
+        this.alertController
+          .create({
+            title: this.translateService.instant('Content Deleted'),
+            // message: this.translateService.instant(`You deleted this content.`),
+            buttons: [
+              {
+                text: this.translateService.instant('Ok'),
+                handler: language => {
+                  this.i18nService.language = language;
+                }
+              }
+            ]
+          })
+          .present();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
-
-  // deleteContentById() {
-  //   let idContent = this.ohana[0].id
-  //   console.log('this is the content ID', idContent)
-  //   // return this.homeService.getContent()
-  //       // console.log('data here', data)
-  //       return this.http.delete('/content/deletestory/' + idContent).toPromise()
-  //       .then(result => {
-  //         console.log(result)
-  //         this.router.navigate(['/home'])
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  // }
-
-  // deleteContact(id) {
-  //   const deleteUrl = this.baseUrl + `contacts/${id}`
-  //   return this.http.delete(deleteUrl).toPromise();
-  // }
 
   ngOnInit() {
     this.isLoading = true;
     this.homeService.getContent().then(result => {
       this.alphaSort(result);
     });
+    this.auth.fetchProfile().then((response: object) => {
+      this.userData = response;
+    });
+    console.log(this.user.userId);
   }
 }

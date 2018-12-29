@@ -52,7 +52,7 @@ exports.seed = function(knex, Promise) {
           description: 'Ohana Background',
           price: '55',
           category: 'broadcast',
-          thumb_img: 'ohanadaily2.jpg',
+          thumb_img: 'bg.jpg',
           media_file: 'VIDEO5broadcastingnews.mp4'
         }
       ]);

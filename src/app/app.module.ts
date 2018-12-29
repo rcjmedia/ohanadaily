@@ -8,7 +8,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
-
+import { AuthGuard } from './shared/auth/auth.guard.service';
+// import { AuthenticationGuard } from './core/authentication/authentication.guard';
 import { environment } from '@env/environment';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
@@ -71,7 +72,8 @@ import { SessionsService } from './services/sessions.service';
     // HomeComponent
   ],
   providers: [
-    // AuthGuard,
+    AuthGuard,
+    // AuthenticationGuard,
     // OktaAuthWrapper,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     StatusBar,

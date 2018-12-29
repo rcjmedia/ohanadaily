@@ -41,6 +41,22 @@ export class SettingsComponent implements OnInit {
     this.authenticationService
       .logout()
       .subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+    this.alertController
+      .create({
+        title: this.translateService.instant('Mahalo'),
+        message: this.translateService.instant(
+          `You Have Successfully Logged Out. Thank you for visiting Ohanadaily.com.`
+        ),
+        buttons: [
+          {
+            text: this.translateService.instant('Close'),
+            handler: language => {
+              this.i18nService.language = language;
+            }
+          }
+        ]
+      })
+      .present();
   }
 
   changeLanguage() {

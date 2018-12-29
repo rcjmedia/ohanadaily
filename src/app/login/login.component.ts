@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private platform: Platform,
     private loadingController: LoadingController,
@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
   // login() {
   //   const loading = this.loadingController.create();
   //   loading.present();
-  //   this.auth
-  //   // this.authenticationService
+  //   // this.auth
+  //   this.authenticationService
   //     .login(this.loginForm.value)
   //     .pipe(
   //       finalize(() => {
@@ -94,30 +94,47 @@ export class LoginComponent implements OnInit {
         this.loginForm.markAsPristine();
         // loading.dismiss();
       })
+      // .then(
+      //   () => {
+      //     this.alertController
+      //     .create({
+      //       title: this.translateService.instant('Aloha!'),
+      //       message: this.translateService.instant(`You're logged in to Ohanadaily`),
+      //       buttons: [
+      //         {
+      //           text: this.translateService.instant('Ok'),
+      //           handler: language => {
+      //             this.i18nService.language = language;
+      //           }
+      //         }
+      //       ]
+      //     })
+      //     .present();
+      //   }
+      // )
       .then(
         () => {
           log.debug(`successfully logged in`);
-          this.route.queryParams.subscribe(params =>
-            this.router.navigate([params.redirect || '/'], { replaceUrl: true })
-          );
+          // this.route.queryParams.subscribe(params =>
+          this.router.navigate(['/login']);
         },
         error => {
           log.debug(`Login error: ${error}`);
           this.error = error;
-          // this.alertController
-          //   .create({
-          //     title: this.translateService.instant('Wrong Email or Password!'),
-          //     message: this.translateService.instant(`Please log back in.`),
-          //     buttons: [
-          //       {
-          //         text: this.translateService.instant('Ok'),
-          //         handler: language => {
-          //           this.i18nService.language = language;
-          //         }
-          //       }
-          //     ]
-          //   })
-          //   .present();
+          this.alertController
+            .create({
+              title: this.translateService.instant('Wrong Email or Password!'),
+              message: this.translateService.instant(`Please log back in.`),
+              buttons: [
+                {
+                  text: this.translateService.instant('Ok'),
+                  handler: language => {
+                    this.i18nService.language = language;
+                  }
+                }
+              ]
+            })
+            .present();
         }
       );
   }

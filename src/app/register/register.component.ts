@@ -63,8 +63,8 @@ export class RegisterComponent implements OnInit {
         log.debug(`User Created!`);
         this.alertController
           .create({
-            title: this.translateService.instant('Wrong Email or Password!'),
-            message: this.translateService.instant(`Please log back in.`),
+            title: this.translateService.instant('Aloha!'),
+            message: this.translateService.instant(`Please log in.`),
             buttons: [
               {
                 text: this.translateService.instant('Ok'),

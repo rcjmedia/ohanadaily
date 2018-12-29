@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-
+import { AuthGuard } from '../shared/auth/auth.guard.service';
 import {
   // AuthenticationGuard,
   AuthenticationService,
@@ -14,6 +14,7 @@ describe('Shell', () => {
       declarations: [ShellComponent],
       providers: [
         // AuthenticationGuard,
+        AuthGuard,
         { provide: AuthenticationService, useClass: MockAuthenticationService }
       ]
     });

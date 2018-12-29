@@ -2,10 +2,7 @@
   <ion-navbar>
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>
-      <a routerLink="/">
-        <ion-icon name="home"></ion-icon>
-        <!-- <span translate>Register</span> -->
-      </a>
+      <a routerLink="/login"> <ion-icon name="home">Home</ion-icon> </a>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -15,6 +12,7 @@
   <ion-grid no-padding>
     <ion-row justify-content-center no-padding>
       <ion-col col-sm-8 col-lg-6 col-xl-4 align-self-center no-padding>
+        <h1 style="color: white;">Register</h1>
         <div class="register-container">
           <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
             <div
@@ -124,7 +122,7 @@
                 color="primary"
                 block
               >
-                <span translate>Register</span>
+                <span translate>Submit</span>
               </button>
             </div>
           </form>

@@ -12,6 +12,7 @@ export interface Credentials {
   providedIn: 'root'
 })
 export class AuthService {
+  credentials: boolean;
   user: {
     loggedIn: boolean;
     email: string;
@@ -25,9 +26,9 @@ export class AuthService {
     this.user = this.session.getSession();
   }
 
-  // isAuthenticated(): boolean {
-  //   return !!this.credentials;
-  // }
+  isAuthenticated(): boolean {
+    return !!this.credentials;
+  }
 
   login(data: { data: any }) {
     return this.userProfilesService.login(data).then(response => {
@@ -62,12 +63,4 @@ export class AuthService {
         return response;
       });
   }
-
-  //   addRecipient(formData) {
-  //     const userId = this.user.userId;
-
-  //     return this.backend.addRecipient(userId, formData).then(response => {
-  //       return response;
-  //     });
-  //   }
 }

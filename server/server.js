@@ -33,7 +33,9 @@ passport.serializeUser((user, done) => {
   console.log('\nSerialize users\n', user);
   return done(null, {
     id: user.id,
-    email: user.email
+    email: user.email,
+    first_name: user.first_name,
+    last_name: user.last_name
   });
 });
 
@@ -47,10 +49,13 @@ passport.deserializeUser((user, done) => {
         return;
       }
       user = user.toJSON();
+      console.log('Sessions here: ', user);
       return done(user, null, {
         // Display data from the database:
         id: user.id,
-        email: user.email
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name
       });
     })
     .catch(err => {
@@ -133,7 +138,9 @@ app.post('/login', (req, res, next) => {
           } else {
             res.json({
               email: users.email,
-              id: users.id
+              id: users.id,
+              first_name: users.first_name,
+              last_name: users.last_name
             });
           }
         });
@@ -155,9 +162,18 @@ app.get('/logout', (req, res) => {
   res.json({ success: true });
 });
 
-app.get('/home', (req, res) => {
-  res.send(`For authenticated users only.`); // TODO
-});
+//// !important
+//// To properly implement SPA, turn this route on only
+//// when the Angular app is built and deployed.
+//// Comment this route out if in development mode.
+//// If not commented while in dev mode,
+//// Angular app will throw warnings and errors.
+///////////////////////////////////////////
+// app.get('/*', function(req, res) {
+//   res.sendFile(__dirname + '/index.html');
+// });
+///////////////////////////////////////////
+///////////////////////////////////////////
 
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}...`);

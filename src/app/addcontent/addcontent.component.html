@@ -50,30 +50,6 @@
               >
                 Content Type is required
               </div>
-              <div>
-                <!-- Content By THIS IS TODO!!!!! -->
-                <ion-item>
-                  <ion-label floating>{{ 'Content By' | translate }}</ion-label>
-                  <ion-input
-                    type="text"
-                    formControlName="user_id"
-                    [(ngModel)]="formData.user_id"
-                    autocomplete="user_id"
-                  ></ion-input>
-                </ion-item>
-                <div
-                  padding
-                  [hidden]="
-                    contentForm.controls.user_id.valid ||
-                    contentForm.controls.user_id.untouched
-                  "
-                  ion-text
-                  color="danger"
-                  translate
-                >
-                  Content By is required
-                </div>
-              </div>
               <!-- Name -->
               <ion-item>
                 <ion-label floating>{{ 'Name' | translate }}</ion-label>
@@ -217,6 +193,30 @@
               >
                 <span translate>Add</span>
               </button>
+              <div>
+                <!-- Content By THIS IS TODO!!!!! -->
+                <ion-item style="visibility: hidden">
+                  <ion-label floating>{{ 'Content By' | translate }}</ion-label>
+                  <ion-input
+                    type="text"
+                    formControlName="user_id"
+                    [(ngModel)]="formData.user_id"
+                    autocomplete="user_id"
+                  ></ion-input>
+                </ion-item>
+                <div
+                  padding
+                  [hidden]="
+                    contentForm.controls.user_id.valid ||
+                    contentForm.controls.user_id.untouched
+                  "
+                  ion-text
+                  color="danger"
+                  translate
+                >
+                  Content By is required
+                </div>
+              </div>
             </div>
           </form>
         </div>
