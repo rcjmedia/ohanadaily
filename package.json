@@ -73,7 +73,7 @@
     "ionic-angular": "^3.9.2",
     "ionicons": "^3.0.0",
     "knex": "^0.16.2",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "moment": "^2.23.0",
     "nodemon": "^1.18.8",
     "passport": "^0.4.0",
